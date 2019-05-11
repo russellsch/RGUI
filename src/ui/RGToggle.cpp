@@ -1,4 +1,4 @@
-#include "RGToggle.hpp"
+#include "rgui/ui/RGToggle.hpp"
 
 RGToggle::RGToggle(string name, int xNew, int yNew, int wNew, int hNew, string labelNew): RGObj(name, "toggle", xNew,yNew,wNew,hNew) {
     label = labelNew;

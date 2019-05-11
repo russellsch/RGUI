@@ -1,7 +1,7 @@
 #ifndef RGCHECKGROUP_H
 #define RGCHECKGROUP_H
 
-#include <RGFrame.hpp>
+#include <rgui/ui/RGFrame.hpp>
 
 #include <vector>
 #include <algorithm>

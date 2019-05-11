@@ -17,6 +17,7 @@ void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fulls
                 width, height, SDL_WINDOW_OPENGL); // | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
     this->glContext = SDL_GL_CreateContext(this->window);
+
     
     running = true;
     if(window == nullptr) {

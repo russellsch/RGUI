@@ -1,14 +1,14 @@
 #ifndef RGTOGGLE_H
 #define RGTOGGLE_H
 
-#include "RGObj.hpp"
+#include "rgui/RGObj.hpp"
 
 //!Multi-purpose toggle object
 /*!
 This object has two states, on and off. Various visual styles allow it to appear as a button, a slider (like on an iphone)
 , a checkbox, a radio button, etc...
 */
-class DLLHELPER RGToggle : public RGObj {
+class RGToggle : public RGObj {
     public:
         bool value;
         int style;

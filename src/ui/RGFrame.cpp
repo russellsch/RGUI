@@ -38,4 +38,9 @@ void RGFrame::postChildrenRender(int XOffset, int YOffset, unsigned int milliSec
         draw->text(label, XOffset+ (getW()/2)-(labelW/2), YOffset+(labelH/2)+1);
     }
 
+    //draw->noFill();
+    draw->fill(0, 100, 200, 128);
+    draw->stroke(0);
+    draw->rect(10, 10, 30, 30);
+
 }
