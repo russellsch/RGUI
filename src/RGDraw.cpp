@@ -10,7 +10,7 @@
     #include <GL/gl.h>
     #include <GL/glu.h>
 #else
-    #include "unistd.h"
+    //#include "unistd.h"
     //#include <windows.h>
     //#include <GL/gl.h>
     //#include <GL/glu.h>
@@ -19,7 +19,6 @@
 
 
 RGDraw::RGDraw() {
-    //intialize variables
     rectMode(CORNER);
     circleResolution(20);
 
@@ -27,7 +26,7 @@ RGDraw::RGDraw() {
     strokeColor = RGColor(0,0,0);
 
     fontSizePts = 15;
-    fontFile = "data/wqy-microhei.ttc";
+    fontFile = "data/fonts-wqy-microhei/wqy-microhei.ttc";
 
     //ofEnableAlphaBlending();
     glEnable(GL_BLEND);
@@ -159,7 +158,7 @@ void RGDraw::arc(int x, int y, float radius, float startAngle, float arcAngle, i
     //glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
 
 
-    float theta = arcAngle/float(resolution-1);
+    float theta = arcAngle/float(resolution - 1);
     float tFactor = tanf(theta);
     float radFactor = cosf(theta);
 

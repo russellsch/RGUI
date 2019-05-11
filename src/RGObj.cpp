@@ -8,7 +8,6 @@
 //!Default object constructor
 
 RGObj::RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int hNew) : RGRect(xNew, yNew, wNew, hNew, RG_TL) {
-    //intialize variables
     drawValid = false;
     parentValid = false;
     rootObjectValid = false;
@@ -278,9 +277,7 @@ void RGObj::propagateAppObject(RGObj* newChild) {
     }
 }
 
-string RGObj::getName() const{
-    return name;
-}
+
 void RGObj::setName(string newName) {
     name = newName;
 }

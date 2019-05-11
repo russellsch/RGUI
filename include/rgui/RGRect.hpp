@@ -6,7 +6,7 @@
 #include <cmath>
 
 //!4x4 transformation matrix for use with openGL
-struct TransMatrix {
+struct TransformMatrix3 {
     float data[4][4];
     void print() {
         for(int i=0; i < 4; i++) {
@@ -48,29 +48,31 @@ are calculated on the fly as needed.
 
 
 TODO:
-* Add rotation. Thought needs to be given on how to nondestructively apply rotation to the translation matrix, while still allowing resizing...
-perhaps switch to using scaling the in the matrix to respresent width and height?
+* Add rotation. Thought needs to be given on how to non-destructively apply rotation to the translation matrix, while still allowing resizing...
+perhaps switch to using scaling the in the matrix to represent width and height?
 * Mouse collision checking? Apply transform to mouse point and see if it is > 0 and < width and height
 * Add resizing, with an anchor point, specifying anchor and stretch parameters
 
 */
 
 
-class DLLHELPER RGRect
+class RGRect
 {
     public:
 
         RGRect(float x, float y, float widthNew, float heightNew, int positionModeNew); //!< Rectangle constructor
 
-        void translate(float xTran, float yTran);   //!<Translates the position rectangle in 2D space
-        TransMatrix getTransformMatrix();           //!<Returns the transform matrix for the translation and rotation of this rectangle (currently non-functional)
+        void translate(float x, float y);   //!<Translates the position rectangle in 2D space
+        // TODO: void rotateDeg(float degrees);
+        // TODO: void rotateRad(float degrees);
+        TransformMatrix3 getTransformMatrix();           //!<Returns the transform matrix for the translation and rotation of this rectangle (currently non-functional)
 
         RGRect getIntersection(RGRect* r2);         //!<Returns a rectangle of the intersection of this rectangle and another
         bool intersect(RGRect* r2);                 //!<Returns true if this rectangle interesects with another
 		bool intersect(float x, float y);           //!<Returns true if a point intersectes the rectangle
 
-        void setPositionMode(int positionModeNew);  //!<Sets a new position mode
-		int getPositionMode();						//!<Gets current position mode
+        void setPositionMode(int positionModeNew);
+		int getPositionMode() {return positionMode; };
 
         void setW(float wNew);      //!<Set the width of the rectangle
         void setWidth(float wNew);  //!<Set the width of the rectangle
@@ -86,10 +88,11 @@ class DLLHELPER RGRect
         void setY(float yNew);      //!<Set the Y position of whatever point the position mode is set to
 
 
-        float getL() const;           //!<Get the distance from the origin to the left of the rectangle
-        float getLeft() const;        //!<Get the distance from the origin to the left of the rectangle
-        float getR() const;           //!<Get the distance from the origin to the right of the rectangle
+
+        float getLeft() const {return left;}        //!<Get the distance from the origin to the left of the rectangle
+        float getL() const {return getLeft();};           //!<Get the distance from the origin to the left of the rectangle
         float getRight() const;       //!<Get the distance from the origin to the right of the rectangle
+        float getR() const;           //!<Get the distance from the origin to the right of the rectangle
         float getT() const;           //!<Get the distance from the origin to the top of the rectangle
         float getTop() const;         //!<Get the distance from the origin to the top of the rectangle
         float getB() const;           //!<Get the distance from the origin to the bottom of the rectangle
@@ -142,7 +145,7 @@ class DLLHELPER RGRect
         float width;            //!<The width of the rectangle
         float height;           //!<The height of the rectangle
         int positionMode;
-        TransMatrix transMatrix;
+        TransformMatrix3 transMatrix;
 };
 
 

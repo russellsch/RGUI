@@ -4,7 +4,6 @@
 
 #include <vector>
 #include <string>
-//#include "boost/function.hpp"
 
 
 using namespace std;
@@ -37,9 +36,8 @@ the event class's methods (see RGEvent), a user can easily link code to objects.
 */
 
 
-class DLLHELPER RGObj : public RGRect {
+class RGObj : public RGRect {
     public:
-
 
 
         //vector< boost::function<void (int x, int y)> > clickEvents;
@@ -100,7 +98,7 @@ class DLLHELPER RGObj : public RGRect {
         void propagateRootObject(RGObj* newChild, bool addNames);
         void propagateAppObject(RGObj* newChild);
 
-        string getName() const;
+        string getName() const { return name; };
         void setName(string newName);
 
         string getType() const;

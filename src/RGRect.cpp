@@ -1,9 +1,9 @@
 #include "rgui/RGRect.hpp"
 
-RGRect::RGRect(float x, float y, float widthNew, float heightNew, int positionModeNew) {
-    width = widthNew;
-    height = heightNew;
-    positionMode = positionModeNew;
+RGRect::RGRect(float x, float y, float width, float height, int positionMode) {
+    this->width = width;
+    this->height = height;
+    this->positionMode = positionMode;
 
     if(positionMode == RG_TC) {
         left = x - (width/2);
@@ -62,9 +62,9 @@ RGRect::RGRect(float x, float y, float widthNew, float heightNew, int positionMo
 }
 
 
-void RGRect::translate(float xTran, float yTran) {
-    left += xTran;
-    top += xTran;
+void RGRect::translate(float x, float y) {
+    left += x;
+    top += y;
     transMatrix.data[3][0] = left;
     transMatrix.data[3][1] = top;
 }
@@ -74,7 +74,7 @@ Returns a 4x4 matrix. This matrix can be used to to draw a point on the rectangl
 So if you wanted to draw a point at the the top left corner, you would multiple your point by this matrix to determine where to draw.
 This takes care of rotation and translation, and allows you to draw on the object as if it was your canvas.
 */
-TransMatrix RGRect::getTransformMatrix() {
+TransformMatrix3 RGRect::getTransformMatrix() {
     return transMatrix;
 }
 
@@ -114,10 +114,6 @@ bool RGRect::intersect(float x, float y){
 
 void RGRect::setPositionMode(int positionModeNew) {
     positionMode = positionModeNew;
-}
-
-int RGRect::getPositionMode() {
-	return positionMode;
 }
 
 /*!
@@ -214,12 +210,12 @@ void RGRect::setTop(float tNew) {
 
 
 
-float RGRect::getL() const {
+/*float RGRect::getL() const {
     return left;
-}
-float RGRect::getLeft() const {
+}*/
+/*float RGRect::getLeft() const {
     return left;
-}
+}*/
 float RGRect::getR() const {
     return left+width;
 }

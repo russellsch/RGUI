@@ -24,6 +24,7 @@ Simple GUI widgets
 - [X] Upgrade to SDL2
 - [X] Upgrade Freetype
 - [x] Upgrade OpenGL library version
+- [ ] Basic UI widget functionality ported to work on Ubuntu
 
 
 - [ ] Add GPL license
@@ -32,3 +33,8 @@ Simple GUI widgets
 - [ ] Add better UTF-8 font rendering demo
 - [ ] Change to use namespace RG and drop RG prefix on class names
 
+
+
+### v4.0.0 (FUTURE)
+
+- [ ] Switch to entity-component-system architecture
