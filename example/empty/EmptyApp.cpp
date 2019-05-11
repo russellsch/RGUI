@@ -40,7 +40,6 @@ void EmptyApp::keyPressed(int key){
 
 
 void EmptyApp::keyReleased(int key){
-    //cout << "framerate: " << ofGetFrameRate() << endl;
     //cout << "mouse: " << mouseX << "," << mouseY << endl;
 }
 

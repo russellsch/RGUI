@@ -4,7 +4,7 @@
 #include "RGObj.hpp"
 #include "RGLineGraph.hpp"
 
-class DLLHELPER RGGraph : public RGObj
+class RGGraph : public RGObj
 {
     public:
         RGGraph(string name, int xNew, int yNew, int wNew, int hNew);

@@ -36,7 +36,7 @@ togGrp2->addItem("tog_b3", "Leopards");
 root->addChild(togGrp2);
 \endcode
 */
-class DLLHELPER RGRadioGroup : public RGFrame
+class RGRadioGroup : public RGFrame
 {
     public:
         RGRadioGroup(string name, int xNew, int yNew, int wNew, int hNew);

@@ -8,7 +8,7 @@
 
 //!Group of check buttons
 
-class DLLHELPER RGCheckGroup : public RGFrame {
+class RGCheckGroup : public RGFrame {
 public:
     RGCheckGroup(string name, int xNew, int yNew, int wNew, int hNew);
     RGCheckGroup(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);

@@ -4,7 +4,7 @@ find_package(Freetype REQUIRED)
 
 set(OpenGL_GL_PREFERENCE GLVND)
 find_package(OpenGL REQUIRED)
-#find_package(GLEW REQUIRED)
+find_package(GLEW REQUIRED)
 
 # TODO: Create dependencies in readme and dockerfile
 # TODO: sudo apt install libsdl2-dev
@@ -23,6 +23,7 @@ set(header
 	${header_path}/RGEvent.hpp
 	${header_path}/RGObj.hpp
 	${header_path}/RGOSWindow.hpp
+	${header_path}/RGShader.hpp
 	${header_path}/RGRect.hpp
 	${header_path}/RGRoot.hpp
 	${header_path}/RGTTF.hpp
@@ -43,13 +44,14 @@ set(src
 	RGObj.cpp
 	RGRect.cpp
 	RGRoot.cpp
+	RGShader.cpp
 	RGSDLWindow.cpp
 	RGTTF.cpp
 	ui/RGButton.cpp
 	ui/RGFrame.cpp
 	ui/RGList.cpp
 	ui/RGToggle.cpp
-	)
+		)
 
 
 
@@ -63,6 +65,7 @@ target_include_directories(rgui
 	${RGUI_SOURCE_DIR}/include
 	${SDL2_INCLUDE_DIRS}
 	${FREETYPE_INCLUDE_DIRS}
+	${GLEW_INCLUDE_DIRS}
 
 	${OPENGL_INCLUDE_DIR}
 	${CMAKE_CURRENT_BINARY_DIR}
@@ -74,8 +77,9 @@ target_link_libraries(rgui
 		${SDL2_LIBRARIES}
 		${FREETYPE_LIBRARIES}
 		OpenGL::OpenGL
+		GLEW::GLEW
+		stdc++fs 	#Experimental C++17 filesystem
 		)
-#		GLEW::GLEW)
 
 
 set_target_properties(rgui PROPERTIES

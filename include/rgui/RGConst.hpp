@@ -23,37 +23,7 @@
 #endif
 
 
-#ifdef TARGET_WIN32_VC
-    #ifdef DLLEXPORT
-        #define DLLHELPER __declspec(dllexport)
-    #else
-        #define DLLHELPER //__declspec(dllimport)
-    #endif
-#else
-    #define DLLHELPER
-#endif
 
-
-/*
-#ifdef TARGET_WIN32
-    #include <windows.h>
-	#include "GLee.h"
-   	#include "glu.h"
-#endif
-
-
-#ifdef TARGET_WIN32
-	#define GLUT_BUILDING_LIB
-	#include "glut.h"
-#endif
-#ifdef TARGET_OSX
-	#include <GLUT/glut.h>
-#endif
-#ifdef TARGET_LINUX
-	#include <GL/glut.h>
-#endif
-
-*/
 
 
 //EVENT DEFINITIONS

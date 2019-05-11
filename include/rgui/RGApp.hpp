@@ -7,7 +7,7 @@
 #include "math.h"
 #include "RGOSWindow.hpp"
 
-
+#include "RGShader.hpp"
 
 
 using namespace std;
@@ -21,7 +21,7 @@ Add options to limit both draw and update to the desired framerate
 Can the draw object and root object be encapsulated in this?
 
 */
-class DLLHELPER RGApp{
+class RGApp{
     public:
         RGApp();
         virtual ~RGApp();

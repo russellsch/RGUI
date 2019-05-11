@@ -48,7 +48,7 @@ void RGButton::postChildrenRender(int XOffset, int YOffset, unsigned int milliSe
         draw->textSize(fontSize);
         draw->text(label, (getW()/2)-((draw->textWidth(label))/2),(getH()/2)+2);
     } else {
-        if(milliSecondTimer%1000 > 500) {
+        if(milliSecondTimer % 1000 > 500) {
             bkgColor = ColorRGBA(255,0,0);
         } else {
             bkgColor = ColorRGBA(0,255,0);

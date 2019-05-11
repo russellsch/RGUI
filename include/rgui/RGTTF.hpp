@@ -67,7 +67,7 @@ Text rendering in programs using the RGUI should be done through the text functi
 
 This class renders characters to opengl texture buffers which are then cached.
 */
-class DLLHELPER RGTTF {
+class RGTTF {
     public:
         RGTTF();
         void loadFont(string fontFile, int newFontSize);   //!<Constructor loads and sets up a given font at a given size

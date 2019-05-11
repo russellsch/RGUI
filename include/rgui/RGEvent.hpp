@@ -9,7 +9,7 @@ class RGRoot;
 /*!
 
 */
-class DLLHELPER RGEvent
+class RGEvent
 {
     public:
         RGRoot* rootObject;

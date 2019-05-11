@@ -13,7 +13,7 @@ This object acts as a horizontal or vertical slider depending on whether it's wi
 By setModeInt() or setModeFloat() the style in which numbers are displayed can be changed.
 Additionally the number of digits after the decimal can be set as well when using floats.
 */
-class DLLHELPER RGSlider : public RGObj {
+class RGSlider : public RGObj {
     public:
         float value; //!Always between 0 and 1 internally
         float sliderMapMin, sliderMapMax;

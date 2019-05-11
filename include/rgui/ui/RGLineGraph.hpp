@@ -5,7 +5,7 @@
 #include "RGColor.hpp"
 
 //!The internal component responsible for drawing line graphs
-class DLLHELPER RGLineGraph : public RGObj {
+class RGLineGraph : public RGObj {
     public:
         RGLineGraph(string name, int xNew, int yNew, int wNew, int hNew);
 
