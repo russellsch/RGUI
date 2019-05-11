@@ -17,7 +17,6 @@ set(header
 	${RGUI_SOURCE_DIR}/include/rgui.hpp
 	${header_path}/KSBasicTimer.h
 	${header_path}/RGApp.hpp
-    ${header_path}/RGButton.hpp
 	${header_path}/RGConst.hpp
 	${header_path}/RGColor.hpp
 	${header_path}/RGDraw.hpp
@@ -28,13 +27,14 @@ set(header
 	${header_path}/RGRoot.hpp
 	${header_path}/RGTTF.hpp
 	${header_path}/RGSDLWindow.hpp
+	${header_path}/ui/RGButton.hpp
+	${header_path}/ui/RGFrame.hpp
 )
 
 # Source
 set(src
 	KSBasicTimer.cpp
 	RGApp.cpp
-		ui/RGButton.cpp
 	RGColor.cpp
 	RGDraw.cpp
 	RGEvent.cpp
@@ -43,6 +43,8 @@ set(src
 	RGRoot.cpp
 	RGSDLWindow.cpp
 	RGTTF.cpp
+	ui/RGButton.cpp
+	ui/RGFrame.cpp
 	)
 
 

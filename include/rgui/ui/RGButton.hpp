@@ -20,17 +20,17 @@ class RGButton : public RGObj {
 
         wstring label;
 
-        RGButton(string name, int xNew, int yNew, int wNew, int hNew, std::wstring labelNew);
+        RGButton(string name, int xNew, int yNew, int wNew, int hNew, std::wstring label);
         //RGButton(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
 
-        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
-        void preChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
+        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
+        void preChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
 
         void setStyle(int styleNew);
         int getStyle() { return style; };
 
-        int press(int mouseXin, int mouseYin);
-        void release(int mouseXin, int mouseYin);
+        int press(int mouseXin, int mouseYin) override;
+        void release(int mouseXin, int mouseYin) override;
 
         virtual ~RGButton();
     protected:

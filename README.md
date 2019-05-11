@@ -25,6 +25,7 @@ Simple GUI widgets
 - [X] Upgrade Freetype
 - [X] Upgrade OpenGL library version
 - [X] Basic UI widget functionality working on Linux
+- [X] Simplified import for use to single h file
 
 
 - [ ] Add GPL license
