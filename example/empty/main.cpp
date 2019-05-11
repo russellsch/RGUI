@@ -1,14 +1,12 @@
 #include <iostream>
 
 #include "SDL.h"
-#include "rgui/something.h"
+#include "rgui/RGSDLWindow.hpp"
 
 int main() {
     std::cout << "test\n";
 
-    some_function(1);
-
-    SDL_Init(SDL_INIT_VIDEO);
+    /*SDL_Init(SDL_INIT_VIDEO);
 
 	SDL_Window *window = SDL_CreateWindow(
 		"SDL2Test",
@@ -27,7 +25,14 @@ int main() {
 	SDL_Delay(3000);
 
 	SDL_DestroyWindow(window);
-	SDL_Quit();
+	SDL_Quit();*/
+
+    auto title = "Example Title"s;
+    auto app_window = new RGSDLWindow();
+    app_window->openWindow(640, 480, false, title);
+
+    SDL_Delay(3000);
+
 
 	return 0;
 }

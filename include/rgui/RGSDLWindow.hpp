@@ -4,29 +4,29 @@
 #include <rgui/RGOSWindow.hpp>
 #include <iostream>
 
-#include "SDL.h"
-//#include <windows.h>
 
-struct SDL_Surface;
+#include "SDL.h"
+
+//struct SDL_Surface;
 
 
 class RGSDLWindow : public RGOSWindow {
     public:
-        void init();
-        void openWindow(unsigned int width, unsigned int height, bool fullscreen, string title);
-        bool isOpen();
-        void display();
-        void close();
-        bool getEvent(RGInputEvent& event);
+        void init() override;
+        void openWindow(unsigned int width, unsigned int height, bool fullscreen, std::string title) override;
+        bool isOpen() override;
+        void display() override;
+        void close() override;
+        bool getEvent(RGInputEvent& event) override ;
+
     protected:
-        //SDL_Surface* window;
         SDL_Window* window;
         bool running;
+
     private:
         queue<RGInputEvent> events;
 
 
-		
 };
 
 

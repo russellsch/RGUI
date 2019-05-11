@@ -69,10 +69,10 @@ public:
 //!Base class for encapsulating various windowing libraries
 class RGOSWindow {
     public:
-        RGOSWindow();
+        RGOSWindow() = default;
         virtual void init() { }                 //!<Initialize the windowing library
                                                 //!Opens a new window with a given width, height, title and fullscreen parameter
-        virtual void openWindow(unsigned int width, unsigned int height, bool fullscreen, string title) { }
+        virtual void openWindow(unsigned int width, unsigned int height, bool fullscreen, std::string title) { }
 
         virtual unsigned int getWindowH() { return 0; }   //!<Returnes window height
         virtual unsigned int getWindowW() { return 0; }   //!<Returnes window width
@@ -85,7 +85,7 @@ class RGOSWindow {
 
         virtual bool getEvent(RGInputEvent& event) { return false; }            //!<Returns true if an event is available
 
-        virtual ~RGOSWindow();
+        virtual ~RGOSWindow() = default;
     protected:
 
     private:

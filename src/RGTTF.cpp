@@ -1,8 +1,7 @@
-#include "RGTTF.hpp"
-//#include <SFML/Window.hpp>
+#include "rgui/RGTTF.hpp"
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
+//#include <ft2build.h>
+//#include FT_FREETYPE_H
 
 
 
@@ -40,7 +39,7 @@ void RGTTF::loadFont(string fontFile, int newFontSize) {
         //setup character sizes
         FT_Set_Char_Size( face,
                          0, newFontSize << 6, //in 1/64th of a font point, <<6 == *64
-                         72, 72);   //vertical and horiziontal device resolution
+                         72, 72);   //vertical and horizontal device resolution
         faceSize = newFontSize;
 
         slot = face->glyph;

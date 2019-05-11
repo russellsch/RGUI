@@ -1,9 +1,8 @@
 #include "rgui/RGSDLWindow.hpp"
 
 
-
 void RGSDLWindow::init() {
-    if(SDL_Init(SDL_INIT_VIDEO)<0){
+    if(SDL_Init(SDL_INIT_VIDEO) < 0){
         cout << "ERROR: SDL INIT FAIL!! QUITING" << endl;
         SDL_Quit();
         exit(0);
@@ -13,20 +12,19 @@ void RGSDLWindow::init() {
 
 
 
-void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fullscreen, string title){
-    //window = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_OPENGL| SDL_RESIZABLE);
-    this->window = SDL_CreateWindow("Title", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
+void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fullscreen,  std::string title){
+    this->window = SDL_CreateWindow(title.c_str(),
+            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                 width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
     SDL_GL_CreateContext(this->window);
     
     running = true;
-    if(window == NULL) {
-        cout << "ERROR: SDL WINDOW FAIL!! QUITING" << endl;
+    if(window == nullptr) {
+        cout << "ERROR: SDL WINDOW FAILED TO CREATE!! QUITING" << endl;
         running = false;
         exit(0);
     }
-
 
 }
 
@@ -36,7 +34,6 @@ bool RGSDLWindow::isOpen() {
 
 
 void RGSDLWindow::display() {
-    //SDL_GL_SwapBuffers();
     SDL_GL_SwapWindow(this->window);
 }
 

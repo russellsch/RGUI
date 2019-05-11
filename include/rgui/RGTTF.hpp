@@ -2,8 +2,8 @@
 #define RGTTF_H
 
 
-//#include <ft2build.h>
-//#include FT_FREETYPE_H
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 #include <string>
 #include <iostream>
@@ -22,12 +22,12 @@
 #ifdef TARGET_WIN32_VC
     #include "direct.h"
     #define getcwd _getcwd
-    #include <windows.h>
+//    #include <windows.h>
     #include <GL/gl.h>
     #include <GL/glu.h>
 #else
     #include "unistd.h"
-    #include <windows.h>
+//    #include <windows.h>
     #include <GL/gl.h>
     #include <GL/glu.h>
 #endif
