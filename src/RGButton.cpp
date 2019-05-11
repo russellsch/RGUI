@@ -29,16 +29,19 @@ void RGButton::postChildrenRender(int XOffset, int YOffset, unsigned int milliSe
         if(pressed) {
             draw->stroke(0);
             draw->fill(pressedColor);
-            draw->roundRect(0,0,getW(),getH(), 10, 10);
+            //draw->roundRect(0,0,getW(),getH(), 10, 10);
+            draw->rect(0,0,getW(),getH());
 
             draw->noFill();
             draw->stroke(80,80,80);
-            draw->roundRect(1,1,getW()-1,getH()-1, 10, 10);
+            //draw->roundRect(1,1,getW()-1,getH()-1, 10, 10);
+            draw->rect(1,1,getW()-1,getH()-1);
 
         } else {
             draw->stroke(0);
             draw->fill(bkgColor);
-            draw->roundRect(0,0,getW(),getH(), 10, 10);
+            //draw->roundRect(0,0,getW(),getH(), 10, 10);
+            draw->rect(0,0,getW(),getH());
         }
         draw->stroke(textColor);
         draw->fill(textColor);
@@ -87,9 +90,6 @@ void RGButton::setStyle(int styleNew) {
 
 }
 
-int RGButton::getStyle() {
-    return style;
-}
 
 int RGButton::press(int mouseXin, int mouseYin) {
     if(verboseSPST) { cout<<"SPST(): Press received("<<mouseXin<<","<<mouseYin<<")"<<endl; }

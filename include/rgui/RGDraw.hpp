@@ -12,11 +12,6 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-//#include "ofMain.h"
-
-
-
-//#include "ofTrueTypeFont.h"
 
 
 #include "math.h"
@@ -37,7 +32,6 @@ class DLLHELPER RGDraw {
         void noStroke();
         void stroke(RGColor newStroke);     //!<Set stroke color using an RGColor
         void stroke(RGColor newStroke, int a);     //!<Set stroke color using an RGColor, overriding the alpha
-        void stroke(ofColor newStroke);     //!<Set stroke color using an ofColor
         void stroke(int brightness);
         void stroke(int brightness, int alpha);
         void stroke(int r, int g, int b);
@@ -45,7 +39,6 @@ class DLLHELPER RGDraw {
 
         void noFill();
         void fill(RGColor newFill);
-        void fill(ofColor newFill);
         void fill(int brightness);
         void fill(int brightness, int alpha);
         void fill(int r, int g, int b);

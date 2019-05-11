@@ -422,9 +422,9 @@ void RGDraw::rotate(float degrees) {
 void RGDraw::noStroke() {
     strokeEna = false;
 }
-void RGDraw::stroke(RGColor newStroke) {
+void RGDraw::stroke(RGColor stroke) {
     strokeEna = true;
-    strokeColor = newStroke;
+    strokeColor = stroke;
 }
 void RGDraw::stroke(RGColor newStroke, int a) {
     strokeEna = true;
@@ -500,7 +500,7 @@ void RGDraw::fill(int r, int g, int b, int a) {
 
 
 void RGDraw::text(string text, int x, int y) {
-    this->text( toWString(text), x,y);
+    this->text(toWString(text), x, y);
 }
 
 /*

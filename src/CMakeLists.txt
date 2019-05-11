@@ -29,7 +29,6 @@ set(header
 	${header_path}/RGSDLWindow.hpp
 	)
 
-
 # Source
 set(src
 	KSBasicTimer.cpp

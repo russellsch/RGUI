@@ -27,7 +27,7 @@ class RGButton : public RGObj {
         void preChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
 
         void setStyle(int styleNew);
-        int getStyle();
+        int getStyle() { return style; };
 
         int press(int mouseXin, int mouseYin);
         void release(int mouseXin, int mouseYin);

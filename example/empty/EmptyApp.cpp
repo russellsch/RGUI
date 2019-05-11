@@ -4,7 +4,7 @@ void EmptyApp::setup(){
 
     root = new RGRoot(1024,768, this);
 
-	RGButton* testButton = new RGButton("test", 50,50,70,30,L"Test");
+	RGButton* testButton = new RGButton("test", 50,50,70,30,L"テスト");
 
     testButton->setEventHandler(new ButtonEvent(root));
     root->addChild(testButton);
