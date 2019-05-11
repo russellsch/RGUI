@@ -3,21 +3,12 @@
 
 
 
-//#include "ofBaseApp.h"
-//#include "ofAppGlutWindow.h"
-//#include "ofAppRunner.h"
 #include "RGRoot.hpp"
-#include "GL/glew.h"
-#include "windows.h"
 #include "math.h"
-
 #include "RGOSWindow.hpp"
 
 
 
-
-
-static HHOOK rGMouseHook;
 
 using namespace std;
 //!Subclass this to make your application, encapsulates windowing functionality and input
@@ -76,32 +67,13 @@ class DLLHELPER RGApp{
         bool mouseIsPressed;    //used to detect dragging
         int mousePressedButton;     //1-left, 2-right, 3-middle
 
-        //ofAppGlutWindow window;
+
 };
 
 static RGApp* appPointer;
 
-static LRESULT CALLBACK mouseCallback( int code, WPARAM wparam, LPARAM lparam);
 
 
 
-
-/*class RGofWrapper : public ofBaseApp{
-	public:
-        RGofWrapper();
-		void setup();
-		void update();
-		void draw();
-
-		void keyPressed  (int key);
-		void keyReleased(int key);
-		void mouseMoved(int x, int y );
-		void mouseDragged(int x, int y, int button);
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void windowResized(int w, int h);
-
-};
-*/
 
 #endif // RGAPP_H

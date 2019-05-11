@@ -1,8 +1,4 @@
-//wrap all openframeworks calls if possible
-
-#include "RGDraw.hpp"
-
-#include "GL/glew.h"
+#include "rgui/RGDraw.hpp"
 
 //Platform switch to allow getting the current working directory
 //because microsoft breaks posix getcwd and renames it to _getcwd
@@ -15,29 +11,11 @@
     #include <GL/glu.h>
 #else
     #include "unistd.h"
-    #include <windows.h>
-    #include <GL/gl.h>
-    #include <GL/glu.h>
+    //#include <windows.h>
+    //#include <GL/gl.h>
+    //#include <GL/glu.h>
 #endif
 
-
-//#include <SFML/Window.hpp>
-
-/*#ifdef TARGET_OSX
-	#include <OpenGL/glu.h>
-#endif
-
-#ifdef TARGET_OPENGLES
-	#include "glu.h"
-#endif
-
-#ifdef TARGET_LINUX
-	#include "GL/glu.h"
-#endif
-
-#ifdef TARGET_WIN32
-	#include "glu.h"
-#endif*/
 
 
 RGDraw::RGDraw() {

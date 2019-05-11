@@ -14,9 +14,12 @@ find_package(OpenGL REQUIRED)
 # Get headers
 set(header_path "${RGUI_SOURCE_DIR}/include/rgui")
 set(header
+	${header_path}/KSBasicTimer.h
 	${header_path}/RGConst.hpp
 	${header_path}/RGColor.hpp
+	${header_path}/RGDraw.hpp
 	${header_path}/RGEvent.hpp
+	${header_path}/RGObj.hpp
 	${header_path}/RGOSWindow.hpp
 	${header_path}/RGRect.hpp
 	${header_path}/RGTTF.hpp
@@ -26,9 +29,12 @@ set(header
 
 # Source
 set(src
+	KSBasicTimer.cpp
 	RGColor.cpp
+	RGDraw.cpp
 	RGEvent.cpp
 	RGRect.cpp
+	RGObj.cpp
 	RGSDLWindow.cpp
 	RGTTF.cpp
 	)

@@ -1,7 +1,7 @@
-#include "RGObj.hpp"
-#include "RGRoot.hpp"
-#include "RGApp.hpp"
-#include "RGRect.h"
+#include "rgui/RGObj.hpp"
+//#include "RGRoot.hpp"
+#include "rgui/RGApp.hpp"
+//#include "RGRect.h"
 
 
 
@@ -222,7 +222,7 @@ void RGObj::addChild(RGObj* newChild){
     propagateDrawObject(newChild);
 
     //give this child the root object and register it's name as well (this function is applied recursively to all children)
-    propagateRootObject(newChild, TRUE);
+    propagateRootObject(newChild, true);
 
     //give this child the app object
     propagateAppObject(newChild);

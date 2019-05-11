@@ -1,4 +1,4 @@
-#include "KSBasicTimer.h"
+#include "rgui/KSBasicTimer.h"
 #include <stdio.h>
 
 KSBasicTimer::KSBasicTimer() {
@@ -88,14 +88,14 @@ double KSBasicTimer::getTimeS() {
 }
 
 
-
+/*
 BOOL Win32TimeInterface::getPerformanceCounter(LARGE_INTEGER *lpPerformanceCount){
 	return QueryPerformanceCounter(lpPerformanceCount);
 }
 BOOL Win32TimeInterface::getPerformanceFrequency(LARGE_INTEGER *lpFrequency){
 	return QueryPerformanceFrequency(lpFrequency);
 }
-
+*/
 
 
 

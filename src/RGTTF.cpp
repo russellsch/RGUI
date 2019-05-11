@@ -25,7 +25,7 @@ void RGTTF::loadFont(string fontFile, int newFontSize) {
     string fontPath = "/"+fontFile;
     char currDir[1024];
 
-    fontPath = getcwd(currDir,1024) + fontPath;
+    fontPath = getcwd(currDir, 1024) + fontPath;
 
     //load the font face
 	ftError = FT_New_Face( ftLibrary, fontPath.c_str(), 0, &face);

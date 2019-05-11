@@ -11,9 +11,9 @@ using namespace std;
 
 
 
-#include "RGEvent.hpp"
-#include "RGDraw.hpp"
-#include "RGRect.h"
+#include "rgui/RGEvent.hpp"
+#include "rgui/RGDraw.hpp"
+#include "rgui/RGRect.hpp"
 
 
 
