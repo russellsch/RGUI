@@ -27,6 +27,8 @@ Simple GUI widgets
 - [X] Basic UI widget functionality working on Linux
 - [X] Simplified import for use to single h file
 
+- [ ] Create basic UI demo of working UI widgets
+
 
 - [ ] Add GPL license
 - [ ] Add CMake library exports

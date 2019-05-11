@@ -29,6 +29,7 @@ set(header
 	${header_path}/RGSDLWindow.hpp
 	${header_path}/ui/RGButton.hpp
 	${header_path}/ui/RGFrame.hpp
+	${header_path}/ui/RGList.hpp
 )
 
 # Source
@@ -45,6 +46,7 @@ set(src
 	RGTTF.cpp
 	ui/RGButton.cpp
 	ui/RGFrame.cpp
+	ui/RGList.cpp
 	)
 
 
