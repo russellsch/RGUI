@@ -51,7 +51,7 @@ class DLLHELPER RGApp{
         int getWindowW();
         int getWindowH();
 
-        void setTitleBar(string newTitleBar);
+        void setTitleBar(string newTitleBar) { this->title = newTitleBar; };
 
     protected:
         void setupGLView();
@@ -59,7 +59,7 @@ class DLLHELPER RGApp{
         void processEvents();
 
         int windowW, windowH;
-        string titleBar;
+        string title;
 
         RGOSWindow* window;
 

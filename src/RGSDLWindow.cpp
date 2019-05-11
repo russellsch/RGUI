@@ -7,7 +7,6 @@ void RGSDLWindow::init() {
         SDL_Quit();
         exit(1);
     }
-    //atexit(SDL_Quit); //CAUSING ERRORS MAYBE?
 }
 
 
@@ -15,17 +14,17 @@ void RGSDLWindow::init() {
 void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fullscreen,  std::string title){
     this->window = SDL_CreateWindow(title.c_str(),
             SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+                width, height, SDL_WINDOW_OPENGL); // | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
-    SDL_GL_CreateContext(this->window);
+    this->glContext = SDL_GL_CreateContext(this->window);
     
     running = true;
     if(window == nullptr) {
         cout << "ERROR: SDL WINDOW FAILED TO CREATE!! QUITING" << endl;
         running = false;
-        exit(0);
+        exit(1);
     }
-
+    cout << "SDL openWindow, running: " << running << "\n";
 }
 
 bool RGSDLWindow::isOpen() {
@@ -38,6 +37,7 @@ void RGSDLWindow::display() {
 }
 
 void RGSDLWindow::close() {
+
     running = false;
     SDL_Quit();
 }
@@ -46,31 +46,36 @@ void RGSDLWindow::close() {
 bool RGSDLWindow::getEvent(RGInputEvent& event){
     SDL_Event libEvent;
     while(SDL_PollEvent(&libEvent)){
+        cout << "event";
         RGInputEvent newEvent;
-        switch (libEvent.type) {
-            case SDL_QUIT:
-                newEvent.type = RGInputEvent::Quit;
-                running = false;
-                break;
-            case SDL_MOUSEBUTTONDOWN || SDL_MOUSEBUTTONUP:
-                newEvent.type = (libEvent.type == SDL_MOUSEBUTTONDOWN ? RGInputEvent::MouseButtonPressed : RGInputEvent::MouseButtonReleased);
-                newEvent.mouseButton.x = libEvent.button.x;
-                newEvent.mouseButton.y = libEvent.button.y;
-                if(libEvent.button.button == SDL_BUTTON_LEFT) { newEvent.mouseButton.button = 1; }
-                else if(libEvent.button.button == SDL_BUTTON_RIGHT) { newEvent.mouseButton.button = 2; }
-                else if(libEvent.button.button == SDL_BUTTON_MIDDLE) { newEvent.mouseButton.button = 3; }
-                break;
-            case SDL_MOUSEMOTION:
-                newEvent.type = RGInputEvent::MouseMoved;
-                newEvent.mouseMove.x = libEvent.motion.x;
-                newEvent.mouseMove.y = libEvent.motion.y;
-                break;
+        if(libEvent.type == SDL_QUIT) {
+            cout << "SDLQuit Event\n";
+            newEvent.type = RGInputEvent::Quit;
+            running = false;
 
+            events.push(newEvent);
+        } else if(libEvent.type == SDL_MOUSEBUTTONDOWN || libEvent.type == SDL_MOUSEBUTTONUP) {
+            newEvent.type = (libEvent.type == SDL_MOUSEBUTTONDOWN ? RGInputEvent::MouseButtonPressed
+                                                                  : RGInputEvent::MouseButtonReleased);
+            newEvent.mouseButton.x = libEvent.button.x;
+            newEvent.mouseButton.y = libEvent.button.y;
+            if (libEvent.button.button == SDL_BUTTON_LEFT) { newEvent.mouseButton.button = 1; }
+            else if (libEvent.button.button == SDL_BUTTON_RIGHT) { newEvent.mouseButton.button = 2; }
+            else if (libEvent.button.button == SDL_BUTTON_MIDDLE) { newEvent.mouseButton.button = 3; }
+
+            events.push(newEvent);
+
+        } else if(libEvent.type == SDL_MOUSEBUTTONDOWN) {
+            newEvent.type = RGInputEvent::MouseMoved;
+            newEvent.mouseMove.x = libEvent.motion.x;
+            newEvent.mouseMove.y = libEvent.motion.y;
+            events.push(newEvent);
         }
-        events.push(newEvent);
+
+
     }
 
-    if(events.size() > 0) {
+    if(!events.empty()) {
         event = events.front();
         events.pop();
         return true;

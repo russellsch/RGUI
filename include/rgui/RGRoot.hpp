@@ -1,18 +1,10 @@
 #ifndef RGROOT_H
 #define RGROOT_H
 
-#ifndef DLL_EXPORT
-    #ifdef BUILD_DLL
-        #define DLL_EXPORT __declspec(dllexport)
-    #else
-        #define DLL_EXPORT __declspec(dllimport)
-    #endif
-#endif
-
 #include <string>
 #include <map>
 
-#include "RGObj.hpp"
+#include "rgui/RGObj.hpp"
 #include "KSBasicTimer.h"
 
 
@@ -21,7 +13,7 @@
 This class also contains a timer that keeps track of how long the program has been running. This can be used to
 add basic animations.
 */
-class DLLHELPER RGRoot : public RGObj {
+class RGRoot : public RGObj {
     public:
         RGRoot(int wNew, int hNew, RGApp*);
         virtual ~RGRoot();

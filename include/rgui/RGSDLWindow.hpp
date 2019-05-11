@@ -21,6 +21,7 @@ class RGSDLWindow : public RGOSWindow {
 
     protected:
         SDL_Window* window;
+        SDL_GLContext glContext;
         bool running;
 
     private:

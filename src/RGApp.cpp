@@ -1,5 +1,5 @@
-#include "RGApp.hpp"
-#include "RGSDLWindow.hpp"
+#include "rgui/RGApp.hpp"
+#include "rgui/RGSDLWindow.hpp"
 
 /*void RGApp::runApp(int w, int h) {
     appPointer = this;
@@ -44,7 +44,7 @@ void RGApp::runApp(int w, int h) {
 
     window = new RGSDLWindow();
     window->init();
-    window->openWindow(w, h, false, titleBar);
+    window->openWindow(w, h, false, title);
 
 
 
@@ -81,6 +81,7 @@ void RGApp::runApp(int w, int h) {
 		window->display();
 
 	}
+	cout << "RGApp Window closed \n";
     return;
 }
 
@@ -89,6 +90,7 @@ void RGApp::processEvents() {
 
     while (window->getEvent(event)) {
         if(event.type == RGInputEvent::Closed) {
+            cout << "RGApp got closed input event \n";
             window->close();
             exit();             //user's custom on-exit code
         }
@@ -104,10 +106,10 @@ void RGApp::processEvents() {
         }
         if(event.type == RGInputEvent::Resized) {  //if we resize the window... update the RGApp's window size vars and setup the OpenGL view again
             cout << "resize: " << event.resize.width << " " << event.resize.height <<endl;
-            windowW = event.resize.width;
+            /*windowW = event.resize.width;
             windowH = event.resize.height;
             windowResized(windowW, windowH);
-            setupGLView();
+            setupGLView();*/
         }
 
     }
@@ -121,11 +123,8 @@ int RGApp::getWindowH() {
     return windowH;
 }
 
-void RGApp::setTitleBar(string newTitleBar){
-    titleBar = newTitleBar;
-}
-
 void RGApp::setupGLView() {
+    cout << "setupGLView ";
 	//setup screen
 	/*float halfFov, theTan, screenFov, aspect;
 	screenFov 		= 60.0f;
@@ -170,7 +169,7 @@ void RGApp::setupGLView() {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-
+    //cout << " done \n";
 }
 
 
