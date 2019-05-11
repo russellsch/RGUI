@@ -107,6 +107,7 @@ class RGDraw {
         //std::map<int, ofTrueTypeFont> fonts;
         RGTTF font;
 
+        int transformDepth; //Track depth of push and pop operations
 
 
 

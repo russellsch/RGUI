@@ -30,6 +30,7 @@ set(header
 	${header_path}/ui/RGButton.hpp
 	${header_path}/ui/RGFrame.hpp
 	${header_path}/ui/RGList.hpp
+	${header_path}/ui/RGToggle.hpp
 )
 
 # Source
@@ -47,6 +48,7 @@ set(src
 	ui/RGButton.cpp
 	ui/RGFrame.cpp
 	ui/RGList.cpp
+	ui/RGToggle.cpp
 	)
 
 

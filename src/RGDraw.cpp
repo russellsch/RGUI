@@ -28,10 +28,9 @@ RGDraw::RGDraw() {
     fontSizePts = 15;
     fontFile = "data/fonts-wqy-microhei/wqy-microhei.ttc";
 
-    //ofEnableAlphaBlending();
     glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+    glEnable (GL_MULTISAMPLE);
 
     font = RGTTF();
     font.loadFont(fontFile, fontSizePts);
@@ -41,8 +40,6 @@ RGDraw::RGDraw() {
 
 
 void RGDraw::line(int x1, int y1, int x2, int y2){
-    //ofSetColor(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
-    //ofLine(x1,y1,x2,y2);
 
     glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
 
@@ -60,8 +57,8 @@ void RGDraw::rect(int x1, int y1, int w, int h) {
     float cornerPoints[8];
 
     if(rectDrawMode == CORNER) {
-        cornerPoints[0] = (float) x1;
-        cornerPoints[1] = (float) y1;
+        cornerPoints[0] = (float) x1 - 1;
+        cornerPoints[1] = (float) y1 - 1;
         cornerPoints[2] = (float) (x1+w);
         cornerPoints[3] = (float) y1;
         cornerPoints[4] = (float) (x1+w);
@@ -79,18 +76,20 @@ void RGDraw::rect(int x1, int y1, int w, int h) {
         cornerPoints[7] = (float) (y1+h/2);
     }
     //fill
-    if(fillEna) {
+    if(fillEnabled) {
         glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &cornerPoints[0]);
         glDrawArrays(GL_QUADS, 0, 4);
+        glDisableClientState(GL_VERTEX_ARRAY);
     }
     //border
-    if(strokeEna) {
+    if(strokeEnabled) {
         glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &cornerPoints[0]);
         glDrawArrays(GL_LINE_LOOP, 0, 4);
+        glDisableClientState(GL_VERTEX_ARRAY);
     }
 
 }
@@ -110,14 +109,14 @@ void RGDraw::circle(float x1, float y1, float radius, int res) {
 		circlePts[i+1] = y1 + circleCalcPts[i+1] * radius;
  	}
     //fill
-    if(fillEna) {
+    if(fillEnabled) {
         glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
         glDrawArrays( GL_POLYGON, 0, currentCircleRes);
     }
     //border
-    if(strokeEna) {
+    if(strokeEnabled) {
         glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
@@ -140,14 +139,14 @@ void RGDraw::ellipse(int x1, int y1, int w, int h, int res) {
 		circlePts[i+1] = y1 + circleCalcPts[i+1] * h * .5;
  	}
     //fill
-    if(fillEna) {
+    if(fillEnabled) {
         glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
         glDrawArrays( GL_POLYGON, 0, currentCircleRes);
     }
     //border
-    if(strokeEna) {
+    if(strokeEnabled) {
         glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
@@ -165,7 +164,7 @@ void RGDraw::arc(int x, int y, float radius, float startAngle, float arcAngle, i
     //float x2 = radius*cosf(startAngle);
     ///float y2 = radius*sinf(startAngle);
 
-    if(fillEna) {
+    if(fillEnabled) {
         float x2 = radius*cosf(startAngle);
         float y2 = radius*sinf(startAngle);
 
@@ -184,7 +183,7 @@ void RGDraw::arc(int x, int y, float radius, float startAngle, float arcAngle, i
         glEnd();
     }
 
-    if(strokeEna) {
+    if(strokeEnabled) {
         float x2 = radius*cosf(startAngle);
         float y2 = radius*sinf(startAngle);
 
@@ -240,7 +239,7 @@ void RGDraw::rectMode(int mode) {
 /*!Builds a sine/cosine table for use for calculating circle vertexes much faster
 */
 void RGDraw::circleResolution(int res) {
-    int validRes = rgClamp(res, 1, RG_MAX_CIRCLE_PTS); //validate the resolution
+    int validRes = clamp(res, 1, RG_MAX_CIRCLE_PTS); //validate the resolution
     if(validRes != currentCircleRes) {
         float angle = 0.0f;
         float angleAdd = (2*PI) / (float)validRes;
@@ -297,7 +296,7 @@ void RGDraw::roundRect(int x, int y, int w, int h, int radius, int resolution){
     }
     if(resolution < 2) { resolution = 2; } //make sure resolution is a useful number
 
-    if(fillEna) {
+    if(fillEnabled) {
         glBegin(GL_POLYGON);
         glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
 
@@ -319,7 +318,7 @@ void RGDraw::roundRect(int x, int y, int w, int h, int radius, int resolution){
 
         glEnd();
     }
-    if(strokeEna) {
+    if(strokeEnabled) {
         glBegin(GL_LINE_LOOP);
         glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
 
@@ -396,9 +395,15 @@ void RGDraw::gradientRect(int x, int y, int w, int h, RGColor color1, RGColor co
 
 void RGDraw::pushMatrix() {
     glPushMatrix();
+    transformDepth += 1;
+
 }
 void RGDraw::popMatrix() {
     glPopMatrix();
+    transformDepth -= 1;
+    if (transformDepth < 0) {
+        throw std::underflow_error("Too many matrix pops were performed");
+    }
 }
 
 void RGDraw::translate(int x, int y) {
@@ -414,87 +419,87 @@ void RGDraw::translate(float x, float y, float z) {
     glTranslatef((GLfloat)x, (GLfloat)y, (GLfloat)z);
 }
 
-void RGDraw::rotate(float degrees) {
+void RGDraw::rotateDeg(float degrees) {
     glRotatef(degrees, 0,0,1);
 }
 
 
 void RGDraw::noStroke() {
-    strokeEna = false;
+    strokeEnabled = false;
 }
 void RGDraw::stroke(RGColor stroke) {
-    strokeEna = true;
+    strokeEnabled = true;
     strokeColor = stroke;
 }
 void RGDraw::stroke(RGColor newStroke, int a) {
-    strokeEna = true;
+    strokeEnabled = true;
     strokeColor = newStroke;
-    strokeColor.a = rgClamp(a,0,255);
+    strokeColor.a = clamp(a,0,255);
 }
 void RGDraw::stroke(int brightness) {
-    strokeEna = true;
-    strokeColor.r = rgClamp(brightness,0,255);
-    strokeColor.g = rgClamp(brightness,0,255);
-    strokeColor.b = rgClamp(brightness,0,255);
+    strokeEnabled = true;
+    strokeColor.r = clamp(brightness,0,255);
+    strokeColor.g = clamp(brightness,0,255);
+    strokeColor.b = clamp(brightness,0,255);
     strokeColor.a = 255;
 }
 void RGDraw::stroke(int brightness, int alpha) {
-    strokeEna = true;
-    strokeColor.r = rgClamp(brightness,0,255);
-    strokeColor.g = rgClamp(brightness,0,255);
-    strokeColor.b = rgClamp(brightness,0,255);
-    strokeColor.a = rgClamp(alpha,0,255);
+    strokeEnabled = true;
+    strokeColor.r = clamp(brightness,0,255);
+    strokeColor.g = clamp(brightness,0,255);
+    strokeColor.b = clamp(brightness,0,255);
+    strokeColor.a = clamp(alpha,0,255);
 }
 void RGDraw::stroke(int r, int g, int b) {
-    strokeEna = true;
-    strokeColor.r = rgClamp(r,0,255);
-    strokeColor.g = rgClamp(g,0,255);
-    strokeColor.b = rgClamp(b,0,255);
+    strokeEnabled = true;
+    strokeColor.r = clamp(r,0,255);
+    strokeColor.g = clamp(g,0,255);
+    strokeColor.b = clamp(b,0,255);
     strokeColor.a = 255;
 }
 void RGDraw::stroke(int r, int g, int b, int a) {
-    strokeEna = true;
-    strokeColor.r = rgClamp(r,0,255);
-    strokeColor.g = rgClamp(g,0,255);
-    strokeColor.b = rgClamp(b,0,255);
-    strokeColor.a = rgClamp(a,0,255);
+    strokeEnabled = true;
+    strokeColor.r = clamp(r,0,255);
+    strokeColor.g = clamp(g,0,255);
+    strokeColor.b = clamp(b,0,255);
+    strokeColor.a = clamp(a,0,255);
 }
 
 
 void RGDraw::noFill() {
-    fillEna = false;
+    fillEnabled = false;
 }
 void RGDraw::fill(RGColor newFill) {
-    fillEna = true;
+    fillEnabled = true;
     fillColor = newFill;
 }
 void RGDraw::fill(int brightness) {
-    fillEna = true;
-    fillColor.r = rgClamp(brightness,0,255);
-    fillColor.g = rgClamp(brightness,0,255);
-    fillColor.b = rgClamp(brightness,0,255);
+    fillEnabled = true;
+    fillColor.r = clamp(brightness, 0, 255);
+    fillColor.g = clamp(brightness, 0, 255);
+    fillColor.b = clamp(brightness, 0, 255);
     fillColor.a = 255;
 }
 void RGDraw::fill(int brightness, int alpha) {
-    fillEna = true;
-    fillColor.r = rgClamp(brightness,0,255);
-    fillColor.g = rgClamp(brightness,0,255);
-    fillColor.b = rgClamp(brightness,0,255);
-    fillColor.a = rgClamp(alpha,0,255);
+    fillEnabled = true;
+    fillColor.r = clamp(brightness, 0, 255);
+    fillColor.g = clamp(brightness, 0, 255);
+    fillColor.b = clamp(brightness, 0, 255);
+    fillColor.a = clamp(alpha, 0, 255);
 }
 void RGDraw::fill(int r, int g, int b) {
-    fillEna = true;
-    fillColor.r = rgClamp(r,0,255);
-    fillColor.g = rgClamp(g,0,255);
-    fillColor.b = rgClamp(b,0,255);
+    fillEnabled = true;
+    fillColor.r = clamp(r, 0, 255);
+    fillColor.g = clamp(g, 0, 255);
+    fillColor.b = clamp(b, 0, 255);
     fillColor.a = 255;
 }
 void RGDraw::fill(int r, int g, int b, int a) {
-    fillEna = true;
-    fillColor.r = rgClamp(r,0,255);
-    fillColor.g = rgClamp(g,0,255);
-    fillColor.b = rgClamp(b,0,255);
-    fillColor.a = rgClamp(a,0,255);
+    fillEnabled = true;
+    fillColor.r = clamp(r, 0, 255);
+    fillColor.g = clamp(g, 0, 255);
+    fillColor.b = clamp(b, 0, 255);
+    fillColor.a = clamp(a, 0, 255);
 }
 
 
@@ -509,14 +514,14 @@ assume you want to use your stroke color for the text
 */
 void RGDraw::text(wstring text, int x, int y) {
     //fill
-    if(fillEna) {
+    if(fillEnabled) {
         fill(fillColor);
         if(font.isValid()) {
             font.drawString(text,x,y, fillColor);
         }
     }
     //if a fill color is not set, but stroke is, assume they want to use the stroke color isntead
-    if(strokeEna && !fillEna) {
+    if(strokeEnabled && !fillEnabled) {
         if(font.isValid()) {
             font.drawString(text,x,y, strokeColor);
         }
@@ -524,11 +529,6 @@ void RGDraw::text(wstring text, int x, int y) {
 }
 
 void RGDraw::textSize(int size) {
-    /*if(fonts.count(fontSize)>0) {
-    } else {
-        fonts[fontSize] = RGTTF();
-        fonts[fontSize].loadFont(fontFile, fontSize);
-    }*/
     font.setFontSize(size);
 }
 
@@ -579,24 +579,13 @@ float rgMap(float value, float inputMin, float inputMax, float outputMin, float 
     return output;
     //return ofMap(value, inputMin, inputMax, outputMin, outputMax);
 }
-int rgMin(int a, int b) {
-    return (((a) < (b)) ? (a) : (b));
-}
-float rgMin(float a, float b) {
-    return (((a) < (b)) ? (a) : (b));
-}
-int rgMax(int a, int b) {
-    return (((a) > (b)) ? (a) : (b));
-}
-float rgMax(float a, float b) {
-    return (((a) > (b)) ? (a) : (b));
-}
 
-int rgClamp(int input, int min, int max){
-    return rgMax(rgMin(input, max), min);
+int clamp(int input, int minValue, int maxValue){
+    return max( min(input, maxValue), minValue);
 }
-float rgClamp(float input, float min, float max){
-    return rgMax(rgMin(input, max), min);
+float clamp(float input, float minValue, float maxValue){
+    return max( min(input, maxValue), minValue);
+
 }
 
 string toString(int input){
