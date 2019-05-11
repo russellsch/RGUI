@@ -1,8 +1,5 @@
 #pragma once
-#include "rgui/RGApp.hpp"
-
-#include "rgui/RGRoot.hpp"
-#include "rgui/RGButton.hpp"
+#include "rgui.hpp"
 
 
 class EmptyApp : public RGApp{

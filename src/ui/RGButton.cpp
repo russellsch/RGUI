@@ -1,4 +1,4 @@
-#include "rgui/RGButton.hpp"
+#include "rgui/ui/RGButton.hpp"
 
 RGButton::RGButton(string name, int xNew, int yNew, int wNew, int hNew, std::wstring labelNew): RGObj(name, "buttonspst", xNew,yNew,wNew,hNew) {
     verboseSPST = false;

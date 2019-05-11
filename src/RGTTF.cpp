@@ -175,23 +175,23 @@ void RGTTF::drawString(wstring text, int x, int y, RGColor textColor, int justif
 
 
                 //draw the character
-                int x1 = property.horiBearingX+cursorX;
+                int x1 = property.horiBearingX + cursorX;
                 int w1 = property.width;
                 int y1;
                 if(justification == RG_LEFT_TEXT_LINE) {    //initial justification fiddling
-                    y1 = -property.horiBearingY+cursorY;
+                    y1 = -property.horiBearingY + cursorY;
                 } else {
-                    y1 = -property.horiBearingY+cursorY;
+                    y1 = -property.horiBearingY + cursorY;
                 }
 
                 int h1 = property.height;
 
 
 
-                GLfloat verteces[] = {       x1,       y1,
-                                        x1 + w1,       y1,
-                                        x1 + w1,       y1+h1,
-                                             x1,       y1+h1 };
+                GLfloat verteces[] = {       GLfloat(x1),       GLfloat(y1),
+                                             GLfloat(x1 + w1),  GLfloat(y1),
+                                             GLfloat(x1 + w1),  GLfloat(y1 + h1),
+                                             GLfloat(x1),       GLfloat(y1 + h1) };
                 GLfloat texCoords[] = { 0, 0,
                                         1, 0,
                                         1, 1,

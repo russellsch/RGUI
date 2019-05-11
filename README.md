@@ -2,7 +2,7 @@ Rapid Visualization and GUI Toolkit: "RGUI"
 ==============================================
 
 
-Easy 2D drawing backed by OpenGL
+Easy 2D drawing interface accelerated by OpenGL
 Simple GUI widgets
 
 
@@ -19,12 +19,12 @@ Simple GUI widgets
 
 ### v3.0.0
 - [X] Change build system to CMake
-- [ ] Change primary target to Linux/Ubuntu
+- [X] Change primary target to Linux/Ubuntu
 - [ ] Remove old Windows code
 - [X] Upgrade to SDL2
 - [X] Upgrade Freetype
-- [x] Upgrade OpenGL library version
-- [ ] Basic UI widget functionality ported to work on Ubuntu
+- [X] Upgrade OpenGL library version
+- [X] Basic UI widget functionality working on Linux
 
 
 - [ ] Add GPL license
@@ -38,3 +38,5 @@ Simple GUI widgets
 ### v4.0.0 (FUTURE)
 
 - [ ] Switch to entity-component-system architecture
+- [ ] Upgrade RGDraw to use GLSL shaders
+- [ ] Upgrade RGDraw for curves, joined lines, proper line end caps, etc.

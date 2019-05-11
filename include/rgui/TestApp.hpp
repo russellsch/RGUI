@@ -5,7 +5,7 @@
 #include "RGApp.hpp"
 
 #include "RGRoot.hpp"
-#include "RGButton.hpp"
+#include "rgui/ui/RGButton.hpp"
 #include "RGSlider.hpp"
 #include "RGList.hpp"
 #include "RGFrame.hpp"

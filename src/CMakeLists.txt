@@ -14,6 +14,7 @@ find_package(OpenGL REQUIRED)
 # Get headers
 set(header_path "${RGUI_SOURCE_DIR}/include/rgui")
 set(header
+	${RGUI_SOURCE_DIR}/include/rgui.hpp
 	${header_path}/KSBasicTimer.h
 	${header_path}/RGApp.hpp
     ${header_path}/RGButton.hpp
@@ -27,13 +28,13 @@ set(header
 	${header_path}/RGRoot.hpp
 	${header_path}/RGTTF.hpp
 	${header_path}/RGSDLWindow.hpp
-	)
+)
 
 # Source
 set(src
 	KSBasicTimer.cpp
 	RGApp.cpp
-    RGButton.cpp
+		ui/RGButton.cpp
 	RGColor.cpp
 	RGDraw.cpp
 	RGEvent.cpp
@@ -46,7 +47,10 @@ set(src
 
 
 
-add_library(rgui ${header} ${src})
+add_library(rgui
+		${header}
+		${src}
+		)
 
 target_include_directories(rgui 
 	PUBLIC 
