@@ -26,6 +26,7 @@ Simple GUI widgets
 - [X] Upgrade OpenGL library version
 - [X] Basic UI widget functionality working on Linux
 - [X] Simplified import for use to single h file
+- [X] Refactored RGB color class to be more C++11 friendly
 
 - [ ] Create basic UI demo of working UI widgets
 

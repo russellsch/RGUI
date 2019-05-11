@@ -1,14 +1,16 @@
-#ifndef RGCOLOR_H
-#define RGCOLOR_H
+#ifndef COLORRGBA_H
+#define COLORRGBA_H
 
 #include <cstdint>
 #include <array>
 
 
-//!Represents a single color and transparency
+//! Represents a RGB+Alpha color
 class ColorRGBA {
-    public:
+    protected:
         std::array<uint8_t, 4> rgba = {0, 0, 0, 255};
+
+    public:
 
         ColorRGBA() {}
         explicit ColorRGBA(uint8_t brightness) {rgba = {brightness, brightness, brightness, 255};}
@@ -37,4 +39,4 @@ class ColorRGBA {
         void setAlpha(uint8_t alpha) { rgba[3] = alpha; }
 };
 
-#endif // RGCOLOR_H
+#endif // COLORRGBA_H
