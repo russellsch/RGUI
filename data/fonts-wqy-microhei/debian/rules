@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+#
+#     xdelta3 -S djw -9 -s a/wqy-microhei.ttc b/wqy-microhei.ttc \
+#                       debian/wqy-microhei.ttc.xd3
+override_dh_auto_build:
+	mkdir -p patched
+	xdelta3 -d -s wqy-microhei.ttc debian/wqy-microhei.ttc.xd3 \
+		   patched/wqy-microhei.ttc
+
+override_dh_builddeb:
+	dh_builddeb -- -Zxz -Sextreme -z9
+
+override_dh_auto_clean:
+	rm -rf patched/

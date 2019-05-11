@@ -1,0 +1,1 @@
+rm_conffile /etc/fonts/conf.avail/65-wqy-microhei.conf 0.2.0-beta-4~ fonts-wgy-microhei
