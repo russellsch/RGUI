@@ -12,20 +12,14 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-
+#include <algorithm>
 
 #include "math.h"
 #include "float.h"
 
 
-
-
-
-
-class ofColor;
-
 //!Drawing object for a canvas
-class DLLHELPER RGDraw {
+class RGDraw {
     public:
         RGDraw();
 
@@ -77,7 +71,7 @@ class DLLHELPER RGDraw {
         void translate(float x, float y);           //!<translate the canvas in 2d using a float
         void translate(int x, int y, int z);        //!<translate the canvas in 3d using an integer
         void translate(float x, float y, float z);  //!<translate the canvas in 3d using a float
-        void rotate(float degrees);
+        void rotateDeg(float degrees);
 
         void text(wstring text, int x, int y);//!<Draws unicode text to the screen using truetype font textures
         void text(string text, int x, int y);//!<Draws ascii text to the screen using truetype font textures
@@ -92,8 +86,8 @@ class DLLHELPER RGDraw {
 
 
     protected:
-        bool fillEna;
-        bool strokeEna;
+        bool fillEnabled;
+        bool strokeEnabled;
         RGColor fillColor;
         RGColor strokeColor;
 
@@ -122,12 +116,9 @@ class DLLHELPER RGDraw {
 //THESE NEED TO BE MOVED TO SOME SORT OF UTILITIES FILE
 float rgMap(float value, float inputMin, float inputMax, float outputMin, float outputMax);
 
-int rgMin(int a, int b);        //!<Returns the smallest of two ints
-float rgMin(float a, float b);  //!<Returns the smallest of two floats
-int rgMax(int a, int b);        //!<Returns the largest of two ints
-float rgMax(float a, float b);  //!<Returns the largest of two floats
-int rgClamp(int input, int min, int max);
-float rgClamp(float input, float min, float max);
+
+int clamp(int input, int min, int max);
+float clamp(float input, float min, float max);
 
 
 string toString(int input);
