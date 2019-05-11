@@ -13,6 +13,7 @@ using namespace std;
 #include "rgui/RGEvent.hpp"
 #include "rgui/RGDraw.hpp"
 #include "rgui/RGRect.hpp"
+#include "rgui/ColorRGBA.hpp"
 
 
 
@@ -52,11 +53,11 @@ class RGObj : public RGRect {
 
 
         //standard color variables
-        RGColor bkgColor;           //!<background color
-        RGColor textColor;          //!<text color
-        RGColor borderColor;        //!<border color
-        RGColor foreColor;          //!<default color for filled objects above the background
-        RGColor activeColor;        //!<default color for active elements
+        ColorRGBA bkgColor;           //!<background color
+        ColorRGBA textColor;          //!<text color
+        ColorRGBA borderColor;        //!<border color
+        ColorRGBA foreColor;          //!<default color for filled objects above the background
+        ColorRGBA activeColor;        //!<default color for active elements
 
         unsigned short fontSize;   //!<Default font size
 

@@ -7,7 +7,7 @@ RGList::RGList(string name, int xNew, int yNew, int wNew, int hNew): RGObj(name,
     listPosY = 0;
 
     clipChildren = true;
-    bkgColor = RGColor(128);
+    bkgColor = ColorRGBA(128);
 
 }
 
@@ -47,7 +47,8 @@ void RGList::preChildrenRender(int XOffset, int YOffset, unsigned int milliSecon
     updateChildPositions();
     //draw->fill(bkgColor);
     //draw->noStroke();
-    draw->gradientRect(XOffset,YOffset, getW(),getH(), bkgColor, RGColor(bkgColor.r, bkgColor.g, bkgColor.b+40), RG_HORIZONTAL);
+    draw->gradientRect(XOffset,YOffset, getW(),getH(), bkgColor, ColorRGBA(bkgColor.r(), bkgColor.g(), bkgColor.b() + 40),
+            RG_HORIZONTAL);
 }
 
 

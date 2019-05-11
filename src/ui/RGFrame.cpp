@@ -2,11 +2,11 @@
 
 RGFrame::RGFrame(string name, int xNew, int yNew, int wNew, int hNew, string label): RGObj(name, "frame", xNew,yNew,wNew,hNew) {
     this->label = label;
-    textColor = RGColor(80);
+    textColor = ColorRGBA(80);
 }
 RGFrame::RGFrame(string name, int xNew, int yNew, int wNew, int hNew): RGObj(name, "frame", xNew,yNew,wNew,hNew) {
     label = "";
-    textColor = RGColor(80);
+    textColor = ColorRGBA(80);
 }
 
 

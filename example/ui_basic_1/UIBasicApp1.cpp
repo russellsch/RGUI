@@ -1,6 +1,6 @@
-#include "EmptyApp.hpp"
+#include "UIBasicApp1.hpp"
 
-void EmptyApp::setup(){
+void UIBasicApp1::setup(){
 
     root = new RGRoot(1024,768, this);
 
@@ -8,17 +8,25 @@ void EmptyApp::setup(){
 
     testButton->setEventHandler(new ButtonEvent(root));
     root->addChild(testButton);
-    cout << "setup\n";
+
+
+    RGFrame* frame1 = new RGFrame("frame1", 360,20, 200,200, "Rocket Control");
+    root->addChild(frame1);
+
+    //RGToggle* check1 = new RGToggle("tog1", 10,10, 60,11, "Thrusters");
+    //frame1->addChild(check1);
+
+
 }
 
 
 void ButtonEvent::released() {
     RGButton* target2 = (RGButton*)rootObject->findChildByName("test");
-    if(target2->pressedColor.r==128) {
-        target2->pressedColor = RGColor(9);
+    if(target2->pressedColor.r() == 128) {
+        target2->pressedColor = ColorRGBA(9);
 
     } else {
-        target2->pressedColor = RGColor(128);
+        target2->pressedColor = ColorRGBA(128);
     }
     cout << "ButtonEvent:release\n";
 
@@ -26,47 +34,51 @@ void ButtonEvent::released() {
 ButtonEvent::ButtonEvent(RGRoot* root) : RGEvent(root) { }
 
 
-void EmptyApp::draw(){
+void UIBasicApp1::draw(){
     root->render(0,0);
+
+    auto d = root->draw;
+
+    d->line(200,200, 300, 300);
     //cout << "draw\n";
 }
 
 
-void EmptyApp::keyPressed(int key){
+void UIBasicApp1::keyPressed(int key){
 
 }
 
 
-void EmptyApp::keyReleased(int key){
+void UIBasicApp1::keyReleased(int key){
     //cout << "framerate: " << ofGetFrameRate() << endl;
     //cout << "mouse: " << mouseX << "," << mouseY << endl;
 }
 
 
-void EmptyApp::mouseMoved(int x, int y ){
+void UIBasicApp1::mouseMoved(int x, int y ){
 
 }
 
-void EmptyApp::mouseDragged(int x, int y, int button){
+void UIBasicApp1::mouseDragged(int x, int y, int button){
     //rgMain1->event(DRAGGED, x,y);
     root->dragEvent(x,y, button);
 }
 
 
-void EmptyApp::mousePressed(int x, int y, int button){
+void UIBasicApp1::mousePressed(int x, int y, int button){
     //rgMain1->event(PRESSED, x,y);
     root->pressEvent(x,y);
 }
 
 
-void EmptyApp::mouseReleased(int x, int y, int button){
+void UIBasicApp1::mouseReleased(int x, int y, int button){
     //rgMain1->event(RELEASED, x,y);
     root->releaseEvent(x,y);
 }
 
 
 
-void EmptyApp::windowResized(int w, int h){
-    //rgMain->resizeEvent(w, h);
+void UIBasicApp1::windowResized(int w, int h){
+    //UIBasicApp1->resizeEvent(w, h);
 }
 

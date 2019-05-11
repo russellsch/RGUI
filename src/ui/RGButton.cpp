@@ -49,9 +49,9 @@ void RGButton::postChildrenRender(int XOffset, int YOffset, unsigned int milliSe
         draw->text(label, (getW()/2)-((draw->textWidth(label))/2),(getH()/2)+2);
     } else {
         if(milliSecondTimer%1000 > 500) {
-            bkgColor = RGColor(255,0,0);
+            bkgColor = ColorRGBA(255,0,0);
         } else {
-            bkgColor = RGColor(0,255,0);
+            bkgColor = ColorRGBA(0,255,0);
         }
         if(pressed) {
             draw->stroke(pressedColor, 128);
@@ -78,14 +78,14 @@ void RGButton::preChildrenRender(int XOffset, int YOffset, unsigned int milliSec
 void RGButton::setStyle(int styleNew) {
     if(styleNew == 0){
         style = 0;
-        bkgColor = RGColor(200);
-        textColor = RGColor(0);
-        pressedColor = RGColor(128, 128, 200);
+        bkgColor = ColorRGBA(200);
+        textColor = ColorRGBA(0);
+        pressedColor = ColorRGBA(128, 128, 200);
     } else {
         style = 1;
-        bkgColor = RGColor(60,153,49);
-        textColor = RGColor(0);
-        pressedColor = RGColor(240, 186, 54);
+        bkgColor = ColorRGBA(60,153,49);
+        textColor = ColorRGBA(0);
+        pressedColor = ColorRGBA(240, 186, 54);
     }
 
 }

@@ -4,7 +4,7 @@
 
 
 #include "RGConst.hpp"
-#include "RGColor.hpp"
+#include "ColorRGBA.hpp"
 #include "RGTTF.hpp"
 
 #include <string>
@@ -13,6 +13,7 @@
 #include <iomanip>
 #include <sstream>
 #include <algorithm>
+#include <cstdint>
 
 #include "math.h"
 #include "float.h"
@@ -24,19 +25,19 @@ class RGDraw {
         RGDraw();
 
         void noStroke();
-        void stroke(RGColor newStroke);     //!<Set stroke color using an RGColor
-        void stroke(RGColor newStroke, int a);     //!<Set stroke color using an RGColor, overriding the alpha
-        void stroke(int brightness);
-        void stroke(int brightness, int alpha);
-        void stroke(int r, int g, int b);
-        void stroke(int r, int g, int b, int a);
+        void stroke(ColorRGBA newStroke);     //!<Set stroke color using an RGColor
+        void stroke(ColorRGBA newStroke, int a);     //!<Set stroke color using an RGColor, overriding the alpha
+        void stroke(uint8_t brightness);
+        void stroke(uint8_t brightness, uint8_t alpha);
+        void stroke(uint8_t r, uint8_t g, uint8_t b);
+        void stroke(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
         void noFill();
-        void fill(RGColor newFill);
-        void fill(int brightness);
-        void fill(int brightness, int alpha);
-        void fill(int r, int g, int b);
-        void fill(int r, int g, int b, int a);
+        void fill(ColorRGBA newFill);
+        void fill(uint8_t brightness);
+        void fill(uint8_t brightness, uint8_t alpha);
+        void fill(uint8_t r, uint8_t g, uint8_t b);
+        void fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a);
 
         void line(int x1, int y1, int x2, int y2);
         void rect(int x1, int y1, int w, int h);
@@ -59,10 +60,10 @@ class RGDraw {
 
         void roundRect(int x, int y, int w, int h, int radius);
         void roundRect(int x, int y, int w, int h, int radius, int resolution);
-        void gradientRect(int x, int y, int w, int h, RGColor color1, RGColor color2);  //!<Draw a rectangle with a vertical gradient
-        void gradientRect(int x, int y, int w, int h, RGColor color1, RGColor color2, int orientation); //!<Draw a rectangle with a vertical gradient
+        void gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2);  //!<Draw a rectangle with a vertical gradient
+        void gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2, int orientation); //!<Draw a rectangle with a vertical gradient
 
-        void rectDropShadow(RGColor startColor, int x, int y, int w, int h, int steps);
+        void rectDropShadow(ColorRGBA startColor, int x, int y, int w, int h, int steps);
 
         void pushMatrix();
         void popMatrix();
@@ -88,8 +89,8 @@ class RGDraw {
     protected:
         bool fillEnabled;
         bool strokeEnabled;
-        RGColor fillColor;
-        RGColor strokeColor;
+        ColorRGBA fillColor;
+        ColorRGBA strokeColor;
 
         int rectDrawMode;
 

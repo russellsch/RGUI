@@ -1,8 +1,7 @@
-#pragma once
 #include "rgui.hpp"
 
 
-class EmptyApp : public RGApp{
+class UIBasicApp1 : public RGApp{
     RGRoot* root;
 
 	public:

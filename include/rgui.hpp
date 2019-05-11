@@ -6,7 +6,7 @@
 #define RGUI_RGUI_H
 
 #include "rgui/RGApp.hpp"
-#include "rgui/RGColor.hpp"
+#include "rgui/ColorRGBA.hpp"
 #include "rgui/RGObj.hpp"
 #include "rgui/RGRect.hpp"
 #include "rgui/RGRoot.hpp"

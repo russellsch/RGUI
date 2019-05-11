@@ -4,7 +4,7 @@ RGToggle::RGToggle(string name, int xNew, int yNew, int wNew, int hNew, string l
     label = labelNew;
     style = 3;
     value = false;
-    textColor = RGColor(0);
+    textColor = ColorRGBA(0);
     verboseToggle = false;
 }
 

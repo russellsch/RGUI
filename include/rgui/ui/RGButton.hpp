@@ -5,13 +5,13 @@
 #include <string>
 
 #include <rgui/RGObj.hpp>
-#include <rgui/RGColor.hpp>
+#include <rgui/ColorRGBA.hpp>
 
 //!Simple button
 class RGButton : public RGObj {
     public:
         bool enabled;
-        RGColor pressedColor;
+        ColorRGBA pressedColor;
         bool pressed;
 
         int style;

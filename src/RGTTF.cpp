@@ -138,7 +138,7 @@ GLuint RGTTF::buildTextureForChar(unsigned short charSizePts, wchar_t c){
 }
 
 
-void RGTTF::drawString(wstring text, int x, int y, RGColor textColor) {
+void RGTTF::drawString(wstring text, int x, int y, ColorRGBA textColor) {
     drawString(text, x, y, textColor, RG_LEFT_TEXT_LINE);
 }
 
@@ -152,7 +152,7 @@ Note: A wstring is specified like this: wstring bob = L"String with 漢字";
 If you get an error "Converting to execution character set: Illegal byte sequence" please ensure the encoding of
 your file is set to something that can handle the characters you've used, UTF8 is recommended for all files.
 */
-void RGTTF::drawString(wstring text, int x, int y, RGColor textColor, int justification) {
+void RGTTF::drawString(wstring text, int x, int y, ColorRGBA textColor, int justification) {
     if(fontValid){
         //setup position variables
         int cursorX=0, cursorY=0; //drawing positions
@@ -200,7 +200,7 @@ void RGTTF::drawString(wstring text, int x, int y, RGColor textColor, int justif
                 glNormal3f(0, 0, 1);
 
                 glEnable(GL_TEXTURE_2D);
-                glColor4ub(textColor.r, textColor.g, textColor.b, textColor.a);
+                glColor4ub(textColor.r(), textColor.g(), textColor.b(), textColor.a());
                 glEnableClientState( GL_TEXTURE_COORD_ARRAY );
                 glTexCoordPointer(2, GL_FLOAT, 0, texCoords );
                 glEnableClientState( GL_VERTEX_ARRAY );

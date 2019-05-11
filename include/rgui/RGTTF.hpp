@@ -10,7 +10,7 @@
 #include <map>
 
 #include "RGConst.hpp"
-#include "RGColor.hpp"
+#include "ColorRGBA.hpp"
 
 #include <vector>
 
@@ -73,8 +73,8 @@ class DLLHELPER RGTTF {
         void loadFont(string fontFile, int newFontSize);   //!<Constructor loads and sets up a given font at a given size
         virtual ~RGTTF();
 
-        void drawString(wstring text, int x, int y, RGColor textColor);    //!<Basic string drawing function, uses default justification
-        void drawString(wstring text, int x, int y, RGColor textColor, int justification); //!<Basic string drawing function, with custom justification
+        void drawString(wstring text, int x, int y, ColorRGBA textColor);    //!<Basic string drawing function, uses default justification
+        void drawString(wstring text, int x, int y, ColorRGBA textColor, int justification); //!<Basic string drawing function, with custom justification
 
         void setFontSize(unsigned short newSize);
         unsigned short getFontSize();

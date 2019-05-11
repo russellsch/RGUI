@@ -22,8 +22,8 @@ RGDraw::RGDraw() {
     rectMode(CORNER);
     circleResolution(20);
 
-    fillColor = RGColor(0,0,0);
-    strokeColor = RGColor(0,0,0);
+    fillColor = ColorRGBA(0,0,0);
+    strokeColor = ColorRGBA(0,0,0);
 
     fontSizePts = 15;
     fontFile = "data/fonts-wqy-microhei/wqy-microhei.ttc";
@@ -41,7 +41,7 @@ RGDraw::RGDraw() {
 
 void RGDraw::line(int x1, int y1, int x2, int y2){
 
-    glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
+    glColor4ub(strokeColor.r(), strokeColor.g(), strokeColor.b(), strokeColor.a());
 
     float linePoints[4];
     linePoints[0] = (float)x1;
@@ -77,7 +77,7 @@ void RGDraw::rect(int x1, int y1, int w, int h) {
     }
     //fill
     if(fillEnabled) {
-        glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+        glColor4ub(fillColor.r(), fillColor.g(), fillColor.b(), fillColor.a());
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &cornerPoints[0]);
         glDrawArrays(GL_QUADS, 0, 4);
@@ -85,7 +85,7 @@ void RGDraw::rect(int x1, int y1, int w, int h) {
     }
     //border
     if(strokeEnabled) {
-        glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
+        glColor4ub(strokeColor.r(), strokeColor.g(), strokeColor.b(), strokeColor.a());
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &cornerPoints[0]);
         glDrawArrays(GL_LINE_LOOP, 0, 4);
@@ -110,14 +110,14 @@ void RGDraw::circle(float x1, float y1, float radius, int res) {
  	}
     //fill
     if(fillEnabled) {
-        glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+        glColor4ub(fillColor.r(), fillColor.g(), fillColor.b(), fillColor.a());
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
         glDrawArrays( GL_POLYGON, 0, currentCircleRes);
     }
     //border
     if(strokeEnabled) {
-        glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
+        glColor4ub(strokeColor.r(), strokeColor.g(), strokeColor.b(), strokeColor.a());
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
         glDrawArrays( GL_LINE_LOOP, 0, currentCircleRes);
@@ -140,21 +140,21 @@ void RGDraw::ellipse(int x1, int y1, int w, int h, int res) {
  	}
     //fill
     if(fillEnabled) {
-        glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+        glColor4ub(fillColor.r(), fillColor.g(), fillColor.b(), fillColor.a());
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
         glDrawArrays( GL_POLYGON, 0, currentCircleRes);
     }
     //border
     if(strokeEnabled) {
-        glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
+        glColor4ub(strokeColor.r(), strokeColor.g(), strokeColor.b(), strokeColor.a());
         glEnableClientState(GL_VERTEX_ARRAY);
         glVertexPointer(2, GL_FLOAT, 0, &circlePts[0]);
         glDrawArrays( GL_LINE_LOOP, 0, currentCircleRes);
     }
 }
 void RGDraw::arc(int x, int y, float radius, float startAngle, float arcAngle, int resolution){
-    //glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
+    //glColor4ub(strokeColor.r(), strokeColor.g(), strokeColor.b(), strokeColor.a());
 
 
     float theta = arcAngle/float(resolution - 1);
@@ -168,7 +168,7 @@ void RGDraw::arc(int x, int y, float radius, float startAngle, float arcAngle, i
         float x2 = radius*cosf(startAngle);
         float y2 = radius*sinf(startAngle);
 
-        glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+        glColor4ub(fillColor.r(), fillColor.g(), fillColor.b(), fillColor.a());
         glBegin(GL_POLYGON);
         for(int i=0; i < resolution; i++) {
             glVertex2f(x2+x,y2+y);
@@ -187,7 +187,7 @@ void RGDraw::arc(int x, int y, float radius, float startAngle, float arcAngle, i
         float x2 = radius*cosf(startAngle);
         float y2 = radius*sinf(startAngle);
 
-        glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
+        glColor4ub(strokeColor.r(), strokeColor.g(), strokeColor.b(), strokeColor.a());
         glBegin(GL_LINE_STRIP);
         for(int i=0; i < resolution; i++) {
             glVertex2f(x2+x,y2+y);
@@ -298,7 +298,7 @@ void RGDraw::roundRect(int x, int y, int w, int h, int radius, int resolution){
 
     if(fillEnabled) {
         glBegin(GL_POLYGON);
-        glColor4ub(fillColor.r, fillColor.g, fillColor.b, fillColor.a);
+        glColor4ub(fillColor.r(), fillColor.g(), fillColor.b(), fillColor.a());
 
         arcVertex(x+r-1, y+r, r, -PI, PI/2, resolution);
         glVertex2f(x+r-1,y);
@@ -320,7 +320,7 @@ void RGDraw::roundRect(int x, int y, int w, int h, int radius, int resolution){
     }
     if(strokeEnabled) {
         glBegin(GL_LINE_LOOP);
-        glColor4ub(strokeColor.r, strokeColor.g, strokeColor.b, strokeColor.a);
+        glColor4ub(strokeColor.r(), strokeColor.g(), strokeColor.b(), strokeColor.a());
 
         arcVertex(x+r-1, y+r, r, -PI, PI/2, resolution);
         glVertex2f(x+r-1,y);
@@ -344,31 +344,31 @@ void RGDraw::roundRect(int x, int y, int w, int h, int radius, int resolution){
 }
 
 /*! Color1 at the top and color 2 at the bottom */
-void RGDraw::gradientRect(int x, int y, int w, int h, RGColor color1, RGColor color2) {
+void RGDraw::gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2) {
     gradientRect(x, y,w, h, color1, color2, RG_VERTICAL);
 }
 
 /*! Orientation should be RG_HORIZONTAL or RG_VERTICAL. Color1 is on the top if horizontal, and the left if vertical. */
-void RGDraw::gradientRect(int x, int y, int w, int h, RGColor color1, RGColor color2, int orientation){
+void RGDraw::gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2, int orientation){
     glBegin(GL_QUADS);
 
-    glColor4ub(color1.r, color1.g, color1.b, color1.a);
+    glColor4ub(color1.r(), color1.g(), color1.b(), color1.a());
     glVertex2f((GLfloat)x,(GLfloat)y);
 
     if(orientation == RG_VERTICAL) {
-        glColor4ub(color1.r, color1.g, color1.b, color1.a);
+        glColor4ub(color1.r(), color1.g(), color1.b(), color1.a());
     } else {
-        glColor4ub(color2.r, color2.g, color2.b, color2.a);
+        glColor4ub(color2.r(), color2.g(), color2.b(), color2.a());
     }
     glVertex2f(x+w,y);
 
-    glColor4ub(color2.r, color2.g, color2.b, color2.a);
+    glColor4ub(color2.r(), color2.g(), color2.b(), color2.a());
     glVertex2f((GLfloat)(x+w),(GLfloat)(y+h));
 
     if(orientation == RG_VERTICAL) {
-        glColor4ub(color2.r, color2.g, color2.b, color2.a);
+        glColor4ub(color2.r(), color2.g(), color2.b(), color2.a());
     } else {
-        glColor4ub(color1.r, color1.g, color1.b, color1.a);
+        glColor4ub(color1.r(), color1.g(), color1.b(), color1.a());
     }
     glVertex2f((GLfloat)x,(GLfloat)(y+h));
 
@@ -376,7 +376,7 @@ void RGDraw::gradientRect(int x, int y, int w, int h, RGColor color1, RGColor co
 }
 
 //offset shifts from the upper left corner, steps is how many new lines to draw, spread is their width
-/*void RGDraw::rectDropShadow(RGColor startColor, int x, int y, int w, int h,int steps) {
+/*void RGDraw::rectDropShadow(ColorRGBA startColor, int x, int y, int w, int h,int steps) {
     rectMode(CORNER);
     int spread=1;
     ofNoFill();
@@ -427,79 +427,55 @@ void RGDraw::rotateDeg(float degrees) {
 void RGDraw::noStroke() {
     strokeEnabled = false;
 }
-void RGDraw::stroke(RGColor stroke) {
+void RGDraw::stroke(ColorRGBA stroke) {
     strokeEnabled = true;
     strokeColor = stroke;
 }
-void RGDraw::stroke(RGColor newStroke, int a) {
+void RGDraw::stroke(ColorRGBA newStroke, int a) {
     strokeEnabled = true;
     strokeColor = newStroke;
-    strokeColor.a = clamp(a,0,255);
+    strokeColor.setA(clamp(a,0,255));
 }
-void RGDraw::stroke(int brightness) {
+void RGDraw::stroke(uint8_t brightness) {
     strokeEnabled = true;
-    strokeColor.r = clamp(brightness,0,255);
-    strokeColor.g = clamp(brightness,0,255);
-    strokeColor.b = clamp(brightness,0,255);
-    strokeColor.a = 255;
+    strokeColor = ColorRGBA(brightness, 255);
 }
-void RGDraw::stroke(int brightness, int alpha) {
+void RGDraw::stroke(uint8_t brightness, uint8_t alpha) {
     strokeEnabled = true;
-    strokeColor.r = clamp(brightness,0,255);
-    strokeColor.g = clamp(brightness,0,255);
-    strokeColor.b = clamp(brightness,0,255);
-    strokeColor.a = clamp(alpha,0,255);
+    strokeColor = ColorRGBA(brightness, alpha);
 }
-void RGDraw::stroke(int r, int g, int b) {
+void RGDraw::stroke(uint8_t r, uint8_t g, uint8_t b) {
     strokeEnabled = true;
-    strokeColor.r = clamp(r,0,255);
-    strokeColor.g = clamp(g,0,255);
-    strokeColor.b = clamp(b,0,255);
-    strokeColor.a = 255;
+    strokeColor = ColorRGBA(r, g, b);
 }
-void RGDraw::stroke(int r, int g, int b, int a) {
+void RGDraw::stroke(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     strokeEnabled = true;
-    strokeColor.r = clamp(r,0,255);
-    strokeColor.g = clamp(g,0,255);
-    strokeColor.b = clamp(b,0,255);
-    strokeColor.a = clamp(a,0,255);
+    strokeColor = ColorRGBA(r, g, b, a);
 }
 
 
 void RGDraw::noFill() {
     fillEnabled = false;
 }
-void RGDraw::fill(RGColor newFill) {
+void RGDraw::fill(ColorRGBA newFill) {
     fillEnabled = true;
     fillColor = newFill;
 }
-void RGDraw::fill(int brightness) {
+void RGDraw::fill(uint8_t brightness) {
     fillEnabled = true;
-    fillColor.r = clamp(brightness, 0, 255);
-    fillColor.g = clamp(brightness, 0, 255);
-    fillColor.b = clamp(brightness, 0, 255);
-    fillColor.a = 255;
+    fillColor= ColorRGBA(brightness);
 }
-void RGDraw::fill(int brightness, int alpha) {
+void RGDraw::fill(uint8_t brightness, uint8_t alpha) {
     fillEnabled = true;
-    fillColor.r = clamp(brightness, 0, 255);
-    fillColor.g = clamp(brightness, 0, 255);
-    fillColor.b = clamp(brightness, 0, 255);
-    fillColor.a = clamp(alpha, 0, 255);
+    fillColor= ColorRGBA(brightness, alpha);
 }
-void RGDraw::fill(int r, int g, int b) {
+void RGDraw::fill(uint8_t r, uint8_t g, uint8_t b) {
     fillEnabled = true;
-    fillColor.r = clamp(r, 0, 255);
-    fillColor.g = clamp(g, 0, 255);
-    fillColor.b = clamp(b, 0, 255);
-    fillColor.a = 255;
+    fillColor= ColorRGBA(r, g, b);
 }
-void RGDraw::fill(int r, int g, int b, int a) {
+void RGDraw::fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
     fillEnabled = true;
-    fillColor.r = clamp(r, 0, 255);
-    fillColor.g = clamp(g, 0, 255);
-    fillColor.b = clamp(b, 0, 255);
-    fillColor.a = clamp(a, 0, 255);
+    fillColor= ColorRGBA(r, g, b, a);
 }
 
 

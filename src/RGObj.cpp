@@ -21,7 +21,7 @@ RGObj::RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int h
 
     fontSize = 12;
 
-    bkgColor = RGColor(230);
+    bkgColor = ColorRGBA(230);
 
     initialDrag = true;
     dragging = false;

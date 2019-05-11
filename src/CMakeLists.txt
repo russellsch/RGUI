@@ -18,7 +18,7 @@ set(header
 	${header_path}/KSBasicTimer.h
 	${header_path}/RGApp.hpp
 	${header_path}/RGConst.hpp
-	${header_path}/RGColor.hpp
+	${header_path}/ColorRGBA.hpp
 	${header_path}/RGDraw.hpp
 	${header_path}/RGEvent.hpp
 	${header_path}/RGObj.hpp
@@ -37,7 +37,7 @@ set(header
 set(src
 	KSBasicTimer.cpp
 	RGApp.cpp
-	RGColor.cpp
+	ColorRGBA.cpp
 	RGDraw.cpp
 	RGEvent.cpp
 	RGObj.cpp
