@@ -9,7 +9,7 @@ RGColor::RGColor()
     //ctor
 }
 
-RGColor::RGColor(int brightness)
+RGColor::RGColor(uint8_t brightness)
 {
     r = brightness;
     g = brightness;
@@ -17,7 +17,7 @@ RGColor::RGColor(int brightness)
     a = 255;
 }
 
-RGColor::RGColor(int brightness, int aNew)
+RGColor::RGColor(uint8_t brightness, uint8_t aNew)
 {
     r = brightness;
     g = brightness;
@@ -25,7 +25,7 @@ RGColor::RGColor(int brightness, int aNew)
     a = aNew;
 }
 
-RGColor::RGColor(int rNew, int gNew, int bNew)
+RGColor::RGColor(uint8_t rNew, uint8_t gNew, uint8_t bNew)
 {
     r = rNew;
     g = gNew;
@@ -33,7 +33,7 @@ RGColor::RGColor(int rNew, int gNew, int bNew)
     a = 255;
 }
 
-RGColor::RGColor(int rNew, int gNew, int bNew, int aNew)
+RGColor::RGColor(uint8_t rNew, uint8_t gNew, uint8_t bNew, uint8_t aNew)
 {
     r = rNew;
     g = gNew;

@@ -1,16 +1,18 @@
 #ifndef RGCOLOR_H
 #define RGCOLOR_H
+
+#include <cstdint>
 #include "rgui/RGConst.hpp"
 
 //!Represents a single color and transparency
-class DLLHELPER RGColor {
+class RGColor {
     public:
-        int r,g,b,a;
+        uint8_t r, g, b, a;
         RGColor();
-        RGColor(int brightness);    //!Set R, G, and B to a single value
-        RGColor(int brightness, int a); //!Set R, G, and B to a single value, and alpha to another
-        RGColor(int r, int g, int b);   //!Set R, G, and B individually
-        RGColor(int r, int g, int b, int a);    //!Set R, G, B, and alpha individually
+        explicit RGColor(uint8_t brightness);    //!Set R, G, and B to a single value
+        RGColor(uint8_t brightness, uint8_t a); //!Set R, G, and B to a single value, and alpha to another
+        RGColor(uint8_t r, uint8_t g, uint8_t b);   //!Set R, G, and B individually
+        RGColor(uint8_t r, uint8_t g, uint8_t b, uint8_t a);    //!Set R, G, B, and alpha individually
 };
 
 #endif // RGCOLOR_H
