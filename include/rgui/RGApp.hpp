@@ -35,21 +35,21 @@ class DLLHELPER RGApp{
 		virtual void exit(){}
 
 
-		virtual void windowResized(int w, int h){}
+		virtual void windowResized(unsigned int w, unsigned int h){}
 
 		virtual void keyPressed( int key ){}
 		virtual void keyReleased( int key ){}
 
-		virtual void mouseMoved( int x, int y ){}
-		virtual void mouseDragged( int x, int y, int button ){}
-		virtual void mousePressed( int x, int y, int button ){}
+		virtual void mouseMoved( unsigned int x, unsigned int y ){}
+		virtual void mouseDragged( unsigned int x, unsigned int y, int button ){}
+		virtual void mousePressed( unsigned int x, unsigned int y, int button ){}
 		virtual void mouseReleased(){}
-		virtual void mouseReleased(int x, int y, int button ){}
+		virtual void mouseReleased(unsigned int x, unsigned int y, int button ){}
 
 
-        void runApp(int w, int h);
-        int getWindowW();
-        int getWindowH();
+        void runApp(unsigned int w, unsigned int h);
+        unsigned int getWindowW() { return windowW;}
+        unsigned int getWindowH() { return windowH;}
 
         void setTitleBar(string newTitleBar) { this->title = newTitleBar; };
 
@@ -58,7 +58,7 @@ class DLLHELPER RGApp{
 
         void processEvents();
 
-        int windowW, windowH;
+        unsigned int windowW, windowH;
         string title;
 
         RGOSWindow* window;

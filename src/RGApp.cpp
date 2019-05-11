@@ -1,88 +1,42 @@
 #include "rgui/RGApp.hpp"
 #include "rgui/RGSDLWindow.hpp"
 
-/*void RGApp::runApp(int w, int h) {
-    appPointer = this;
-
-    windowW = w;
-    windowH = h;
-
-
-    HINSTANCE hinst = GetModuleHandle( NULL );
-    //UnhookWindowsHookEx(rGMouseHook);
-    rGMouseHook = SetWindowsHookEx( WH_MOUSE, &mouseCallback, hinst, GetCurrentThreadId() );
-
-    ofSetupOpenGL(&window, w,h, OF_WINDOW);
-    ofRunApp( this );
-
-}*/
-
-//Timing information (on an intel i7 950)
-
 
 RGApp::RGApp(){
     appPointer = this;
-	//HINSTANCE hinst = GetModuleHandle( NULL );
-    //rGMouseHook = SetWindowsHookEx( WH_MOUSE, &mouseCallback, hinst, GetCurrentThreadId() );
-
     mouseIsPressed = false;
 }
 RGApp::~RGApp() {
     //delete window;
 }
 
-/*!
-appName sets the program's name in the titlebar
-*/
-void RGApp::runApp(int w, int h) {
+
+void RGApp::runApp(unsigned int w, unsigned int h) {
     windowW = w;
     windowH = h;
 
-	setup();
-
-
+	setup();        // Call user's overridden setup function
 
     window = new RGSDLWindow();
     window->init();
     window->openWindow(w, h, false, title);
 
 
-
 	//setup screen
 	setupGLView();
-
-
-
-    /*if(GLEW_OK != glewInit()){
-        cout << "GLEW ERROR!!";
-        return;    //glew failed
-    }
-    if(!GLEW_EXT_framebuffer_object) {
-        cout << "No EXT_fbo!!";
-    } else {
-        cout <<"FBO is GOOOOOOO!";
-    }*/
 
 
 	bool running = true;
 
 	while(window->isOpen()) {
-
-
 		processEvents();        //process mouse events and keyboard
-		update();               //run user's update method
-
-        //glClear(GL_COLOR_BUFFER_BIT);   //Screen clearing before drawing the gui, we may want to take this out later to increase flexibility
-                                        //right now this is essentially done anyways because RGRoot renders as non-transparent
-        //glLoadIdentity();
-
-		draw();                 //run user's draw method
+		update();               // Call user's overridden update function
+		draw();                 // Call user's overridden draw function
 
 		window->display();
 
 	}
 	cout << "RGApp Window closed \n";
-    return;
 }
 
 void RGApp::processEvents() {
@@ -116,12 +70,6 @@ void RGApp::processEvents() {
 }
 
 
-int RGApp::getWindowW() {
-    return windowW;
-}
-int RGApp::getWindowH() {
-    return windowH;
-}
 
 void RGApp::setupGLView() {
     cout << "setupGLView ";

@@ -10,11 +10,11 @@ class UIBasicApp1 : public RGApp{
 
 		void keyPressed  (int key) override;
 		void keyReleased(int key) override;
-		void mouseMoved(int x, int y ) override;
-		void mouseDragged(int x, int y, int button) override;
-		void mousePressed(int x, int y, int button) override;
-		void mouseReleased(int x, int y, int button) override;
-		void windowResized(int w, int h) override;
+		void mouseMoved(unsigned int x, unsigned int y ) override;
+		void mouseDragged(unsigned int x, unsigned int y, int button) override;
+		void mousePressed(unsigned int x, unsigned int y, int button) override;
+		void mouseReleased(unsigned int x, unsigned int y, int button) override;
+		void windowResized(unsigned int w, unsigned h) override;
 
 };
 

@@ -45,30 +45,30 @@ void EmptyApp::keyReleased(int key){
 }
 
 
-void EmptyApp::mouseMoved(int x, int y ){
+void EmptyApp::mouseMoved(unsigned int x, unsigned int y ){
 
 }
 
-void EmptyApp::mouseDragged(int x, int y, int button){
+void EmptyApp::mouseDragged(unsigned int x, unsigned int y, int button){
     //rgMain1->event(DRAGGED, x,y);
     root->dragEvent(x,y, button);
 }
 
 
-void EmptyApp::mousePressed(int x, int y, int button){
+void EmptyApp::mousePressed(unsigned int x, unsigned int y, int button){
     //rgMain1->event(PRESSED, x,y);
     root->pressEvent(x,y);
 }
 
 
-void EmptyApp::mouseReleased(int x, int y, int button){
+void EmptyApp::mouseReleased(unsigned int x, unsigned int y, int button){
     //rgMain1->event(RELEASED, x,y);
     root->releaseEvent(x,y);
 }
 
 
 
-void EmptyApp::windowResized(int w, int h){
+void EmptyApp::windowResized(unsigned int w, unsigned int h){
     //rgMain->resizeEvent(w, h);
 }
 
