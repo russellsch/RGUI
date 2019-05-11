@@ -2,7 +2,7 @@
 #include "rgui/RGApp.hpp"
 
 #include "rgui/RGRoot.hpp"
-//#include "RGButton.hpp"
+#include "rgui/RGButton.hpp"
 
 
 class EmptyApp : public RGApp{

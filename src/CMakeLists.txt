@@ -16,6 +16,7 @@ set(header_path "${RGUI_SOURCE_DIR}/include/rgui")
 set(header
 	${header_path}/KSBasicTimer.h
 	${header_path}/RGApp.hpp
+    ${header_path}/RGButton.hpp
 	${header_path}/RGConst.hpp
 	${header_path}/RGColor.hpp
 	${header_path}/RGDraw.hpp
@@ -33,6 +34,7 @@ set(header
 set(src
 	KSBasicTimer.cpp
 	RGApp.cpp
+    RGButton.cpp
 	RGColor.cpp
 	RGDraw.cpp
 	RGEvent.cpp

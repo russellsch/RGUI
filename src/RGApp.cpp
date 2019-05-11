@@ -106,10 +106,10 @@ void RGApp::processEvents() {
         }
         if(event.type == RGInputEvent::Resized) {  //if we resize the window... update the RGApp's window size vars and setup the OpenGL view again
             cout << "resize: " << event.resize.width << " " << event.resize.height <<endl;
-            /*windowW = event.resize.width;
+            windowW = event.resize.width;
             windowH = event.resize.height;
             windowResized(windowW, windowH);
-            setupGLView();*/
+            setupGLView();
         }
 
     }

@@ -1,7 +1,7 @@
 #include "rgui/RGRoot.hpp"
 
 RGRoot::RGRoot(int wNew, int hNew, RGApp* newApp): RGObj("main", "main", 0,0,wNew,hNew) {
-    bkgColor = RGColor(230);
+    bkgColor = RGColor(128);
 
     resizable = true;
     stretchX = 0;

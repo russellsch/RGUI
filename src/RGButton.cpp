@@ -1,6 +1,6 @@
-#include "RGButton.hpp"
+#include "rgui/RGButton.hpp"
 
-RGButton::RGButton(string name, int xNew, int yNew, int wNew, int hNew, wstring labelNew): RGObj(name, "buttonspst", xNew,yNew,wNew,hNew) {
+RGButton::RGButton(string name, int xNew, int yNew, int wNew, int hNew, std::wstring labelNew): RGObj(name, "buttonspst", xNew,yNew,wNew,hNew) {
     verboseSPST = false;
     enabled = true;
     pressed = false;
@@ -8,9 +8,14 @@ RGButton::RGButton(string name, int xNew, int yNew, int wNew, int hNew, wstring 
     setStyle(0);
     label=labelNew;
 }
-RGButton::RGButton(string name, int xNew, int yNew, int wNew, int hNew, string labelNew): RGObj(name, "buttonspst", xNew,yNew,wNew,hNew) {
-    RGButton::RGButton( name, xNew, yNew, wNew, hNew, toWString(labelNew));
-}
+/*RGButton::RGButton(string name, int xNew, int yNew, int wNew, int hNew, string labelNew): RGObj(name, "buttonspst", xNew,yNew,wNew,hNew) {
+    verboseSPST = false;
+    enabled = true;
+    pressed = false;
+
+    setStyle(0);
+    label=wstring(labelNew.c_str());
+}*/
 
 
 void RGButton::postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) {

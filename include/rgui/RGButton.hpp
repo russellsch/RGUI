@@ -1,14 +1,14 @@
-#ifndef RGSPST_H
-#define RGSPST_H
+#ifndef RGBUTTON_H
+#define RGBUTTON_H
 
 
 #include <string>
 
-#include <RGObj.hpp>
-#include <RGColor.hpp>
+#include <rgui/RGObj.hpp>
+#include <rgui/RGColor.hpp>
 
 //!Simple button
-class DLLHELPER RGButton : public RGObj {
+class RGButton : public RGObj {
     public:
         bool enabled;
         RGColor pressedColor;
@@ -20,8 +20,8 @@ class DLLHELPER RGButton : public RGObj {
 
         wstring label;
 
-        RGButton(string name, int xNew, int yNew, int wNew, int hNew, wstring labelNew);
-        RGButton(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
+        RGButton(string name, int xNew, int yNew, int wNew, int hNew, std::wstring labelNew);
+        //RGButton(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
         void preChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
@@ -38,4 +38,4 @@ class DLLHELPER RGButton : public RGObj {
         string fontFile;
 };
 
-#endif // RGSPST_H
+#endif // RGBUTTON_H

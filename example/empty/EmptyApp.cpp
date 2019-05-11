@@ -4,31 +4,31 @@ void EmptyApp::setup(){
 
     root = new RGRoot(1024,768, this);
 
-	//RGButton* testButton = new RGButton("test", 50,50,70,30,L"Test");
+	RGButton* testButton = new RGButton("test", 50,50,70,30,L"Test");
 
-    //testButton->setEventHandler(new ButtonEvent(rgMain));
-    //root->addChild(testButton);
+    testButton->setEventHandler(new ButtonEvent(root));
+    root->addChild(testButton);
     cout << "setup\n";
 }
 
 
 void ButtonEvent::released() {
-    /*RGButton* target2 = (RGButton*)rootObject->findChildByName("test");
+    RGButton* target2 = (RGButton*)rootObject->findChildByName("test");
     if(target2->pressedColor.r==128) {
         target2->pressedColor = RGColor(9);
 
     } else {
         target2->pressedColor = RGColor(128);
-    }*/
-
+    }
+    cout << "ButtonEvent:release\n";
 
 }
 ButtonEvent::ButtonEvent(RGRoot* root) : RGEvent(root) { }
 
 
 void EmptyApp::draw(){
-    //root->render(0,0);
-    cout << "draw\n";
+    root->render(0,0);
+    //cout << "draw\n";
 }
 
 
