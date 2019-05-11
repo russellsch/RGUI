@@ -5,7 +5,7 @@ void RGSDLWindow::init() {
     if(SDL_Init(SDL_INIT_VIDEO) < 0){
         cout << "ERROR: SDL INIT FAIL!! QUITING" << endl;
         SDL_Quit();
-        exit(0);
+        exit(1);
     }
     //atexit(SDL_Quit); //CAUSING ERRORS MAYBE?
 }
