@@ -30,7 +30,7 @@ Simple GUI widgets
 - [X] Upgrade to OpenGL 3.1
 - [X] Upgrade enums to enum classes so they are scoped
 - [X] Fixed issues preventing drag code from working
-- [-] Change RGObject mouse drag handling to use enums for clarity
+- [-] Change RGObject mouse delegation handling to use enums for clarity
 
 - [ ] Create basic UI demo of working UI widgets
 
@@ -41,7 +41,7 @@ Simple GUI widgets
 - [ ] Add CMake library exports
 - [ ] Add Dockerfile
 - [ ] Add better UTF-8 font rendering demo
-- [ ] Change to use namespace RG and drop RG prefix on class names
+- [ ] Change to namespace RG and drop RG prefix on class names
 
 
 

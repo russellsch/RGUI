@@ -87,7 +87,7 @@ class RGObj : public RGRect {
         //mouse clicking and dragging related
         MouseDelegation pressEvent(int mouseXin, int mouseYin);
         void releaseEvent(int mouseXin, int mouseYin);
-        int dragEvent(int mouseXin, int mouseYin, int button);
+        MouseDelegation dragEvent(int mouseXin, int mouseYin, int button);
         void resizeEvent(int wNew, int hNew);
 
         bool mouseOverChild(int mouseXin, int mouseYin, int childIndex);
@@ -140,7 +140,7 @@ class RGObj : public RGRect {
         RGEvent* eventHandler;      //!<pointer to an event handler object
         bool eventHandlerValid;
 
-        virtual int drag(int mouseXin, int mouseYin, int button);
+        virtual MouseDelegation drag(int mouseXin, int mouseYin, int button);
         virtual MouseDelegation press(int mouseXin, int mouseYin);
         virtual void release(int mouseXin, int mouseYin);
 

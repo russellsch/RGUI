@@ -71,18 +71,18 @@ void RGList::postChildrenRender(int XOffset, int YOffset, unsigned int milliSeco
 
 }
 
-int RGList::drag(int mouseXin, int mouseYin, int button) {
-    int childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
+MouseDelegation RGList::drag(int mouseXin, int mouseYin, int button) {
+    MouseDelegation childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
     //cout << "child drag resp:" << childrenDragResponse << endl;
     if(initialDrag) {
         listImgGrabPosX = mouseXin - listPosX;
         listImgGrabPosY = mouseYin - listPosY;
     }
-    if(childrenDragResponse == 0){
+    if(childrenDragResponse == MouseDelegation::NOT_ACCEPTED){
         listPosX = 0;
         listPosY = mouseYin-listImgGrabPosY;
         constrainListPos();
-        return 1;
+        return MouseDelegation::THIS_ACCEPTED;
     }
     return childrenDragResponse;
 }

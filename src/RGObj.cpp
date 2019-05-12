@@ -70,8 +70,8 @@ void RGObj::releaseEvent(int mouseXin, int mouseYin) {
     }
 }
 
-int RGObj::dragEvent(int mouseXin, int mouseYin, int button) {
-    int response = drag(mouseXin, mouseYin, button);
+MouseDelegation RGObj::dragEvent(int mouseXin, int mouseYin, int button) {
+    MouseDelegation response = drag(mouseXin, mouseYin, button);
     if(eventHandlerValid) {
         eventHandler->released();
     }
@@ -172,16 +172,16 @@ Additionally, the position where the drag started is stored as well in dragStart
 
 If this object receives a response of 1 from it's child, it will return 2, to let objects above it know that it got someone else to receive the drag.
 */
-int RGObj::drag(int mouseXin, int mouseYin, int button) {
+MouseDelegation RGObj::drag(int mouseXin, int mouseYin, int button) {
     if(dragging){
         if(initialDrag){
             initialDrag = false;
         }
-        if(dragStartValid == false){
-            return 0;
+        if(!dragStartValid){
+            return MouseDelegation::NOT_ACCEPTED;
         } else {
             dragStart->drag(mouseXin-getDragStartXRel2Self(), mouseYin-getDragStartYRel2Self(), button);
-            return 2;
+            return MouseDelegation::CHILD_ACCEPTED;
         }
     } else {
         dragging = true;
@@ -189,20 +189,20 @@ int RGObj::drag(int mouseXin, int mouseYin, int button) {
         dragStartY = mouseYin;
         for(int i=0; i<getChildrenSize(); i++) {
             if(mouseOverChild(mouseXin, mouseYin, i)) {
-                int response = getChild(i)->drag(mouseXin-getChildXRel2Self(i), mouseYin-getChildYRel2Self(i), button);
-                if(response>0) {
+                MouseDelegation response = getChild(i)->drag(mouseXin-getChildXRel2Self(i), mouseYin-getChildYRel2Self(i), button);
+                if(response != MouseDelegation::NOT_ACCEPTED) {
                     dragStart = getChild(i);
                     dragStartValid = true;
                     //dragStartX = mouseXin;
                     //dragStartY = mouseYin;
-                    if(response == 1) {
-                        return 2;
+                    if(response == MouseDelegation::THIS_ACCEPTED) {
+                        return MouseDelegation::CHILD_ACCEPTED;
                     }
-                    return 1;
+                    return MouseDelegation::THIS_ACCEPTED;
                 }
             }
         }
-        return 0;
+        return MouseDelegation::NOT_ACCEPTED;
     }
 }
 

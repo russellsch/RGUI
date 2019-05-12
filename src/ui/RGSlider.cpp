@@ -44,7 +44,7 @@ MouseDelegation RGSlider::press(int mouseXin, int mouseYin) {
 }
 
 
-int RGSlider::drag(int mouseXin, int mouseYin, int button)  {
+MouseDelegation RGSlider::drag(int mouseXin, int mouseYin, int button)  {
     RGObj::drag(mouseXin, mouseYin, button);
     if(!dragging) {
         pMouseX = mouseXin;
@@ -73,7 +73,7 @@ int RGSlider::drag(int mouseXin, int mouseYin, int button)  {
 
     if(eventHandlerValid) { eventHandler->changed(); }
 
-    return 1;
+    return MouseDelegation::THIS_ACCEPTED;
 }
 
 
