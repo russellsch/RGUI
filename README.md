@@ -18,6 +18,7 @@ Simple GUI widgets
 ## Changelog
 
 ### v3.0.0
+
 - [X] Change build system to CMake
 - [X] Change primary target to Linux/Ubuntu
 - [ ] Remove old Windows code

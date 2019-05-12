@@ -12,7 +12,7 @@ class ColorRGBA {
 
     public:
 
-        ColorRGBA() {}
+        ColorRGBA() = default;
         explicit ColorRGBA(uint8_t brightness) {rgba = {brightness, brightness, brightness, 255};}
         ColorRGBA(uint8_t brightness, uint8_t alpha) {rgba = {brightness, brightness, brightness, alpha};}
         ColorRGBA(uint8_t red, uint8_t green, uint8_t blue) {rgba = {red, green, blue, 255};}
