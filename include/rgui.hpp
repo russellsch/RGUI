@@ -15,6 +15,7 @@
 #include "rgui/ui/RGButton.hpp"
 #include "rgui/ui/RGCheckGroup.hpp"
 #include "rgui/ui/RGFrame.hpp"
+#include "rgui/ui/RGLabel.hpp"
 #include "rgui/ui/RGToggle.hpp"
 
 #endif //RGUI_RGUI_H

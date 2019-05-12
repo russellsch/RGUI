@@ -11,13 +11,38 @@ void RGSDLWindow::init() {
 
 
 
+void printSDLError(int lineNumber = -1)
+{
+    const char *error = SDL_GetError();
+    if (*error != '\0')
+    {
+        cout << "SDL Error: " << error << "\n";
+        if (lineNumber != -1) {
+            cout << "line:" << lineNumber << "\n";
+        }
+        SDL_ClearError();
+    }
+}
+
 void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fullscreen,  std::string title){
     this->window = SDL_CreateWindow(title.c_str(),
             SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                 width, height, SDL_WINDOW_OPENGL); // | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
+    printSDLError(__LINE__);
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
+    SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
     this->glContext = SDL_GL_CreateContext(this->window);
+    printSDLError(__LINE__);
+    sdl_renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
+    printSDLError(__LINE__);
 
+
+    GLenum glewError = glewInit();
+    if( glewError != GLEW_OK ) {
+        printf( "Error initializing GLEW! %s\n", glewGetErrorString( glewError ) );
+    }
     
     running = true;
     if(window == nullptr) {
@@ -26,6 +51,8 @@ void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fulls
         exit(1);
     }
     cout << "SDL openWindow, running: " << running << "\n";
+
+
 }
 
 bool RGSDLWindow::isOpen() {

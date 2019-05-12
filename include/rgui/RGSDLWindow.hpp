@@ -5,8 +5,10 @@
 #include <iostream>
 
 
-#include "SDL.h"
-
+#include <SDL.h>
+#include <GL/glew.h>
+#include <SDL_opengl.h>
+#include <GL/glu.h>
 //struct SDL_Surface;
 
 
@@ -22,6 +24,7 @@ class RGSDLWindow : public RGOSWindow {
     protected:
         SDL_Window* window;
         SDL_GLContext glContext;
+        SDL_Renderer* sdl_renderer;
         bool running;
 
     private:

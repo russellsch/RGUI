@@ -5,6 +5,10 @@
 RGApp::RGApp(){
     appPointer = this;
     mouseIsPressed = false;
+
+
+
+
 }
 RGApp::~RGApp() {
     //delete window;
@@ -25,8 +29,11 @@ void RGApp::runApp(unsigned int w, unsigned int h) {
 	//setup screen
 	setupGLView();
 
+    sp = new RGShader("circle.vsh", "circle.fsh");
 
-	bool running = true;
+
+
+    bool running = true;
 
 	while(window->isOpen()) {
 		processEvents();        //process mouse events and keyboard

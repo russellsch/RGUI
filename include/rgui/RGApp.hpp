@@ -53,6 +53,8 @@ class RGApp{
 
         void setTitleBar(string newTitleBar) { this->title = newTitleBar; };
 
+        RGShader* sp;
+
     protected:
         void setupGLView();
 
