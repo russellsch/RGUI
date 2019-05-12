@@ -480,7 +480,7 @@ void RGDraw::fill(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
 
 
 
-void RGDraw::text(string text, int x, int y) {
+void RGDraw::text(std::string text, int x, int y) {
     this->text(toWString(text), x, y);
 }
 
@@ -488,7 +488,7 @@ void RGDraw::text(string text, int x, int y) {
 note: if you try to draw with no fill color set, but a stroke color set, the function will
 assume you want to use your stroke color for the text
 */
-void RGDraw::text(wstring text, int x, int y) {
+void RGDraw::text(std::wstring text, int x, int y) {
     //fill
     if(fillEnabled) {
         fill(fillColor);
@@ -508,28 +508,28 @@ void RGDraw::textSize(int size) {
     font.setFontSize(size);
 }
 
-int RGDraw::textWidth(wstring text) {
+int RGDraw::textWidth(std::wstring text) {
     if(font.isValid()) {
-        pair<int,int> dims = font.boundingDims(text);
+        std::pair<int,int> dims = font.boundingDims(text);
         return dims.first;
         //return fonts2[fontSize].stringWidth(text);
     } else {
         return 0;
     }
 }
-int RGDraw::textWidth(string text) {
+int RGDraw::textWidth(std::string text) {
     return textWidth(toWString(text));
 }
-int RGDraw::textHeight(wstring text) {
+int RGDraw::textHeight(std::wstring text) {
     if(font.isValid()) {
         //return fonts2[fontSize].stringHeight(text);
-        pair<int,int> dims = font.boundingDims(text);
+        std::pair<int,int> dims = font.boundingDims(text);
         return dims.second;
     } else {
         return 0;
     }
 }
-int RGDraw::textHeight(string text) {
+int RGDraw::textHeight(std::string text) {
     return textHeight(toWString(text));
 }
 
@@ -557,30 +557,30 @@ float rgMap(float value, float inputMin, float inputMax, float outputMin, float 
 }
 
 int clamp(int input, int minValue, int maxValue){
-    return max( min(input, maxValue), minValue);
+    return std::max( std::min(input, maxValue), minValue);
 }
 float clamp(float input, float minValue, float maxValue){
-    return max( min(input, maxValue), minValue);
+    return std::max( std::min(input, maxValue), minValue);
 
 }
 
-string toString(int input){
-    stringstream stream;
+std::string toString(int input){
+    std::stringstream stream;
     stream << input;
     return stream.str();
 }
 
-string toString(float input, int precision){
-    stringstream stream;
-    stream << fixed << setprecision(precision) << input;
+std::string toString(float input, int precision){
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(precision) << input;
     return stream.str();
 }
-string toString(float input){
+std::string toString(float input){
     return toString(input, 2);
 }
 
 
-wstring toWString(string text) {
+std::wstring toWString(std::string text) {
     std::wstring temp(text.length(), L' ');
     std::copy(text.begin(), text.end(), temp.begin());
     return temp;

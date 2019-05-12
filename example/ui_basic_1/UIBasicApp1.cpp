@@ -4,7 +4,7 @@ void UIBasicApp1::setup(){
 
     root = new RGRoot(1024,768, this);
 
-	auto testButton = new RGButton("test", 50,50,70,30,L"テスト");
+	auto testButton = new RGButton("test", 50,50,80,30,L"テスト123");
 
     testButton->setEventHandler(new ButtonEvent(root));
     root->addChild(testButton);

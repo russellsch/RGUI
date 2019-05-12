@@ -28,15 +28,15 @@ Simple GUI widgets
 - [X] Simplified import for use to single h file
 - [X] Refactored RGB color class to be more C++11 friendly
 - [X] Upgrade to OpenGL 3.1
-- [-] Upgrade enums to enum classes so they are scoped
-
-- [ ] Change RGObject mouse drag handling to use enums for clarity
+- [X] Upgrade enums to enum classes so they are scoped
+- [X] Fixed issues preventing drag code from working
+- [-] Change RGObject mouse drag handling to use enums for clarity
 
 - [ ] Create basic UI demo of working UI widgets
 
 
 
-
+- [ ] Upgrade font renderer to support multiple sizes for one font
 - [ ] Add GPL license
 - [ ] Add CMake library exports
 - [ ] Add Dockerfile

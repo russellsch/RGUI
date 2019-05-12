@@ -74,14 +74,14 @@ class RGDraw {
         void translate(float x, float y, float z);  //!<translate the canvas in 3d using a float
         void rotateDeg(float degrees);
 
-        void text(wstring text, int x, int y);//!<Draws unicode text to the screen using truetype font textures
-        void text(string text, int x, int y);//!<Draws ascii text to the screen using truetype font textures
+        void text(std::wstring text, int x, int y);//!<Draws unicode text to the screen using truetype font textures
+        void text(std::string text, int x, int y);//!<Draws ascii text to the screen using truetype font textures
         void textFont();
         void textSize(int size);
-        int textWidth(string text);
-        int textWidth(wstring text);
-        int textHeight(string text);
-        int textHeight(wstring text);
+        int textWidth(std::string text);
+        int textWidth(std::wstring text);
+        int textHeight(std::string text);
+        int textHeight(std::wstring text);
 
         float map(float value, float inputMin, float inputMax, float outputMin, float outputMax);
 
@@ -100,7 +100,7 @@ class RGDraw {
         float circlePts[RG_MAX_CIRCLE_PTS*2];
 
         //font
-        string fontFile;
+        std::string fontFile;
 
         int fontSizePts;
         bool fontValid;
@@ -123,11 +123,11 @@ int clamp(int input, int min, int max);
 float clamp(float input, float min, float max);
 
 
-string toString(int input);
-string toString(float input, int precision);
-string toString(float input);
+std::string toString(int input);
+std::string toString(float input, int precision);
+std::string toString(float input);
 
-wstring toWString(string text);
+std::wstring toWString(std::string text);
 
 
 

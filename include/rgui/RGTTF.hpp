@@ -39,8 +39,6 @@ using FT_Face = struct FT_FaceRec_*;
 using FT_GlyphSlot = struct FT_GlyphSlotRec_*;
 
 
-using namespace std;
-
 
 
 //!Struct defining useful properties stored for each rendered TTF character
@@ -70,19 +68,19 @@ This class renders characters to opengl texture buffers which are then cached.
 class RGTTF {
     public:
         RGTTF();
-        void loadFont(string fontFile, int newFontSize);   //!<Constructor loads and sets up a given font at a given size
+        void loadFont(std::string fontFile, int newFontSize);   //!<Constructor loads and sets up a given font at a given size
         virtual ~RGTTF();
 
-        void drawString(wstring text, int x, int y, ColorRGBA textColor);    //!<Basic string drawing function, uses default justification
-        void drawString(wstring text, int x, int y, ColorRGBA textColor, int justification); //!<Basic string drawing function, with custom justification
+        void drawString(std::wstring text, int x, int y, ColorRGBA textColor);    //!<Basic string drawing function, uses default justification
+        void drawString(std::wstring text, int x, int y, ColorRGBA textColor, int justification); //!<Basic string drawing function, with custom justification
 
         void setFontSize(unsigned short newSize);
         unsigned short getFontSize();
 
         bool isValid();
 
-        RGBB boundingBox(wstring text); //!<Returns dimensions of a box that will enclose rendered text
-        pair <int,int> boundingDims(wstring text);  //!<Returns width and height of a string when rendered
+        RGBB boundingBox(std::wstring text); //!<Returns dimensions of a box that will enclose rendered text
+        std::pair <int,int> boundingDims(std::wstring text);  //!<Returns width and height of a string when rendered
 
 
 
@@ -99,15 +97,15 @@ class RGTTF {
 
         int singleLineH;    //!<height of a single line of text
 
-        string fontFile;    //!<filename of font being used
+        std::string fontFile;    //!<filename of font being used
         int fontRenderSize;       //!<all strings drawn will be in this size
 
         int border;
 		int visibleBorder;
 
 
-        map<unsigned short ,map<wchar_t, GLuint> > charTextures;              //!<Associates a given character to a gl texture
-        map<unsigned short ,map<wchar_t, charProperty> > charProperties;      //!<Associates a given character to a list of properties for the glyph and the gl texture
+        std::map<unsigned short, std::map<wchar_t, GLuint> > charTextures;              //!<Associates a given character to a gl texture
+        std::map<unsigned short, std::map<wchar_t, charProperty> > charProperties;      //!<Associates a given character to a list of properties for the glyph and the gl texture
 };
 
 //!Find the next power of 2 larger than the input number

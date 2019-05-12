@@ -1,20 +1,15 @@
 #include "rgui/RGTTF.hpp"
 
-//#include <ft2build.h>
-//#include FT_FREETYPE_H
-
-
-
 RGTTF::RGTTF(){
     fontValid = false;
 }
 
-void RGTTF::loadFont(string fontFile, int newFontSize) {
+void RGTTF::loadFont(std::string fontFile, int newFontSize) {
     fontValid = true;
     //initialize freetype library
 	FT_Error ftError = FT_Init_FreeType( &ftLibrary );
 	if(ftError) {
-        cout << "RGTTF: A freetype error occurred during initialization" << endl;
+        std::cout << "RGTTF: A freetype error occurred during initialization" << std::endl;
         fontValid = false;
 	}
 
@@ -22,7 +17,7 @@ void RGTTF::loadFont(string fontFile, int newFontSize) {
     this->fontFile = fontFile;
 
     //build absolute path from current working directory
-    string fontPath = "/"+fontFile;
+    std::string fontPath = "/"+fontFile;
     char currDir[1024];
 
     fontPath = getcwd(currDir, 1024) + fontPath;
@@ -30,8 +25,8 @@ void RGTTF::loadFont(string fontFile, int newFontSize) {
     //load the font face
 	ftError = FT_New_Face( ftLibrary, fontPath.c_str(), 0, &face);
 	if(ftError) {
-        cout << "RGTTF: An error occured while loading the font, CHECK YOUR FILENAME!" << endl;
-        cout << "maybe the font isn't in the data directory? freetype is reporting this file: " << fontPath.c_str() << " is cannot be found." << endl;
+        std::cout << "RGTTF: An error occured while loading the font, CHECK YOUR FILENAME!" << std::endl;
+        std::cout << "maybe the font isn't in the data directory? freetype is reporting this file: " << fontPath.c_str() << " is cannot be found." << std::endl;
         fontValid = false;
 	}
 
@@ -90,7 +85,7 @@ GLuint RGTTF::buildTextureForChar(unsigned short charSizePts, wchar_t c){
     charProperties[charSizePts][c] = charProperty();
 
     if(FT_Load_Char( face,  c, FT_LOAD_RENDER )){
-        cout << "Error with FT_Load_Glyph" << endl;
+        std::cout << "Error with FT_Load_Glyph" << std::endl;
     }
 
     int width  = nextPowerOf2( slot->bitmap.width + border*2 );
@@ -138,7 +133,7 @@ GLuint RGTTF::buildTextureForChar(unsigned short charSizePts, wchar_t c){
 }
 
 
-void RGTTF::drawString(wstring text, int x, int y, ColorRGBA textColor) {
+void RGTTF::drawString(std::wstring text, int x, int y, ColorRGBA textColor) {
     drawString(text, x, y, textColor, RG_LEFT_TEXT_LINE);
 }
 
@@ -152,7 +147,7 @@ Note: A wstring is specified like this: wstring bob = L"String with 漢字";
 If you get an error "Converting to execution character set: Illegal byte sequence" please ensure the encoding of
 your file is set to something that can handle the characters you've used, UTF8 is recommended for all files.
 */
-void RGTTF::drawString(wstring text, int x, int y, ColorRGBA textColor, int justification) {
+void RGTTF::drawString(std::wstring text, int x, int y, ColorRGBA textColor, int justification) {
     if(fontValid){
         //setup position variables
         int cursorX=0, cursorY=0; //drawing positions
@@ -245,7 +240,7 @@ Note: when using japanese characters sometimes the bounding box will be a little
 other non-latin characters as well. There could be some sort of problem with only using the horizontal advance to calculate
 the width. Right now I'm adding 1 to compensate, but it's not perfect.
 */
-RGBB RGTTF::boundingBox(wstring text){
+RGBB RGTTF::boundingBox(std::wstring text){
     RGBB result;
     result.x = 0;
     result.y = 0;
@@ -260,11 +255,11 @@ RGBB RGTTF::boundingBox(wstring text){
         int boxH=-1;
         int xOffset=-1, yOffset=-1;
 
-        vector<int> lineWidth;
+        std::vector<int> lineWidth;
         int currentLine=0;
         lineWidth.push_back(0);
 
-        vector<int> lineMaxYBearing;
+        std::vector<int> lineMaxYBearing;
         lineMaxYBearing.push_back(0);
 
         for(int i=0; i<text.length(); i++) {
@@ -307,14 +302,14 @@ RGBB RGTTF::boundingBox(wstring text){
     }
 }
 
-pair <int,int> RGTTF::boundingDims(wstring text) {
+std::pair <int,int> RGTTF::boundingDims(std::wstring text) {
     RGBB bb = boundingBox(text);
 
     if(fontValid){
-        pair <int,int> result ( bb.width, bb.height);
+        std::pair <int,int> result ( bb.width, bb.height);
         return result;
     } else {
-        return pair<int,int>(0,0);
+        return std::pair<int,int>(0,0);
     }
 }
 
