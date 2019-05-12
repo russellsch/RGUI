@@ -74,7 +74,6 @@ void RGSDLWindow::close() {
 bool RGSDLWindow::getEvent(RGInputEvent& event){
     SDL_Event libEvent;
     while(SDL_PollEvent(&libEvent)){
-        cout << "event";
         RGInputEvent newEvent;
         if(libEvent.type == SDL_QUIT) {
             cout << "SDLQuit Event\n";
@@ -93,7 +92,7 @@ bool RGSDLWindow::getEvent(RGInputEvent& event){
 
             events.push(newEvent);
 
-        } else if(libEvent.type == SDL_MOUSEBUTTONDOWN) {
+        } else if(libEvent.type == SDL_MOUSEMOTION) {
             newEvent.type = RGInputEvent::MouseMoved;
             newEvent.mouseMove.x = libEvent.motion.x;
             newEvent.mouseMove.y = libEvent.motion.y;

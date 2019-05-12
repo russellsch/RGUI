@@ -51,12 +51,12 @@ RGObj::~RGObj() {
 
 
 
-//these event functions wrap the primary press, release and drag functions. This is so that after this bject's function
+//these event functions wrap the primary press, release and drag functions. This is so that after this object's function
 //has been run, the object's eventhandler function can be run as well. This provides two methods for providing custom
 //functionality, one for new types of subclassed RGObjs, and one for unique instances. These functions wrap the returned
 //response where nescessary to allow it to propogate through the hierarchy properly.
-int RGObj::pressEvent(int mouseXin, int mouseYin) {
-    int response = press(mouseXin, mouseYin);
+MouseDelegation RGObj::pressEvent(int mouseXin, int mouseYin) {
+    MouseDelegation response = press(mouseXin, mouseYin);
     if(eventHandlerValid) {
         eventHandler->pressed();
     }
@@ -123,16 +123,16 @@ void RGObj::resizeEvent(int wNew, int hNew) {
 //returns 2 if this object got someone else to accept the click (fell through and hit something opaque)
 //returns 3 if this object didn't accept the click, but doesn't want others behind it to get it
 //mouse coordinates should be relative to the objects origin
-int RGObj::press(int mouseXin, int mouseYin) {
+MouseDelegation RGObj::press(int mouseXin, int mouseYin) {
     if(verbosePress) { cout<<"pressed: " << name << " with " << getChildrenSize()<<" children ("<<mouseXin<<","<<mouseYin<<")"; }
     for(int i=0; i<getChildrenSize(); i++) {
         if(mouseOverChild(mouseXin, mouseYin, i)) {
-            int response = getChild(i)->pressEvent( mouseXin-getChildXRel2Self(i), mouseYin-getChildYRel2Self(i) );
-            if(response>0) {
+            MouseDelegation response = getChild(i)->pressEvent( mouseXin-getChildXRel2Self(i), mouseYin-getChildYRel2Self(i) );
+            if(response != MouseDelegation::NOT_ACCEPTED) {
                 dragStart = getChild(i);
                 dragStartValid = true;
-                if(response == 1) {
-                    return 2;
+                if(response == MouseDelegation::THIS_ACCEPTED) {
+                    return MouseDelegation::CHILD_ACCEPTED;
                 } else {
                     return response;
                 }
@@ -141,7 +141,7 @@ int RGObj::press(int mouseXin, int mouseYin) {
 
         }
     }
-    return 0;
+    return MouseDelegation::NOT_ACCEPTED;
 }
 
 /*!

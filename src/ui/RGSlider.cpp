@@ -26,7 +26,7 @@ RGSlider::RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string l
 
 
 
-int RGSlider::press(int mouseXin, int mouseYin) {
+MouseDelegation RGSlider::press(int mouseXin, int mouseYin) {
     cout << "Slider: press received("<<mouseXin<<","<<mouseYin<<")";
     if(sliderMode == RGOrientation::HORIZONTAL) {
         value = draw->map(mouseXin, sliderSize, getW()-sliderSize, 0, 1);
@@ -40,7 +40,7 @@ int RGSlider::press(int mouseXin, int mouseYin) {
     pMouseY = mouseYin;
     if(eventHandlerValid) { eventHandler->changed(); }
 
-    return 1;
+    return MouseDelegation::THIS_ACCEPTED;
 }
 
 

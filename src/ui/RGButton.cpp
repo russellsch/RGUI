@@ -91,7 +91,7 @@ void RGButton::setStyle(int styleNew) {
 }
 
 
-int RGButton::press(int mouseXin, int mouseYin) {
+MouseDelegation RGButton::press(int mouseXin, int mouseYin) {
     if(verboseSPST) { cout<<"SPST(): Press received("<<mouseXin<<","<<mouseYin<<")"<<endl; }
 
     pressed = true;
@@ -101,7 +101,7 @@ int RGButton::press(int mouseXin, int mouseYin) {
         eventHandler->pressed();
     }
 
-    return 1;
+    return MouseDelegation::THIS_ACCEPTED;
 }
 
 void RGButton::release(int mouseXin, int mouseYin) {

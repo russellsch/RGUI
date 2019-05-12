@@ -71,7 +71,7 @@ void RGToggle::toggle() {
 }
 
 
-int RGToggle::press(int mouseXin, int mouseYin) {
+MouseDelegation RGToggle::press(int mouseXin, int mouseYin) {
     if(verboseToggle) { cout<<"Toggle(): Press received("<<mouseXin<<","<<mouseYin<<")"<<endl; }
 
     if(eventHandlerValid) {
@@ -79,7 +79,7 @@ int RGToggle::press(int mouseXin, int mouseYin) {
         eventHandler->pressed();
     }
 
-    return 1;
+    return MouseDelegation::THIS_ACCEPTED;
 }
 
 void RGToggle::release(int mouseXin, int mouseYin) {

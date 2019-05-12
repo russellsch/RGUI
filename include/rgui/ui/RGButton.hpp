@@ -29,7 +29,7 @@ class RGButton : public RGObj {
         void setStyle(int styleNew);
         int getStyle() { return style; };
 
-        int press(int mouseXin, int mouseYin) override;
+        MouseDelegation press(int mouseXin, int mouseYin) override;
         void release(int mouseXin, int mouseYin) override;
 
         virtual ~RGButton();

@@ -59,11 +59,11 @@ void RGList::postChildrenRender(int XOffset, int YOffset, unsigned int milliSeco
     draw->rect(XOffset,YOffset, getW(),getH());
 
     for(int i=0; i<4; i++) {  //shadow
-        draw->stroke(0,128-i*60);
-        draw->rect(XOffset+1+i,YOffset+1+i, getW()-2-2*i, getH()-2-2*i);
+        draw->stroke(0, 128 - i*60);
+        draw->rect(XOffset+1+i, YOffset+1+i, getW()-2-2*i, getH()-2-2*i);
     }
 
-    draw->fill(50,50,80);
+    draw->fill(50, 50, 80);
     draw->noStroke();
     draw->roundRect(XOffset+getW()-5, YOffset+draw->map(listPosYInPerc(), -.45, 1.6, 1.0, getH()-13), 4, 8, 2, 5);
 

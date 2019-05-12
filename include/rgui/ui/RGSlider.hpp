@@ -31,7 +31,7 @@ class RGSlider : public RGObj {
         RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
         RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew, float sliderMin, float sliderMax);
 
-        int press(int mouseXin, int mouseYin);
+        MouseDelegation press(int mouseXin, int mouseYin);
         int drag(int mouseXin, int mouseYin, int button);
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);

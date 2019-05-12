@@ -21,7 +21,7 @@ class RGToggle : public RGObj {
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
         void toggle();
 
-        int press(int mouseXin, int mouseYin);
+        MouseDelegation press(int mouseXin, int mouseYin);
         void release(int mouseXin, int mouseYin);
 
         void setOff();
