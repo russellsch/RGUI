@@ -1,7 +1,7 @@
 #ifndef RGHSLIDER_H
 #define RGHSLIDER_H
 
-#include "RGObj.hpp"
+#include "rgui/RGObj.hpp"
 
 #include <iostream>
 #include <cstdio>
@@ -26,7 +26,7 @@ class RGSlider : public RGObj {
         //ofColor bkgColor, textColor;
         int pMouseX, pMouseY;
 
-        int sliderMode;
+        RGOrientation sliderMode;
 
         RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
         RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew, float sliderMin, float sliderMax);

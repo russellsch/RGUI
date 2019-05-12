@@ -67,9 +67,7 @@
 
 
 
-//Orientation]
-/*#define RG_VERTICAL 0x01
-#define RG_HORIZONTAL 0x02*/
+//Orientation
 enum class RGOrientation {
     VERTICAL,
     HORIZONTAL,
@@ -138,11 +136,10 @@ enum class MouseButton {
 
 
 enum class MouseDelegation {
-    NOT_ACCEPTED,
-    THIS_ACCEPTED,
-    CHILD_ACCEPTED,
-    BLOCKING,
-
+    NOT_ACCEPTED,     // Mouse event not accepted by this or any child
+    THIS_ACCEPTED,    // Mouse event accepted by this object
+    CHILD_ACCEPTED,   // Mouse event accepted by a child (or sub-child) of this object
+    BLOCKING,         // Mouse event not accepted, but should not be propagated to children
 };
 
 

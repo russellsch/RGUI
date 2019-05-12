@@ -1,7 +1,7 @@
-#include "RGSlider.hpp"
-#include "RGColor.hpp"
+#include "rgui/ui/RGSlider.hpp"
+#include "rgui/ColorRGBA.hpp"
 
-RGSlider::RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew): RGObj(name, "slider", xNew,yNew,wNew,hNew){
+RGSlider::RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew, float sliderMin, float sliderMax): RGObj(name, "slider", xNew,yNew,wNew,hNew){
     label = labelNew;
 
     value = .5;
@@ -12,24 +12,23 @@ RGSlider::RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string l
     numberMode = RG_INT;
     floatPrecision = 1;
 
-    bkgColor = RGColor(200);
-    textColor = RGColor(0);
+    bkgColor = ColorRGBA(200);
+    textColor = ColorRGBA(0);
 
-    sliderMode = RG_HORIZONTAL;
+    sliderMode = RGOrientation::HORIZONTAL;
     if(wNew < hNew) {
-        sliderMode = RG_VERTICAL;
+        sliderMode = RGOrientation::VERTICAL;
     }
-}
 
-RGSlider::RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew, float sliderMin, float sliderMax): RGObj(name, "slider", xNew,yNew,wNew,hNew){
-    RGSlider::RGSlider(name, xNew, yNew, wNew, hNew, labelNew);
     sliderMapMin = sliderMin;
     sliderMapMax = sliderMax;
 }
 
+
+
 int RGSlider::press(int mouseXin, int mouseYin) {
     cout << "Slider: press received("<<mouseXin<<","<<mouseYin<<")";
-    if(sliderMode == RG_HORIZONTAL) {
+    if(sliderMode == RGOrientation::HORIZONTAL) {
         value = draw->map(mouseXin, sliderSize, getW()-sliderSize, 0, 1);
     } else {    //RG_VERTICAL
         value = draw->map(mouseYin, sliderSize, getH()-sliderSize, 0, 1);
@@ -51,7 +50,7 @@ int RGSlider::drag(int mouseXin, int mouseYin, int button)  {
         pMouseX = mouseXin;
         pMouseY = mouseYin;
     }
-    if(sliderMode == RG_HORIZONTAL) {
+    if(sliderMode == RGOrientation::HORIZONTAL) {
         if(mouseYin < 0 || mouseYin > getH()) {
             value += draw->map( (float)((mouseXin-pMouseX)/(.1*abs(mouseYin)+.0001)), 0,1, 0,
                     (1/((float)getW()-(2*sliderSize)))   );
@@ -97,7 +96,7 @@ void RGSlider::postChildrenRender(int XOffset, int YOffset, unsigned int milliSe
     draw->rectMode(CORNER);
     draw->rect(0,0,getW(),getH());
 
-    if(sliderMode == RG_HORIZONTAL) {
+    if(sliderMode == RGOrientation::HORIZONTAL) {
         draw->stroke(0);
         draw->line(sliderSize,(3*getH()/4),getW()-sliderSize,(3*getH()/4));
         draw->line(sliderSize,(3*getH()/4)+1,getW()-sliderSize,(3*getH()/4)+1);
@@ -125,7 +124,7 @@ void RGSlider::postChildrenRender(int XOffset, int YOffset, unsigned int milliSe
         draw->textSize(fontSize);
 
         draw->pushMatrix();
-        draw->rotate(-90);
+        draw->rotateDeg(-90);
 
         draw->fill(0);
         draw->text(valueText, -1*(draw->textWidth(valueText)+6), draw->textHeight(valueText)-1 );

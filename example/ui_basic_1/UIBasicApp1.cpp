@@ -4,14 +4,29 @@ void UIBasicApp1::setup(){
 
     root = new RGRoot(1024,768, this);
 
-	RGButton* testButton = new RGButton("test", 50,50,70,30,L"テスト");
+	auto testButton = new RGButton("test", 50,50,70,30,L"テスト");
 
     testButton->setEventHandler(new ButtonEvent(root));
     root->addChild(testButton);
 
 
-    RGFrame* frame1 = new RGFrame("frame1", 360,20, 200,200, "Rocket Control");
+    auto label1 = new RGLabel("some_label", 300, 300, 100, 30);
+    root->addChild(label1);
+
+    auto frame1 = new RGFrame("frame1", 360,20, 200,200, "Rocket Control");
     root->addChild(frame1);
+
+
+    RGList* list1 = new RGList("list1", 300,500,90,200);
+    root->addChild(list1);
+
+    RGSlider* slider1 = new RGSlider("slider1", 5,5,80,30, "GraphW", 0, 100);
+    //crap1->setEventHandler(new TestSlideEvent(root));
+    RGSlider* slider2 = new RGSlider("slider2", 5,40,80,30, "Y Stress", -1, 1);
+    RGSlider* slider3 = new RGSlider("slider3", 0,0,80,30, "Z Stress", -500, 400);
+    list1->addChild(slider1);
+    list1->addChild(slider2);
+    list1->addChild(slider3);
 
     //RGToggle* check1 = new RGToggle("tog1", 10,10, 60,11, "Thrusters");
     //frame1->addChild(check1);

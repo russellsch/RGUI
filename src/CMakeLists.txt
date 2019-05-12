@@ -33,6 +33,7 @@ set(header
 	${header_path}/ui/RGFrame.hpp
 	${header_path}/ui/RGLabel.hpp
 	${header_path}/ui/RGList.hpp
+	${header_path}/ui/RGSlider.hpp
 	${header_path}/ui/RGToggle.hpp
 )
 
@@ -53,6 +54,7 @@ set(src
 	ui/RGFrame.cpp
 	ui/RGLabel.cpp
 	ui/RGList.cpp
+	ui/RGSlider.cpp
 	ui/RGToggle.cpp
 		)
 
