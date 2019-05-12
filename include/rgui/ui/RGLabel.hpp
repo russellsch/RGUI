@@ -1,7 +1,7 @@
 #ifndef RGLABEL_H
 #define RGLABEL_H
 
-#include "RGObj.hpp"
+#include "rgui/RGObj.hpp"
 
 //!Simple text label
 class RGLabel : public RGObj {

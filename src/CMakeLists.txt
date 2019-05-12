@@ -10,6 +10,7 @@ find_package(GLEW REQUIRED)
 # TODO: sudo apt install libsdl2-dev
 # TODO: sudo apt install libfreetype6-dev
 # TODO: sudo apt install freeglut3-dev   ????
+# TODO: GLEW????
 
 # Get headers
 set(header_path "${RGUI_SOURCE_DIR}/include/rgui")
@@ -30,6 +31,7 @@ set(header
 	${header_path}/RGSDLWindow.hpp
 	${header_path}/ui/RGButton.hpp
 	${header_path}/ui/RGFrame.hpp
+	${header_path}/ui/RGLabel.hpp
 	${header_path}/ui/RGList.hpp
 	${header_path}/ui/RGToggle.hpp
 )
@@ -49,6 +51,7 @@ set(src
 	RGTTF.cpp
 	ui/RGButton.cpp
 	ui/RGFrame.cpp
+	ui/RGLabel.cpp
 	ui/RGList.cpp
 	ui/RGToggle.cpp
 		)
@@ -65,6 +68,7 @@ target_include_directories(rgui
 	${RGUI_SOURCE_DIR}/include
 	${SDL2_INCLUDE_DIRS}
 	${FREETYPE_INCLUDE_DIRS}
+	${OPENGL_INCLUDE_DIR}
 	${GLEW_INCLUDE_DIRS}
 
 	${OPENGL_INCLUDE_DIR}

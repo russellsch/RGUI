@@ -121,7 +121,7 @@ typedef struct {
 } RGPoint2D;
 
 
-enum MouseButton {
+enum class MouseButton {
     Left,
     Right,
     Middle,

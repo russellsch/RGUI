@@ -31,6 +31,7 @@ Simple GUI widgets
 - [ ] Create basic UI demo of working UI widgets
 
 
+- [ ] Upgrade enums to enum classes so they are scoped
 - [ ] Add GPL license
 - [ ] Add CMake library exports
 - [ ] Add Dockerfile

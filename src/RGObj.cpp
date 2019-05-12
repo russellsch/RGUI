@@ -132,8 +132,11 @@ int RGObj::press(int mouseXin, int mouseYin) {
             if(response>0) {
                 dragStart = getChild(i);
                 dragStartValid = true;
-                if(response==1) {return 2;}
-                else {return response;}
+                if(response == 1) {
+                    return 2;
+                } else {
+                    return response;
+                }
             }
         } else {
 
