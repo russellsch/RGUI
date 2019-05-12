@@ -20,24 +20,23 @@ Simple GUI widgets
 ### v3.0.0
 - [X] Change build system to CMake
 - [X] Change primary target to Linux/Ubuntu
-- [-] Remove old Windows code
+- [ ] Remove old Windows code
 - [X] Upgrade to SDL2
 - [X] Upgrade Freetype
-- [X] Upgrade OpenGL library version
+- [X] Upgrade OpenGL 3.1
 - [X] Basic UI widget functionality working on Linux
 - [X] Simplified import for use to single h file
 - [X] Refactored RGB color class to be more C++11 friendly
-- [X] Upgrade to OpenGL 3.1
 - [X] Upgrade enums to enum classes so they are scoped
-- [X] Fixed issues preventing drag code from working
-- [-] Change RGObject mouse delegation handling to use enums for clarity
+- [X] Fixed bug preventing mouse drag code from working
+- [X] Change RGObject mouse delegation handling to use enums for clarity
+- [X] Add GPLv3 license
 
 - [ ] Create basic UI demo of working UI widgets
 
 
-
 - [ ] Upgrade font renderer to support multiple sizes for one font
-- [ ] Add GPL license
+
 - [ ] Add CMake library exports
 - [ ] Add Dockerfile
 - [ ] Add better UTF-8 font rendering demo
