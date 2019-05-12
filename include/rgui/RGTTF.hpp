@@ -34,9 +34,9 @@
 
 
 //foward declarations so we don't need to reference freetype headers in the headers
-typedef struct FT_LibraryRec_  *FT_Library;
-typedef struct FT_FaceRec_*  FT_Face;
-typedef struct FT_GlyphSlotRec_*  FT_GlyphSlot;
+using FT_Library = FT_LibraryRec_*;
+using FT_Face = struct FT_FaceRec_*;
+using FT_GlyphSlot = struct FT_GlyphSlotRec_*;
 
 
 using namespace std;
