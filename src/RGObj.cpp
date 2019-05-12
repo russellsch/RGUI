@@ -118,7 +118,6 @@ void RGObj::resizeEvent(int wNew, int hNew) {
 }
 
 
-
 //returns 0 if no one accepted the click
 //returns 1 if this object accepted the click (click opaque)
 //returns 2 if this object got someone else to accept the click (fell through and hit something opaque)

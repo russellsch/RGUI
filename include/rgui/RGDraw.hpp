@@ -61,7 +61,7 @@ class RGDraw {
         void roundRect(int x, int y, int w, int h, int radius);
         void roundRect(int x, int y, int w, int h, int radius, int resolution);
         void gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2);  //!<Draw a rectangle with a vertical gradient
-        void gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2, int orientation); //!<Draw a rectangle with a vertical gradient
+        void gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2, RGOrientation orientation); //!<Draw a rectangle with a vertical gradient
 
         void rectDropShadow(ColorRGBA startColor, int x, int y, int w, int h, int steps);
 

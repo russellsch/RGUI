@@ -68,8 +68,12 @@
 
 
 //Orientation]
-#define RG_VERTICAL 0x01
-#define RG_HORIZONTAL 0x02
+/*#define RG_VERTICAL 0x01
+#define RG_HORIZONTAL 0x02*/
+enum class RGOrientation {
+    VERTICAL,
+    HORIZONTAL,
+};
 
 #define RG_MAX_CIRCLE_PTS 300
 
@@ -132,6 +136,14 @@ enum class MouseButton {
 
 
 
+
+enum class MouseDelegation {
+    NOT_ACCEPTED,
+    THIS_ACCEPTED,
+    CHILD_ACCEPTED,
+    BLOCKING,
+
+};
 
 
 

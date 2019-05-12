@@ -345,17 +345,17 @@ void RGDraw::roundRect(int x, int y, int w, int h, int radius, int resolution){
 
 /*! Color1 at the top and color 2 at the bottom */
 void RGDraw::gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2) {
-    gradientRect(x, y,w, h, color1, color2, RG_VERTICAL);
+    gradientRect(x, y,w, h, color1, color2, RGOrientation::VERTICAL);
 }
 
 /*! Orientation should be RG_HORIZONTAL or RG_VERTICAL. Color1 is on the top if horizontal, and the left if vertical. */
-void RGDraw::gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2, int orientation){
+void RGDraw::gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGBA color2, RGOrientation orientation){
     glBegin(GL_QUADS);
 
     glColor4ub(color1.r(), color1.g(), color1.b(), color1.a());
     glVertex2f((GLfloat)x,(GLfloat)y);
 
-    if(orientation == RG_VERTICAL) {
+    if(orientation == RGOrientation::VERTICAL) {
         glColor4ub(color1.r(), color1.g(), color1.b(), color1.a());
     } else {
         glColor4ub(color2.r(), color2.g(), color2.b(), color2.a());
@@ -365,7 +365,7 @@ void RGDraw::gradientRect(int x, int y, int w, int h, ColorRGBA color1, ColorRGB
     glColor4ub(color2.r(), color2.g(), color2.b(), color2.a());
     glVertex2f((GLfloat)(x+w),(GLfloat)(y+h));
 
-    if(orientation == RG_VERTICAL) {
+    if(orientation == RGOrientation::VERTICAL) {
         glColor4ub(color2.r(), color2.g(), color2.b(), color2.a());
     } else {
         glColor4ub(color1.r(), color1.g(), color1.b(), color1.a());

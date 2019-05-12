@@ -48,7 +48,7 @@ void RGList::preChildrenRender(int XOffset, int YOffset, unsigned int milliSecon
     //draw->fill(bkgColor);
     //draw->noStroke();
     draw->gradientRect(XOffset,YOffset, getW(),getH(), bkgColor, ColorRGBA(bkgColor.r(), bkgColor.g(), bkgColor.b() + 40),
-            RG_HORIZONTAL);
+                       RGOrientation::HORIZONTAL);
 }
 
 
