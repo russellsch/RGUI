@@ -21,7 +21,7 @@ set(header
 	${header_path}/RGConst.hpp
 	${header_path}/ColorRGBA.hpp
 	${header_path}/RGDraw.hpp
-	${header_path}/RGEvent.hpp
+	${header_path}/RGEventBase.hpp
 	${header_path}/RGObj.hpp
 	${header_path}/RGOSWindow.hpp
 	${header_path}/RGShader.hpp
@@ -30,9 +30,11 @@ set(header
 	${header_path}/RGTTF.hpp
 	${header_path}/RGSDLWindow.hpp
 	${header_path}/ui/RGButton.hpp
+	${header_path}/ui/RGCheckGroup.hpp
 	${header_path}/ui/RGFrame.hpp
 	${header_path}/ui/RGLabel.hpp
 	${header_path}/ui/RGList.hpp
+	${header_path}/ui/RGRadioGroup.hpp
 	${header_path}/ui/RGSlider.hpp
 	${header_path}/ui/RGToggle.hpp
 )
@@ -43,7 +45,7 @@ set(src
 	RGApp.cpp
 	ColorRGBA.cpp
 	RGDraw.cpp
-	RGEvent.cpp
+	RGEventBase.cpp
 	RGObj.cpp
 	RGRect.cpp
 	RGRoot.cpp
@@ -51,9 +53,11 @@ set(src
 	RGSDLWindow.cpp
 	RGTTF.cpp
 	ui/RGButton.cpp
+	ui/RGCheckGroup.cpp
 	ui/RGFrame.cpp
 	ui/RGLabel.cpp
 	ui/RGList.cpp
+	ui/RGRadioGroup.cpp
 	ui/RGSlider.cpp
 	ui/RGToggle.cpp
 		)

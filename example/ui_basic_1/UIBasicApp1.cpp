@@ -16,6 +16,13 @@ void UIBasicApp1::setup(){
     auto frame1 = new RGFrame("frame1", 360,20, 200,200, "Rocket Control");
     root->addChild(frame1);
 
+    RGRadioGroup* togGrp2 = new RGRadioGroup("thruster_dir", 10,10, 70,90, "RadioGroup");
+    togGrp2->addItem("tog_a1", "Forward");
+    togGrp2->addItem("tog_a2", "Backward");
+    togGrp2->addItem("tog_a3", "Explode");
+    root->addChild(frame1);
+
+
 
     RGList* list1 = new RGList("list1", 300,500,90,200);
     root->addChild(list1);
@@ -28,6 +35,18 @@ void UIBasicApp1::setup(){
     list1->addChild(slider2);
     list1->addChild(slider3);
 
+
+    RGRadioGroup* togGrp1 = new RGRadioGroup("togglegroup1", 500,300, 70,90, "RadioGroup");
+    togGrp1->addItem("tog_a1", "Test1");
+    togGrp1->addItem("tog_a2", "Test2");
+    togGrp1->addItem("tog_a3", "Test3");
+    root->addChild(togGrp1);
+
+    RGCheckGroup* chkGrp1 = new RGCheckGroup("checkgroup1", 600,300, 70,90, "CheckGroup");
+    chkGrp1->addItem("tog_b1", "Test1");
+    chkGrp1->addItem("tog_b2", "Test2");
+    chkGrp1->addItem("tog_b3", "Test3");
+    root->addChild(chkGrp1);
     //RGToggle* check1 = new RGToggle("tog1", 10,10, 60,11, "Thrusters");
     //frame1->addChild(check1);
 
@@ -46,7 +65,7 @@ void ButtonEvent::released() {
     cout << "ButtonEvent:release\n";
 
 }
-ButtonEvent::ButtonEvent(RGRoot* root) : RGEvent(root) { }
+ButtonEvent::ButtonEvent(RGRoot* root) : RGEventBase(root) { }
 
 
 void UIBasicApp1::draw(){

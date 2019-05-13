@@ -9,12 +9,12 @@ class RGRoot;
 /*!
 
 */
-class RGEvent
+class RGEventBase
 {
     public:
         RGRoot* rootObject;
 
-        RGEvent(RGRoot* rootNew);
+        explicit RGEventBase(RGRoot* rootNew);
 
         virtual void event(int event);
 

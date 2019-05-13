@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-#include "rgui/RGEvent.hpp"
+#include "rgui/RGEventBase.hpp"
 #include "rgui/RGDraw.hpp"
 #include "rgui/RGRect.hpp"
 #include "rgui/ColorRGBA.hpp"
@@ -110,7 +110,7 @@ class RGObj : public RGRect {
         RGDraw* d();                            //!<returns a pointer to the drawing instance
         bool isDrawObjectValid();
 
-        virtual void setEventHandler(RGEvent* newEventHandler);
+        virtual void setEventHandler(RGEventBase* newEventHandler);
 
         void render(int XOffset, int YOffset, unsigned int milliSecondTimer);
         virtual void preChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
@@ -137,7 +137,7 @@ class RGObj : public RGRect {
     protected:
 
 
-        RGEvent* eventHandler;      //!<pointer to an event handler object
+        RGEventBase* eventHandler;      //!<pointer to an event handler object
         bool eventHandlerValid;
 
         virtual MouseDelegation drag(int mouseXin, int mouseYin, int button);
