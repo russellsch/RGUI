@@ -7,7 +7,7 @@
 class RGLabel : public RGObj {
     public:
         RGLabel(string name, int xNew, int yNew, int wNew, int hNew);
-        virtual ~RGLabel();
+        ~RGLabel() = default;
     protected:
 
 

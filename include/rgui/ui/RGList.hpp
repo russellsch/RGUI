@@ -8,7 +8,7 @@ class RGList : public RGObj
 {
     public:
         RGList(string name, int xNew, int yNew, int wNew, int hNew);
-        virtual ~RGList();
+        ~RGList() = default;
 
         void addChild(RGObj* newChild);
 

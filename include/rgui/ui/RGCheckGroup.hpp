@@ -16,7 +16,7 @@ public:
     void addItem(string label); //!<Add a new check button by label only, a name will be created from the label
     void addItem(string name, string label);    //!<Add a new check button by name and label
     void addItem(string name, string label, bool state);    //!<Add a new check button by name and label and a given state
-    void release(int mouseXin, int mouseYin);
+    void release(int mouseXin, int mouseYin) override;
 
     vector<int> getActiveIndexes();  //!Returns indexes of the active children (pressed check buttons), in vector<int>
     bool isActiveByIndex(int index);  //!Returns whether the child radio button is activated or not

@@ -5,7 +5,3 @@ RGLabel::RGLabel(string name, int xNew, int yNew, int wNew, int hNew): RGObj(nam
     //ctor
 }
 
-RGLabel::~RGLabel()
-{
-    //dtor
-}

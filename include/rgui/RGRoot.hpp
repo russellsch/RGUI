@@ -16,9 +16,9 @@ add basic animations.
 class RGRoot : public RGObj {
     public:
         RGRoot(int wNew, int hNew, RGApp*);
-        virtual ~RGRoot();
+        ~RGRoot() = default;
 
-        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer); //!<Override of base RGObj method to draw a 1 pixel border around the inside edge of the window.
+        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override; //!<Override of base RGObj method to draw a 1 pixel border around the inside edge of the window.
 
         virtual RGObj* findChildByName(string name);	//!Returns a pointer to an object in the tree with a certain name
 

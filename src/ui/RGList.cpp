@@ -11,11 +11,6 @@ RGList::RGList(string name, int xNew, int yNew, int wNew, int hNew): RGObj(name,
 
 }
 
-RGList::~RGList()
-{
-    //dtor
-}
-
 
 
 void RGList::updateChildPositions() {

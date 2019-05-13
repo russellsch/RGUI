@@ -9,10 +9,6 @@ RGRadioGroup::RGRadioGroup(string name, int xNew, int yNew, int wNew, int hNew, 
     setType("radiogroup");
 }
 
-RGRadioGroup::~RGRadioGroup()
-{
-    //dtor
-}
 
 
 /*!Subclassed addChild method, used to update the positions of the children in the list each time a new one is added.

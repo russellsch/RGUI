@@ -27,10 +27,6 @@ RGRoot::RGRoot(int wNew, int hNew, RGApp* newApp): RGObj("main", "main", 0,0,wNe
 
 }
 
-RGRoot::~RGRoot() {
-    //dtor
-}
-
 
 void RGRoot::postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) {
     draw->rectMode(CORNER);

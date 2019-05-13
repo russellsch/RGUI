@@ -137,13 +137,6 @@ void RGSlider::postChildrenRender(int XOffset, int YOffset, unsigned int milliSe
 }
 
 
-
-RGSlider::~RGSlider()
-{
-    //dtor
-}
-
-
 void RGSlider::setModeInt(){
     numberMode = RG_INT;
 }

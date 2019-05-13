@@ -82,7 +82,7 @@ class RGObj : public RGRect {
 
 
         RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int hNew);
-        virtual ~RGObj();
+        ~RGObj() = default;
 
         //mouse clicking and dragging related
         MouseDelegation pressEvent(int mouseXin, int mouseYin);

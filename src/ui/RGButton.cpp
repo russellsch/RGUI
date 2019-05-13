@@ -121,8 +121,3 @@ void RGButton::release(int mouseXin, int mouseYin) {
     }
 
 }
-
-RGButton::~RGButton()
-{
-    //dtor
-}

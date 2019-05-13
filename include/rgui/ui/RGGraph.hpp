@@ -8,15 +8,15 @@ class RGGraph : public RGObj
 {
     public:
         RGGraph(string name, int xNew, int yNew, int wNew, int hNew);
-        virtual ~RGGraph();
+        ~RGGraph() = default;
 
         void load1DLineFromFloat(float* data, int points);
         void load1DLineFromInt(int* data, int points);
         void clearAllTraces();
 
-        int drag(int mouseXin, int mouseYin, int button);
+        int drag(int mouseXin, int mouseYin, int button) override;
 
-        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
+        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
 
         void setTitle(string titleNew);         //!<Sets the title of the graph
         void setXLabel(string xLabelNew);       //!<Sets the x label of the graph

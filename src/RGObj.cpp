@@ -44,11 +44,6 @@ RGObj::RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int h
     //ctor
 }
 
-RGObj::~RGObj() {
-    //dtor
-}
-
-
 
 //these event functions wrap the primary press, release and drag functions. This is so that after this object's function
 //has been run, the object's eventhandler function can be run as well. This provides two methods for providing custom

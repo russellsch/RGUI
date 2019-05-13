@@ -16,7 +16,7 @@ class RGToggle : public RGObj {
         bool verboseToggle;
 
         RGToggle(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
-        ~RGToggle() override = default;
+        ~RGToggle() = default;
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
         void toggle();

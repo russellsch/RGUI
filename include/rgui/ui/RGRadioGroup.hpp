@@ -41,7 +41,7 @@ class RGRadioGroup : public RGFrame
     public:
         RGRadioGroup(string name, int xNew, int yNew, int wNew, int hNew);
         RGRadioGroup(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
-        virtual ~RGRadioGroup();
+        ~RGRadioGroup() = default;
         void addItem(string label); //!<Add a new radio button by label only, a name will be created from the label
         void addItem(string name, string label);    //!<Add a new radio button by name and label
         void release(int mouseXin, int mouseYin);

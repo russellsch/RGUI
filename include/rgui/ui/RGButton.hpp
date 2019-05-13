@@ -32,7 +32,7 @@ class RGButton : public RGObj {
         MouseDelegation press(int mouseXin, int mouseYin) override;
         void release(int mouseXin, int mouseYin) override;
 
-        virtual ~RGButton();
+        ~RGButton() = default;
     protected:
     private:
         string fontFile;
