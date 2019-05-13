@@ -16,13 +16,13 @@ class RGToggle : public RGObj {
         bool verboseToggle;
 
         RGToggle(string name, int xNew, int yNew, int wNew, int hNew, string labelNew);
-        virtual ~RGToggle();
+        ~RGToggle() override = default;
 
-        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
+        void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
         void toggle();
 
-        MouseDelegation press(int mouseXin, int mouseYin);
-        void release(int mouseXin, int mouseYin);
+        MouseDelegation press(int mouseXin, int mouseYin) override;
+        void release(int mouseXin, int mouseYin) override;
 
         void setOff();
         void setOn();

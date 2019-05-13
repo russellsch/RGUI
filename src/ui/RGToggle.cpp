@@ -8,12 +8,6 @@ RGToggle::RGToggle(string name, int xNew, int yNew, int wNew, int hNew, string l
     verboseToggle = false;
 }
 
-RGToggle::~RGToggle()
-{
-    //dtor
-}
-
-
 
 
 void RGToggle::postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) {
