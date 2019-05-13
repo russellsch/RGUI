@@ -35,7 +35,6 @@ RGObj::RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int h
     dragStartValid = false;
 
     RGEventHandlerBase* eventHandler;
-    eventHandlerValid = false;
 
     name = nameNew;
     type = typeNew;
@@ -57,7 +56,7 @@ RGObj::~RGObj() {
 //response where nescessary to allow it to propogate through the hierarchy properly.
 MouseDelegation RGObj::pressEvent(int mouseXin, int mouseYin) {
     MouseDelegation response = press(mouseXin, mouseYin);
-    if(eventHandlerValid) {
+    if(eventHandler != nullptr) {
         eventHandler->pressed();
     }
     return response;
@@ -65,14 +64,14 @@ MouseDelegation RGObj::pressEvent(int mouseXin, int mouseYin) {
 
 void RGObj::releaseEvent(int mouseXin, int mouseYin) {
     release(mouseXin, mouseYin);
-    if(eventHandlerValid) {
+    if(eventHandler != nullptr) {
         eventHandler->released();
     }
 }
 
 MouseDelegation RGObj::dragEvent(int mouseXin, int mouseYin, int button) {
     MouseDelegation response = drag(mouseXin, mouseYin, button);
-    if(eventHandlerValid) {
+    if(eventHandler != nullptr) {
         eventHandler->released();
     }
     return response;
@@ -299,7 +298,7 @@ RGDraw* RGObj::getDrawObject() {
     if( isDrawObjectValid() ) {
         return draw;
     } else {
-        return NULL;
+        return nullptr;
     }
 }
 RGDraw* RGObj::d() {
@@ -312,7 +311,6 @@ bool RGObj::isDrawObjectValid() {
 
 void RGObj::setEventHandler(RGEventHandlerBase* newEventHandler){
     eventHandler = newEventHandler;
-    eventHandlerValid = true;
 }
 
 //modified to not use framebuffers for now
@@ -399,7 +397,7 @@ int RGObj::getDragStartYRel2Self() {
 
 
 void RGObj::resize(int newW, int newH){
-    if(eventHandlerValid) {
+    if(eventHandler != nullptr) {
         eventHandler->released();
     }
     setW(newW);
@@ -411,21 +409,21 @@ RGObj* RGObj::getParent() {
     if(parentValid) {
         return parent;
     } else {
-        return NULL;
+        return nullptr;
     }
 }
 RGApp* RGObj::getApp() {
     if(appValid) {
         return app;
     } else {
-        return NULL;
+        return nullptr;
     }
 }
 RGRoot* RGObj::getRoot(){
     if(rootObjectValid) {
         return rootObject;
     } else {
-        return NULL;
+        return nullptr;
     }
 }
 

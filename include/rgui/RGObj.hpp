@@ -138,7 +138,6 @@ class RGObj : public RGRect {
 
 
         RGEventHandlerBase* eventHandler;      //!<pointer to an event handler object
-        bool eventHandlerValid;
 
         virtual MouseDelegation drag(int mouseXin, int mouseYin, int button);
         virtual MouseDelegation press(int mouseXin, int mouseYin);

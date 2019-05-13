@@ -74,7 +74,7 @@ void RGToggle::toggle() {
 MouseDelegation RGToggle::press(int mouseXin, int mouseYin) {
     if(verboseToggle) { cout<<"Toggle(): Press received("<<mouseXin<<","<<mouseYin<<")"<<endl; }
 
-    if(eventHandlerValid) {
+    if(eventHandler != nullptr) {
         //eventHandler->changed();
         eventHandler->pressed();
     }
@@ -84,13 +84,13 @@ MouseDelegation RGToggle::press(int mouseXin, int mouseYin) {
 
 void RGToggle::release(int mouseXin, int mouseYin) {
     if(verboseToggle) { cout<<"Toggle(): Release received("<<mouseXin<<","<<mouseYin<<")"<<endl; }
-    if(eventHandlerValid) { eventHandler->released(); }
+    if(eventHandler != nullptr) { eventHandler->released(); }
 
 
     //if you press the mouse on the button, and then drag away and let go it won't do anything
     if(mouseXin>0 && mouseXin<getW() && mouseYin>0 && mouseYin<getH()){
         toggle();
-        if(eventHandlerValid) {
+        if(eventHandler != nullptr) {
             eventHandler->changed();
             eventHandler->clicked();
         }

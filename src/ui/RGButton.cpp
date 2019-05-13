@@ -96,7 +96,7 @@ MouseDelegation RGButton::press(int mouseXin, int mouseYin) {
 
     pressed = true;
 
-    if(eventHandlerValid) {
+    if(eventHandler != nullptr) {
         eventHandler->changed();
         eventHandler->pressed();
     }
@@ -109,13 +109,13 @@ void RGButton::release(int mouseXin, int mouseYin) {
 
     pressed = false;
 
-    if(eventHandlerValid) {
+    if(eventHandler != nullptr) {
             eventHandler->changed();
             eventHandler->released();
     }
     //if you press the mouse on the button, and then drag away and let go it won't do anything
     if(mouseXin>0 && mouseXin<getW() && mouseYin>0 && mouseYin<getH()){
-        if(eventHandlerValid) {
+        if(eventHandler != nullptr) {
             eventHandler->clicked();
         }
     }
