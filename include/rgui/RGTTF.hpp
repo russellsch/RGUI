@@ -2,41 +2,27 @@
 #define RGTTF_H
 
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
-
 #include <string>
 #include <iostream>
 #include <map>
+#include <vector>
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+#include "GL/glew.h"
+#include "unistd.h"
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 #include "RGConst.hpp"
 #include "ColorRGBA.hpp"
 
-#include <vector>
 
-#include "GL/glew.h"
-
-//Platform switch to allow getting the current working directory
-//because microsoft breaks posix getcwd and renames it to _getcwd
-//they also put it in a different header
-#ifdef TARGET_WIN32_VC
-    #include "direct.h"
-    #define getcwd _getcwd
-//    #include <windows.h>
-    #include <GL/gl.h>
-    #include <GL/glu.h>
-#else
-    #include "unistd.h"
-//    #include <windows.h>
-    #include <GL/gl.h>
-    #include <GL/glu.h>
-#endif
-
-
-//foward declarations so we don't need to reference freetype headers in the headers
+/*(//foward declarations so we don't need to reference freetype headers in the headers
 using FT_Library = FT_LibraryRec_*;
 using FT_Face = struct FT_FaceRec_*;
-using FT_GlyphSlot = struct FT_GlyphSlotRec_*;
+using FT_GlyphSlot = struct FT_GlyphSlotRec_*;*/
 
 
 
