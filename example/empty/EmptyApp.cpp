@@ -25,7 +25,7 @@ void ButtonEvent::released() {
     cout << "ButtonEvent:release\n";
 
 }
-ButtonEvent::ButtonEvent(RGRoot* root) : RGEvent(root) { }
+ButtonEvent::ButtonEvent(RGRoot* root) : RGEventBase(root) { }
 
 
 void EmptyApp::draw(){

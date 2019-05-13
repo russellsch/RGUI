@@ -33,7 +33,7 @@ Simple GUI widgets
 - [X] Change RGObject mouse delegation handling to use enums for clarity
 - [X] Add GPLv3 license
 
-- [ ] Create basic UI demo of working UI widgets
+- [ ] Basic UI demo of working UI widgets
 
 
 - [ ] Upgrade font renderer to support multiple sizes for one font
@@ -43,6 +43,8 @@ Simple GUI widgets
 - [ ] Add better UTF-8 font rendering demo
 - [ ] Change to namespace RG and drop RG prefix on class names
 
+
+- [ ] Mousewheel events and delegation
 
 
 ### v4.0.0 (FUTURE)
