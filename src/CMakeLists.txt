@@ -21,7 +21,7 @@ set(header
 	${header_path}/RGConst.hpp
 	${header_path}/ColorRGBA.hpp
 	${header_path}/RGDraw.hpp
-	${header_path}/RGEventBase.hpp
+	${header_path}/RGEventHandlerBase.hpp
 	${header_path}/RGObj.hpp
 	${header_path}/RGOSWindow.hpp
 	${header_path}/RGShader.hpp
@@ -45,7 +45,7 @@ set(src
 	RGApp.cpp
 	ColorRGBA.cpp
 	RGDraw.cpp
-	RGEventBase.cpp
+		RGEventHandlerBase.cpp
 	RGObj.cpp
 	RGRect.cpp
 	RGRoot.cpp

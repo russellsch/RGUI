@@ -65,7 +65,7 @@ void ButtonEvent::released() {
     cout << "ButtonEvent:release\n";
 
 }
-ButtonEvent::ButtonEvent(RGRoot* root) : RGEventBase(root) { }
+ButtonEvent::ButtonEvent(RGRoot* root) : RGEventHandlerBase(root) { }
 
 
 void UIBasicApp1::draw(){

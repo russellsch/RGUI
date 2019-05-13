@@ -34,7 +34,7 @@ RGObj::RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int h
     name = "";
     dragStartValid = false;
 
-    RGEventBase* eventHandler;
+    RGEventHandlerBase* eventHandler;
     eventHandlerValid = false;
 
     name = nameNew;
@@ -310,7 +310,7 @@ bool RGObj::isDrawObjectValid() {
 }
 
 
-void RGObj::setEventHandler(RGEventBase* newEventHandler){
+void RGObj::setEventHandler(RGEventHandlerBase* newEventHandler){
     eventHandler = newEventHandler;
     eventHandlerValid = true;
 }

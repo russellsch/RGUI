@@ -19,7 +19,7 @@ class EmptyApp : public RGApp{
 
 };
 
-class ButtonEvent : public RGEventBase {
+class ButtonEvent : public RGEventHandlerBase {
     public:
         ButtonEvent(RGRoot* root);
         void released();
