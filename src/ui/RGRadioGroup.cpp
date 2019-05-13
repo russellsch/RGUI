@@ -33,7 +33,7 @@ packing utility.
 */
 void RGRadioGroup::updateChildPositions() {
     int xPosition = 4;
-    int yPosition = (label == "" ? 7 : 17);
+    int yPosition = (label.empty() ? 7 : 17);
     int listW = 0;
     int listH = 0;
 
@@ -57,17 +57,17 @@ void RGRadioGroup::release(int mouseXin, int mouseYin) {
 
     //running the RGObj release method invalidates dragstart
     //so we make a copy before that
-    RGObj* oldDragStart = NULL;
+    RGObj* oldDragStart = nullptr;
     bool oldDragStartValid = false;
     if(dragStartValid) {
         oldDragStart = dragStart;
         oldDragStartValid = true;
     }
 
-    RGObj::release(mouseXin, mouseYin); //run the overriden RGObj release method
+    RGObj::release(mouseXin, mouseYin); //run the overridden RGObj release method
 
     if(oldDragStartValid) {
-        //make sure the thing clicked actually got toggled and the user didn:t just drag
+        //make sure the thing clicked actually got toggled and the user didn't just drag
         //away outside of the control
         if(oldDragStart->getType() == "toggle") {
             if( ((RGToggle*)oldDragStart)->getValue() ) {
