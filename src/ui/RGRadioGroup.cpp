@@ -1,5 +1,5 @@
-#include "RGRadioGroup.hpp"
-#include "RGToggle.hpp"
+#include "rgui/ui/RGRadioGroup.hpp"
+#include "rgui/ui/RGToggle.hpp"
 
 
 RGRadioGroup::RGRadioGroup(string name, int xNew, int yNew, int wNew, int hNew): RGFrame(name, xNew,yNew,wNew,hNew) {

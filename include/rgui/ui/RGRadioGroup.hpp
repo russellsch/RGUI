@@ -1,8 +1,8 @@
 #ifndef RGRADIOGROUP_H
 #define RGRADIOGROUP_H
 
-#include "RGObj.hpp"
-#include "RGFrame.hpp"
+#include "rgui/RGObj.hpp"
+#include "rgui/ui/RGFrame.hpp"
 
 #include <algorithm>
 

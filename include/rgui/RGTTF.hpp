@@ -29,7 +29,7 @@ using FT_GlyphSlot = struct FT_GlyphSlotRec_*;*/
 
 //!Struct defining useful properties stored for each rendered TTF character
 /*!
-See tutorial 2 on the freetype website for more information on these parameters (http://freetype.sourceforge.net/freetype2/docs/tutorial/step2.html)
+See freetype website for more information on these parameters (http://freetype.sourceforge.net/freetype2/docs/tutorial/step2.html)
 */
 typedef struct {
     int width;  //!<Width of the gltexture
@@ -95,7 +95,6 @@ class RGTTF {
 };
 
 //!Find the next power of 2 larger than the input number
-//MOVE THIS TO SOME SORT OF GLOBAL UTILITIES SECTION
 int nextPowerOf2(int input);
 
 #endif // RGTTF_H

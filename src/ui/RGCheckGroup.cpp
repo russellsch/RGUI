@@ -1,5 +1,5 @@
-#include "RGCheckGroup.hpp"
-#include "RGToggle.hpp"
+#include "rgui/ui/RGCheckGroup.hpp"
+#include "rgui/ui/RGToggle.hpp"
 
 RGCheckGroup::RGCheckGroup(string name, int xNew, int yNew, int wNew, int hNew): RGFrame(name, xNew,yNew,wNew,hNew) {
     setType("checkgroup");

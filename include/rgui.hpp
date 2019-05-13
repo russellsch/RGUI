@@ -17,6 +17,7 @@
 #include "rgui/ui/RGFrame.hpp"
 #include "rgui/ui/RGLabel.hpp"
 #include "rgui/ui/RGList.hpp"
+#include "rgui/ui/RGRadioGroup.hpp"
 #include "rgui/ui/RGSlider.hpp"
 #include "rgui/ui/RGToggle.hpp"
 

@@ -51,7 +51,7 @@ void RGDraw::line(int x1, int y1, int x2, int y2){
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glVertexPointer(2, GL_FLOAT, 0, &linePoints[0]);
-	glDrawArrays(GL_LINES, 0, 2);
+	glDrawArrays(GL_LINE, 0, 2);
 }
 void RGDraw::rect(int x1, int y1, int w, int h) {
     float cornerPoints[8];
