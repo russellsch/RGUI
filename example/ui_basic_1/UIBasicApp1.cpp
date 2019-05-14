@@ -56,14 +56,15 @@ void UIBasicApp1::setup(){
 
 void ButtonEvent::released() {
     RGButton* target2 = (RGButton*)rootObject->findChildByName("test");
-    if(target2->pressedColor.r() == 128) {
-        target2->pressedColor = ColorRGBA(9);
+    if(target2 != nullptr) {
+        if (target2->pressedColor.r() == 128) {
+            target2->pressedColor = ColorRGBA(9);
 
-    } else {
-        target2->pressedColor = ColorRGBA(128);
+        } else {
+            target2->pressedColor = ColorRGBA(128);
+        }
+        cout << "ButtonEvent:release\n";
     }
-    cout << "ButtonEvent:release\n";
-
 }
 ButtonEvent::ButtonEvent(RGRoot* root) : RGEventHandlerBase(root) { }
 
