@@ -40,15 +40,12 @@ the event class's methods (see RGEvent), a user can easily link code to objects.
 class RGObj : public RGRect {
     public:
 
-
-        //vector< boost::function<void (int x, int y)> > clickEvents;
-
-        RGDraw* draw;           //!<pointer to the drawing instance
+        RGDraw* draw = nullptr;           //!<pointer to the drawing instance
         bool drawValid;         //!<is the pointer to the drawing instance object valid
 
 
 
-        bool clipChildren;      //!<Use glScissor to clip children outside this object's boundaries
+        bool clipChildren = false;      //!<Use glScissor to clip children outside this object's boundaries
 
 
 
@@ -62,7 +59,7 @@ class RGObj : public RGRect {
         unsigned short fontSize;   //!<Default font size
 
         //DRAGGING VARIABLES
-        RGObj* dragStart;
+        RGObj* dragStart = nullptr;
         bool dragStartValid;
         int dragStartX, dragStartY;
         bool initialDrag;
@@ -125,9 +122,9 @@ class RGObj : public RGRect {
         void resize(int newW, int newH);    //!<Sets width and height and notifies the object of the change
 
 
-        RGObj* getParent();     //!<Returns a pointer to the parent object or NULL
-        RGApp* getApp();        //!<Returns a pointer to the app object or NULL
-        RGRoot* getRoot();      //!<Returns a pointer to the root object or NULL
+        RGObj* getParent();     //!<Returns a pointer to the parent object or nullptr
+        RGApp* getApp();        //!<Returns a pointer to the app object or nullptr
+        RGRoot* getRoot();      //!<Returns a pointer to the root object or nullptr
 
         void setParent(RGObj* newParent);
         void setApp(RGApp* newApp);
@@ -148,13 +145,13 @@ class RGObj : public RGRect {
     private:
 		vector <RGObj*> children;   //!<list of child objects
 
-        RGObj* parent;  //!<pointer to the parent object in the scene tree
+        RGObj* parent = nullptr;  //!<pointer to the parent object in the scene tree
         bool parentValid;   //!<is the pointer to the parent object valid
 
-        RGRoot* rootObject;     //!<pointer to the scene root object
+        RGRoot* rootObject = nullptr;     //!<pointer to the scene root object
         bool rootObjectValid;      //!<is the pointer to the scene root object valid
 
-        RGApp* app;     //!<pointer to the parent app object
+        RGApp* app = nullptr;     //!<pointer to the parent app object
         bool appValid;
 
         std::string name;    //!<object's short name
