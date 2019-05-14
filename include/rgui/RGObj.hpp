@@ -119,7 +119,7 @@ class RGObj : public RGRect {
         int getDragStartXRel2Self();
         int getDragStartYRel2Self();
 
-        void resize(int newW, int newH);    //!<Sets width and height and notifies the object of the change
+        void resize(uint16_t width, uint16_t height);    //!<Sets width and height and notifies the object of the change
 
 
         RGObj* getParent();     //!<Returns a pointer to the parent object or nullptr

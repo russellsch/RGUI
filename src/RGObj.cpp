@@ -389,12 +389,12 @@ int RGObj::getDragStartYRel2Self() {
 }
 
 
-void RGObj::resize(int newW, int newH){
+void RGObj::resize(uint16_t width, uint16_t height){
     if(eventHandler != nullptr) {
         eventHandler->released();
     }
-    setW(newW);
-    setH(newH);
+    setW(width);
+    setH(height);
 }
 
 
