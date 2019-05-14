@@ -14,7 +14,7 @@ addons:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y libsdl2-dev libfreetype6-dev freeglut3-dev libglew-dev libglu1-mesa-dev mesa-common-dev
+  - sudo apt-get install -y libsdl2-dev libfreetype6-dev freeglut3-dev libglew-dev libglu1-mesa-dev mesa-common-dev libgl
 
 script:
   - export CC=/usr/bin/gcc-7
