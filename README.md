@@ -33,11 +33,14 @@ Simple GUI widgets
 - [X] Change RGObject mouse delegation handling to use enums for clarity
 - [X] Add GPLv3 license
 - [X] Remove inheritance of RGObj on RGRect in favor of composition approach
+- [X] Travis.ci continuous integration working
 
 - [ ] Basic UI demo of working UI widgets
 
 
 - [ ] Upgrade font renderer to support multiple sizes for one font
+
+- [ ] Update scenegraph to manage and render RGDraw calls to textures
 
 - [ ] Add CMake library exports
 - [ ] Add Dockerfile
