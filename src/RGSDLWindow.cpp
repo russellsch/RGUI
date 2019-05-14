@@ -51,12 +51,6 @@ void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fulls
         exit(1);
     }
     cout << "SDL openWindow, running: " << running << "\n";
-
-
-}
-
-bool RGSDLWindow::isOpen() {
-    return running;
 }
 
 
@@ -64,8 +58,8 @@ void RGSDLWindow::display() {
     SDL_GL_SwapWindow(this->window);
 }
 
-void RGSDLWindow::close() {
 
+void RGSDLWindow::close() {
     running = false;
     SDL_Quit();
 }
@@ -98,8 +92,6 @@ bool RGSDLWindow::getEvent(RGInputEvent& event){
             newEvent.mouseMove.y = libEvent.motion.y;
             events.push(newEvent);
         }
-
-
     }
 
     if(!events.empty()) {

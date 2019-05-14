@@ -1,22 +1,20 @@
 #ifndef RGSDLWINDOW_H
 #define RGSDLWINDOW_H
 
-#include <rgui/RGOSWindow.hpp>
 #include <iostream>
-
 
 #include <SDL.h>
 #include <GL/glew.h>
 #include <SDL_opengl.h>
 #include <GL/glu.h>
-//struct SDL_Surface;
 
+#include <rgui/RGOSWindow.hpp>
 
 class RGSDLWindow : public RGOSWindow {
     public:
         void init() override;
         void openWindow(unsigned int width, unsigned int height, bool fullscreen, std::string title) override;
-        bool isOpen() override;
+        bool isOpen() override { return running; };
         void display() override;
         void close() override;
         bool getEvent(RGInputEvent& event) override ;
@@ -29,7 +27,6 @@ class RGSDLWindow : public RGOSWindow {
 
     private:
         queue<RGInputEvent> events;
-
 
 };
 
