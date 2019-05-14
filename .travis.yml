@@ -8,11 +8,11 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-7
+      - docker-xenial
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y libsdl2-dev libfreetype6-dev freeglut3-dev libglew-dev
+  - sudo apt-get install -y libsdl2-dev libfreetype6-dev freeglut3-dev libglew-dev libglu1-mesa-dev mesa-common-dev
 
 script:
   - export CC=gcc-7

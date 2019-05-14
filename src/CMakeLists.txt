@@ -47,7 +47,7 @@ set(src
 	RGApp.cpp
 	ColorRGBA.cpp
 	RGDraw.cpp
-		RGEventHandlerBase.cpp
+	RGEventHandlerBase.cpp
 	RGObj.cpp
 	RGRect.cpp
 	RGRoot.cpp
