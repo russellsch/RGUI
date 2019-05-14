@@ -20,7 +20,7 @@ class RGRoot : public RGObj {
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override; //!<Override of base RGObj method to draw a 1 pixel border around the inside edge of the window.
 
-        virtual RGObj* findChildByName(string name);	//!Returns a pointer to an object in the tree with a certain name
+        virtual RGObj& findChildByName(string name);	//!Returns a pointer to an object in the tree with a certain name
 
         virtual void addName(RGObj* view, string name); //!<Registers a GUI object so it can be found by it's name
         void removeName(string name);                   //!<Removes a GUI object from being found by it's name
