@@ -92,7 +92,8 @@ string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
 target_link_libraries(rgui
 		${SDL2_LIBRARIES}
 		${FREETYPE_LIBRARIES}
-		OpenGL::OpenGL
+		#OpenGL::OpenGL
+		${OPENGL_LIBRARIES}
 		GLEW::GLEW
 		stdc++fs 	#Experimental C++17 filesystem
 		)
