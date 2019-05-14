@@ -17,6 +17,8 @@ before_install:
   - sudo apt-get install -y libsdl2-dev libfreetype6-dev freeglut3-dev libglew-dev libglu1-mesa-dev mesa-common-dev
 
 script:
+  - export CC=/usr/bin/gcc-7
+  - export CXX=/usr/bin/g++-7
   - cmake --version
   - cmake CMakeLists.txt
   - cmake  --build .
