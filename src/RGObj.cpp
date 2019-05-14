@@ -11,7 +11,6 @@ RGObj::RGObj(const std::string& name, const std::string& type, int xNew, int yNe
     this->shape = RGRect(xNew, yNew, wNew, hNew, RG_TL);
 
     drawValid = false;
-    parentValid = false;
     rootObjectValid = false;
     appValid = false;
     clipChildren = true;
@@ -226,7 +225,6 @@ void RGObj::addChild(RGObj* newChild){
 
     //update reference to child's parent
     newChild->parent = this;
-    newChild->parentValid = true;
 
     //add the child to the array of children pointers
     children.push_back(newChild);
@@ -401,11 +399,7 @@ void RGObj::resize(uint16_t width, uint16_t height){
 
 
 RGObj* RGObj::getParent() {
-    if(parentValid) {
-        return parent;
-    } else {
-        return nullptr;
-    }
+    return parent;
 }
 RGApp* RGObj::getApp() {
     if(appValid) {
@@ -426,7 +420,6 @@ RGRoot* RGObj::getRoot(){
 
 void RGObj::setParent(RGObj* newParent) {
     parent = newParent;
-    parentValid = true;
 }
 
 void RGObj::setApp(RGApp* newApp) {

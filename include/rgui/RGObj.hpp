@@ -145,10 +145,9 @@ class RGObj {
 
 
     private:
-		vector <RGObj*> children;   //!<list of child objects
+		std::vector<RGObj*> children;   //!<list of child objects
 
         RGObj* parent = nullptr;  //!<pointer to the parent object in the scene tree
-        bool parentValid;   //!<is the pointer to the parent object valid
 
         RGRoot* rootObject = nullptr;     //!<pointer to the scene root object
         bool rootObjectValid;      //!<is the pointer to the scene root object valid

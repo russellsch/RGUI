@@ -32,6 +32,7 @@ Simple GUI widgets
 - [X] Fixed bug preventing mouse drag code from working
 - [X] Change RGObject mouse delegation handling to use enums for clarity
 - [X] Add GPLv3 license
+- [X] Remove inheritance of RGObj on RGRect in favor of composition approach
 
 - [ ] Basic UI demo of working UI widgets
 
