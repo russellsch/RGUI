@@ -201,7 +201,7 @@ MouseDelegation RGObj::drag(int mouseXin, int mouseYin, int button) {
 }
 
 
-RGObj* RGObj::getChild(int i) {
+RGObj* RGObj::getChild(uint32_t i) {
     return children.at(i);
 }
 
@@ -319,7 +319,7 @@ void RGObj::render(int XOffset, int YOffset, unsigned int milliSecondTimer) {
     if(drawValid){
         preChildrenRender(XOffset, YOffset, milliSecondTimer);
 
-        for(int i=0; i<getChildrenSize(); i++) {
+        for(uint32_t i=0; i<getChildrenSize(); i++) {
             if(clipChildren && appValid){
                 glEnable(GL_SCISSOR_TEST);
                 int clipY = app->getWindowH() - YOffset - getH();
@@ -375,10 +375,10 @@ bool RGObj::mouseOverChild(int mouseX, int mouseY, uint32_t childIndex) {
 
 
 
-int RGObj::getChildXRel2Self(int childIndex) {
+int RGObj::getChildXRel2Self(uint32_t childIndex) {
     return getChild(childIndex)->getL();
 }
-int RGObj::getChildYRel2Self(int childIndex) {
+int RGObj::getChildYRel2Self(uint32_t childIndex) {
     return getChild(childIndex)->getT();
 }
 int RGObj::getDragStartXRel2Self() {

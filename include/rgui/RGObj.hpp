@@ -88,7 +88,7 @@ class RGObj : public RGRect {
         void resizeEvent(int wNew, int hNew);
 
         bool mouseOverChild(int mouseX, int mouseY, uint32_t childIndex);
-        RGObj* getChild(int i);
+        RGObj* getChild(uint32_t i);
         void addChild(RGObj* newChild); //!<Add a child to this GUI object
         int getChildrenSize() const;
 
@@ -114,8 +114,8 @@ class RGObj : public RGRect {
         virtual void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
 
         //child and drag positions functions
-        int getChildXRel2Self(int childIndex);
-        int getChildYRel2Self(int childIndex);
+        int getChildXRel2Self(uint32_t childIndex);
+        int getChildYRel2Self(uint32_t childIndex);
         int getDragStartXRel2Self();
         int getDragStartYRel2Self();
 
