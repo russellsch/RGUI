@@ -39,6 +39,7 @@ public:
     };
 
     enum InputEventType {
+        None,
         Closed,
         Resized,
         TextEntered,
@@ -55,7 +56,7 @@ public:
         Count
     };
 
-    InputEventType type;
+    InputEventType type = InputEventType::None;
 
     //union brings the structs from each event type into this single class
     union {
