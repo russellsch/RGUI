@@ -14,7 +14,9 @@ addons:
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -y build-essential binutils-gold libsdl2 libsdl2-dev libfreetype6-dev freeglut3 freeglut3-dev libglew2.0 libglew-dev libglu1-mesa-dev mesa-common-dev libglm-dev
+  - sudo apt-get install -y build-essential binutils libsdl2-2.0-0 libsdl2-dev
+  - sudo apt-get install -y libfreetype6-dev freeglut3 freeglut3-dev libglew-dev
+  - sudo apt-get install -y libglu1-mesa-dev mesa-common-dev libglm-dev
 
 script:
   - export CC=/usr/bin/gcc-7
