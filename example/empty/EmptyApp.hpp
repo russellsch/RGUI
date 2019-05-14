@@ -12,9 +12,9 @@ class EmptyApp : public RGApp{
 		void keyPressed (int key) override;
 		void keyReleased(int key) override;
 		void mouseMoved(unsigned int x, unsigned int y ) override;
-		void mouseDragged(unsigned int x, unsigned int y, int button) override;
-		void mousePressed(unsigned int x, unsigned int y, int button) override;
-		void mouseReleased(unsigned int x, unsigned int y, int button) override;
+		void mouseDragged(unsigned int x, unsigned int y, MouseButton button) override;
+		void mousePressed(unsigned int x, unsigned int y, MouseButton button) override;
+		void mouseReleased(unsigned int x, unsigned int y, MouseButton button) override;
 		void windowResized(unsigned int w, unsigned int h) override;
 
 };
