@@ -64,7 +64,7 @@ void RGObj::releaseEvent(int mouseXin, int mouseYin) {
     }
 }
 
-MouseDelegation RGObj::dragEvent(int mouseXin, int mouseYin, int button) {
+MouseDelegation RGObj::dragEvent(int mouseXin, int mouseYin, MouseButton button) {
     MouseDelegation response = drag(mouseXin, mouseYin, button);
     if(eventHandler != nullptr) {
         eventHandler->released();
@@ -168,7 +168,7 @@ Additionally, the position where the drag started is stored as well in dragStart
 
 If this object receives a response of 1 from it's child, it will return 2, to let objects above it know that it got someone else to receive the drag.
 */
-MouseDelegation RGObj::drag(int mouseXin, int mouseYin, int button) {
+MouseDelegation RGObj::drag(int mouseXin, int mouseYin, MouseButton button) {
     if(dragging){
         if(initialDrag){
             initialDrag = false;

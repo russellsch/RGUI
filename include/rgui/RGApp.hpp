@@ -6,7 +6,7 @@
 #include "RGRoot.hpp"
 #include "math.h"
 #include "RGOSWindow.hpp"
-
+#include "RGConst.hpp"
 #include "RGShader.hpp"
 
 
@@ -41,10 +41,10 @@ class RGApp{
 		virtual void keyReleased( int key ){}
 
 		virtual void mouseMoved( unsigned int x, unsigned int y ){}
-		virtual void mouseDragged( unsigned int x, unsigned int y, int button ){}
-		virtual void mousePressed( unsigned int x, unsigned int y, int button ){}
+		virtual void mouseDragged( unsigned int x, unsigned int y, MouseButton button ){}
+		virtual void mousePressed( unsigned int x, unsigned int y, MouseButton button ){}
 		virtual void mouseReleased(){}
-		virtual void mouseReleased(unsigned int x, unsigned int y, int button ){}
+		virtual void mouseReleased(unsigned int x, unsigned int y, MouseButton button ){}
 
 
         void runApp(unsigned int w, unsigned int h);
@@ -67,7 +67,7 @@ class RGApp{
 
     private:
         bool mouseIsPressed;    //used to detect dragging
-        int mousePressedButton;     //1-left, 2-right, 3-middle
+        MouseButton mousePressedButton;     //1-left, 2-right, 3-middle
 
 
 };

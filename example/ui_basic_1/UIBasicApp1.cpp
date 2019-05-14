@@ -94,19 +94,19 @@ void UIBasicApp1::mouseMoved(unsigned int x, unsigned int y ){
 
 }
 
-void UIBasicApp1::mouseDragged(unsigned int x, unsigned int y, int button){
+void UIBasicApp1::mouseDragged(unsigned int x, unsigned int y, MouseButton button){
     //rgMain1->event(DRAGGED, x,y);
     root->dragEvent(x,y, button);
 }
 
 
-void UIBasicApp1::mousePressed(unsigned int x, unsigned int y, int button){
+void UIBasicApp1::mousePressed(unsigned int x, unsigned int y, MouseButton button){
     //rgMain1->event(PRESSED, x,y);
     root->pressEvent(x,y);
 }
 
 
-void UIBasicApp1::mouseReleased(unsigned int x, unsigned int y, int button){
+void UIBasicApp1::mouseReleased(unsigned int x, unsigned int y, MouseButton button){
     //rgMain1->event(RELEASED, x,y);
     root->releaseEvent(x,y);
 }

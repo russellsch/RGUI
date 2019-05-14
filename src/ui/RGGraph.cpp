@@ -54,7 +54,7 @@ void RGGraph::clearAllTraces() {
 }
 
 
-MouseDelegation RGGraph::drag(int mouseXin, int mouseYin, int button) {
+MouseDelegation RGGraph::drag(int mouseXin, int mouseYin, MouseButton button) {
     MouseDelegation childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
 
     if(childrenDragResponse == MouseDelegation::NOT_ACCEPTED){

@@ -66,7 +66,7 @@ void RGList::postChildrenRender(int XOffset, int YOffset, unsigned int milliSeco
 
 }
 
-MouseDelegation RGList::drag(int mouseXin, int mouseYin, int button) {
+MouseDelegation RGList::drag(int mouseXin, int mouseYin, MouseButton button) {
     MouseDelegation childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
     //cout << "child drag resp:" << childrenDragResponse << endl;
     if(initialDrag) {

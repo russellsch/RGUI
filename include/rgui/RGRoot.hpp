@@ -36,4 +36,4 @@ class RGRoot : public RGObj {
         KSBasicTimer timer;
 };
 
-#endif // RGMAIN_H
+#endif // RGROOT_H

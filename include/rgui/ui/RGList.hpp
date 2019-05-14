@@ -20,7 +20,7 @@ class RGList : public RGObj
 
         int listImgGrabPosX, listImgGrabPosY;
 
-        MouseDelegation drag(int mouseXin, int mouseYin, int button) override ;
+        MouseDelegation drag(int mouseXin, int mouseYin, MouseButton button) override ;
 
         void updateChildPositions();
         void preChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override ;

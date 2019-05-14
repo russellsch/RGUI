@@ -86,9 +86,9 @@ bool RGSDLWindow::getEvent(RGInputEvent& event){
                                                                   : RGInputEvent::MouseButtonReleased);
             newEvent.mouseButton.x = libEvent.button.x;
             newEvent.mouseButton.y = libEvent.button.y;
-            if (libEvent.button.button == SDL_BUTTON_LEFT) { newEvent.mouseButton.button = 1; }
-            else if (libEvent.button.button == SDL_BUTTON_RIGHT) { newEvent.mouseButton.button = 2; }
-            else if (libEvent.button.button == SDL_BUTTON_MIDDLE) { newEvent.mouseButton.button = 3; }
+            if (libEvent.button.button == SDL_BUTTON_LEFT) { newEvent.mouseButton.button = MouseButton::Left; }
+            else if (libEvent.button.button == SDL_BUTTON_RIGHT) { newEvent.mouseButton.button = MouseButton::Right; }
+            else if (libEvent.button.button == SDL_BUTTON_MIDDLE) { newEvent.mouseButton.button = MouseButton::Middle; }
 
             events.push(newEvent);
 

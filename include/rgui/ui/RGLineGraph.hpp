@@ -15,7 +15,7 @@ class RGLineGraph : public RGObj {
 
         ColorRGBA getDefaultColor(int lineNumber);
 
-        MouseDelegation drag(int mouseXin, int mouseYin, int button);
+        MouseDelegation drag(int mouseXin, int mouseYin, MouseButton button);
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
 

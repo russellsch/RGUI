@@ -32,7 +32,7 @@ class RGSlider : public RGObj {
         RGSlider(string name, int xNew, int yNew, int wNew, int hNew, string labelNew, float sliderMin, float sliderMax);
 
         MouseDelegation press(int mouseXin, int mouseYin) override;
-        MouseDelegation drag(int mouseXin, int mouseYin, int button)override;
+        MouseDelegation drag(int mouseXin, int mouseYin, MouseButton button) override;
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
         ~RGSlider() = default;

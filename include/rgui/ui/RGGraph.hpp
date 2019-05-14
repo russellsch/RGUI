@@ -14,7 +14,7 @@ class RGGraph : public RGObj
         void load1DLineFromInt(int* data, int points);
         void clearAllTraces();
 
-        MouseDelegation drag(int mouseXin, int mouseYin, int button) override;
+        MouseDelegation drag(int mouseXin, int mouseYin, MouseButton button) override;
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
 

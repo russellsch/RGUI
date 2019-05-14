@@ -3,6 +3,7 @@
 
 #include <string>
 #include <queue>
+#include "RGConst.hpp"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ public:
         bool control;
     };
     struct MouseButtonEvent {
-        int button;     //!<1-left, 2-right, 3-middle
+        MouseButton button;     //!<1-left, 2-right, 3-middle
         int x;
         int y;
     };

@@ -124,7 +124,7 @@ ColorRGBA RGLineGraph::getDefaultColor(int lineNumber) {
 
 }
 
-MouseDelegation RGLineGraph::drag(int mouseXin, int mouseYin, int button) {
+MouseDelegation RGLineGraph::drag(int mouseXin, int mouseYin, MouseButton button) {
     //cout << "Graph drag mousex " << mouseXin << "mousey" << mouseYin << " DragstartX " << dragStartX << "DragStartY" << dragStartY << endl;
     MouseDelegation childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
 
@@ -134,7 +134,7 @@ MouseDelegation RGLineGraph::drag(int mouseXin, int mouseYin, int button) {
         grabYAxisMin = yAxisMin;
         grabYAxisMax = yAxisMax;
     }
-    if(button == 2){    //right mousebutton drags
+    if(button == MouseButton::Right){    //right mousebutton drags
         if(childrenDragResponse == MouseDelegation::NOT_ACCEPTED){
             xAxisMin = grabXAxisMin -(mouseXin - dragStartX)/xScale;
             xAxisMax = grabXAxisMax -(mouseXin - dragStartX)/xScale;

@@ -44,7 +44,7 @@ MouseDelegation RGSlider::press(int mouseXin, int mouseYin) {
 }
 
 
-MouseDelegation RGSlider::drag(int mouseXin, int mouseYin, int button)  {
+MouseDelegation RGSlider::drag(int mouseXin, int mouseYin, MouseButton button)  {
     RGObj::drag(mouseXin, mouseYin, button);
     if(!dragging) {
         pMouseX = mouseXin;
