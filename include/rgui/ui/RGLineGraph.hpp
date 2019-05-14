@@ -1,8 +1,8 @@
 #ifndef RGLINEGRAPH_H
 #define RGLINEGRAPH_H
 
-#include "RGObj.hpp"
-#include "RGColor.hpp"
+#include "rgui/RGObj.hpp"
+#include "rgui/ColorRGBA.hpp"
 
 //!The internal component responsible for drawing line graphs
 class RGLineGraph : public RGObj {
@@ -13,9 +13,9 @@ class RGLineGraph : public RGObj {
         void load1DLineFromInt(int* data, int points);    //!<Loads 1D line data from an array of ints
         void clearAllTraces();                              //!<Deletes all trace data
 
-        RGColor getDefaultColor(int lineNumber);
+        ColorRGBA getDefaultColor(int lineNumber);
 
-        int drag(int mouseXin, int mouseYin, int button);
+        MouseDelegation drag(int mouseXin, int mouseYin, int button);
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer);
 

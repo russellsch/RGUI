@@ -32,7 +32,9 @@ set(header
 	${header_path}/ui/RGButton.hpp
 	${header_path}/ui/RGCheckGroup.hpp
 	${header_path}/ui/RGFrame.hpp
+	${header_path}/ui/RGGraph.hpp
 	${header_path}/ui/RGLabel.hpp
+	${header_path}/ui/RGLineGraph.hpp
 	${header_path}/ui/RGList.hpp
 	${header_path}/ui/RGRadioGroup.hpp
 	${header_path}/ui/RGSlider.hpp
@@ -55,7 +57,9 @@ set(src
 	ui/RGButton.cpp
 	ui/RGCheckGroup.cpp
 	ui/RGFrame.cpp
+	ui/RGGraph.cpp
 	ui/RGLabel.cpp
+	ui/RGLineGraph.cpp
 	ui/RGList.cpp
 	ui/RGRadioGroup.cpp
 	ui/RGSlider.cpp

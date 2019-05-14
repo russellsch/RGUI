@@ -32,7 +32,7 @@ void RGRoot::postChildrenRender(int XOffset, int YOffset, unsigned int milliSeco
     draw->rectMode(CORNER);
     draw->noFill();
     draw->stroke(0);
-    draw->rect(0,0,getW()-1,getH()-1);
+    draw->rect(0,0,shape.getW() - 1,shape.getH() - 1);
 
 }
 

@@ -20,12 +20,12 @@ void RGList::updateChildPositions() {
     listH = 0;
 
     for(int i=0; i<getChildrenSize(); i++) {
-        getChild(i)->setX(xPosition);
-        getChild(i)->setY(yPosition);
-        yPosition += getChild(i)->getH();
-        listH += getChild(i)->getH();
-        if(listW < getChild(i)->getW()) {
-            listW = getChild(i)->getW();
+        getChild(i)->shape.setX(xPosition);
+        getChild(i)->shape.setY(yPosition);
+        yPosition += getChild(i)->shape.getH();
+        listH += getChild(i)->shape.getH();
+        if(listW < getChild(i)->shape.getW()) {
+            listW = getChild(i)->shape.getW();
         }
     }
 }
@@ -42,7 +42,7 @@ void RGList::preChildrenRender(int XOffset, int YOffset, unsigned int milliSecon
     updateChildPositions();
     //draw->fill(bkgColor);
     //draw->noStroke();
-    draw->gradientRect(XOffset,YOffset, getW(),getH(), bkgColor, ColorRGBA(bkgColor.r(), bkgColor.g(), bkgColor.b() + 40),
+    draw->gradientRect(XOffset,YOffset, shape.getW(),shape.getH(), bkgColor, ColorRGBA(bkgColor.r(), bkgColor.g(), bkgColor.b() + 40),
                        RGOrientation::HORIZONTAL);
 }
 
@@ -51,16 +51,16 @@ void RGList::postChildrenRender(int XOffset, int YOffset, unsigned int milliSeco
     draw->rectMode(CORNER);
     draw->noFill();
     draw->stroke(0);
-    draw->rect(XOffset,YOffset, getW(),getH());
+    draw->rect(XOffset, YOffset, shape.getW(), shape.getH());
 
     for(int i=0; i<4; i++) {  //shadow
         draw->stroke(0, 128 - i*60);
-        draw->rect(XOffset+1+i, YOffset+1+i, getW()-2-2*i, getH()-2-2*i);
+        draw->rect(XOffset + 1 + i, YOffset + 1 + i, shape.getW() - 2 - 2*i, shape.getH() - 2 - 2*i);
     }
 
     draw->fill(50, 50, 80);
     draw->noStroke();
-    draw->roundRect(XOffset+getW()-5, YOffset+draw->map(listPosYInPerc(), -.45, 1.6, 1.0, getH()-13), 4, 8, 2, 5);
+    draw->roundRect(XOffset + shape.getW() - 5, YOffset+draw->map(listPosYInPerc(), -0.45, 1.6, 1.0, shape.getH() - 13), 4, 8, 2, 5);
 
 
 
@@ -83,15 +83,15 @@ MouseDelegation RGList::drag(int mouseXin, int mouseYin, int button) {
 }
 
 void RGList::constrainListPos() {
-    if(listPosY < (listH-50)*-1 ) {
-        listPosY =  (listH-50)*-1;
-    } else if(listPosY>(getH()-50)) {
-        listPosY = (getH()-50);
+    if(listPosY < -1*(listH - 50) ) {
+        listPosY =  -1*(listH - 50);
+    } else if(listPosY>(shape.getH() - 50)) {
+        listPosY = (shape.getH() - 50);
     }
-    if(listPosX < (listW-50)*-1 ) {
-        listPosX =  (listW-50)*-1;
-    }  else if(listPosX>(getW()-50)) {
-        listPosX = (getW()-50);
+    if(listPosX < (listW-50)* - 1 ) {
+        listPosX =  (listW-50)* - 1;
+    }  else if(listPosX>(shape.getW() - 50)) {
+        listPosX = (shape.getW() - 50);
     }
    //cout << "listpos%:" << listPosYInPerc();
 }

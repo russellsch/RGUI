@@ -24,24 +24,24 @@ void RGToggle::postChildrenRender(int XOffset, int YOffset, unsigned int milliSe
     } else if(style == 2) {     //checkbox
         draw->noFill();
         draw->stroke(0);
-        draw->rect(0,0, getH(),getH());
+        draw->rect(0,0, shape.getH(), shape.getH());
         if(value) {
-            draw->line(0,1, getH(),getH()+1);
-            draw->line(getH(),0, 0,getH());
+            draw->line(0,1, shape.getH(), shape.getH()+1);
+            draw->line(shape.getH(),0, 0, shape.getH());
         }
-        draw->text(label, getH()+2,(getH()/2)+3);
+        draw->text(label, shape.getH() + 2, (shape.getH()/2) + 3);
 
     } else if(style == 3) {     //radio button
         draw->noFill();
         draw->stroke(0);
-        draw->circle(getH()/2,getH()/2, (getH()/2)*.95);
+        draw->circle(shape.getH()/2,shape.getH()/2, (shape.getH()/2)*0.95);
 
         draw->fill(textColor);
         draw->noStroke();
-        draw->text(label, getH()+2,(getH()/2)+2);
+        draw->text(label, shape.getH() + 2,(shape.getH()/2) + 2);
         if(value) {
             draw->fill(0);
-            draw->circle(getH()/2,getH()/2, (getH()/2.0)*.5);
+            draw->circle(shape.getH()/2,shape.getH()/2, (shape.getH()/2.0)*0.5);
         }
 
     }
@@ -82,7 +82,7 @@ void RGToggle::release(int mouseXin, int mouseYin) {
 
 
     //if you press the mouse on the button, and then drag away and let go it won't do anything
-    if(mouseXin>0 && mouseXin<getW() && mouseYin>0 && mouseYin<getH()){
+    if(mouseXin > 0 && mouseXin < shape.getW() && mouseYin > 0 && mouseYin < shape.getH()){
         toggle();
         if(eventHandler != nullptr) {
             eventHandler->changed();

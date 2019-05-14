@@ -18,24 +18,26 @@ void RGFrame::postChildrenRender(int XOffset, int YOffset, unsigned int milliSec
     draw->textSize(fontSize);
 
     draw->stroke(80);
+    auto height = this->shape.getH();
+    auto width = this->shape.getW();
 
-    if(label == "") {
-        draw->line(XOffset, YOffset, XOffset, YOffset+this->getH()+1);
-        draw->line(XOffset, YOffset+this->getH(), XOffset+this->getW(), YOffset+this->getH());
-        draw->line(XOffset+this->getW(), YOffset+this->getH(), XOffset+this->getW(), YOffset);
-        draw->line(XOffset, YOffset, XOffset+this->getW(), YOffset);
+    if(label.empty()) {
+        draw->line(XOffset, YOffset, XOffset, YOffset + height + 1);
+        draw->line(XOffset, YOffset + height, XOffset + width, YOffset + height);
+        draw->line(XOffset + width, YOffset + height, XOffset + width, YOffset);
+        draw->line(XOffset, YOffset, XOffset + width, YOffset);
     } else {
         int labelW = draw->textWidth(label);
         int labelH = draw->textHeight(label);
-        draw->line(XOffset, YOffset+(labelH/2), XOffset, YOffset+getH()+1);
-        draw->line(XOffset, YOffset+this->getH(), XOffset+this->getW(), YOffset+this->getH());
-        draw->line(XOffset+getW(), YOffset+getH(), XOffset+this->getW(), YOffset+(labelH/2));
+        draw->line(XOffset, YOffset + (labelH/2), XOffset, YOffset + shape.getH() + 1);
+        draw->line(XOffset, YOffset + height, XOffset + width, YOffset + height);
+        draw->line(XOffset + shape.getW(), YOffset + shape.getH(), XOffset + width, YOffset + (labelH/2));
 
-        draw->line(XOffset, YOffset+(labelH/2), XOffset+(getW()-labelW)/2, YOffset+(labelH/2));
-        draw->line(XOffset+getW()-(getW()-labelW)/2, YOffset+(labelH/2), XOffset+getW(), YOffset+(labelH/2));
+        draw->line(XOffset, YOffset + (labelH/2), XOffset+(shape.getW()-labelW)/2, YOffset + (labelH/2));
+        draw->line(XOffset + shape.getW() - (shape.getW() - labelW)/2, YOffset + (labelH/2), XOffset + shape.getW(), YOffset + (labelH/2));
 
         draw->fill(textColor);
-        draw->text(label, XOffset+ (getW()/2)-(labelW/2), YOffset+(labelH/2)+1);
+        draw->text(label, XOffset + (shape.getW()/2) - (labelW/2), YOffset + (labelH/2) + 1);
     }
 
     //draw->noFill();

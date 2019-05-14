@@ -37,8 +37,10 @@ the event class's methods (see RGEvent), a user can easily link code to objects.
 */
 
 
-class RGObj : public RGRect {
+class RGObj {
     public:
+
+        RGRect shape;        //!< Shape and position information about this object
 
         RGDraw* draw = nullptr;           //!<pointer to the drawing instance
         bool drawValid;         //!<is the pointer to the drawing instance object valid

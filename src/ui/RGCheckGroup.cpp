@@ -108,12 +108,13 @@ void RGCheckGroup::updateChildPositions(){
     int listH = 0;
 
     for(int i=0; i<getChildrenSize(); i++) {
-        getChild(i)->setX(xPosition);
-        getChild(i)->setY(yPosition);
-        yPosition += getChild(i)->getH()+2;
-        listH += getChild(i)->getH()+2;
-        if(listW < getChild(i)->getW()) {
-            listW = getChild(i)->getW();
+        auto child = getChild(i);
+        child->shape.setX(xPosition);
+        child->shape.setY(yPosition);
+        yPosition += child->shape.getH()+2;
+        listH += child->shape.getH()+2;
+        if(listW < child->shape.getW()) {
+            listW = child->shape.getW();
         }
     }
 }
@@ -125,12 +126,13 @@ void RGCheckGroup::updateChildPositionsHoriz(){
     int listH = 0;
 
     for(int i=0; i<getChildrenSize(); i++) {
-        getChild(i)->setX(xPosition);
-        getChild(i)->setY(yPosition);
-        xPosition += getChild(i)->getW()+2;
-        listW += getChild(i)->getW()+2;
-        if(listH < getChild(i)->getH()) {
-            listH = getChild(i)->getH();
+        auto child = getChild(i);
+        child->shape.setX(xPosition);
+        child->shape.setY(yPosition);
+        xPosition += child->shape.getW()+2;
+        listW += child->shape.getW()+2;
+        if(listH < child->shape.getH()) {
+            listH = child->shape.getH();
         }
     }
 }

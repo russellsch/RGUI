@@ -1,5 +1,13 @@
 #include "rgui/RGRect.hpp"
 
+RGRect::RGRect() {
+    this->left = 0;
+    this->top = 0;
+    this->width = 0;
+    this->height = 0;
+    this->positionMode = RG_TL;
+}
+
 RGRect::RGRect(float x, float y, float width, float height, int positionMode) {
     this->width = width;
     this->height = height;

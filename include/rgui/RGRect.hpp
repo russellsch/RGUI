@@ -59,7 +59,7 @@ perhaps switch to using scaling the in the matrix to represent width and height?
 class RGRect
 {
     public:
-
+        RGRect();
         RGRect(float x, float y, float widthNew, float heightNew, int positionModeNew); //!< Rectangle constructor
 
         void translate(float x, float y);   //!<Translates the position rectangle in 2D space

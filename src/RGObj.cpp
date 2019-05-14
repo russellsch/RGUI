@@ -7,7 +7,9 @@
 
 //!Default object constructor
 
-RGObj::RGObj(const std::string& name, const std::string& type, int xNew, int yNew, int wNew, int hNew) : RGRect(xNew, yNew, wNew, hNew, RG_TL) {
+RGObj::RGObj(const std::string& name, const std::string& type, int xNew, int yNew, int wNew, int hNew) {
+    this->shape = RGRect(xNew, yNew, wNew, hNew, RG_TL);
+
     drawValid = false;
     parentValid = false;
     rootObjectValid = false;
@@ -25,14 +27,12 @@ RGObj::RGObj(const std::string& name, const std::string& type, int xNew, int yNe
 
     initialDrag = true;
     dragging = false;
+    dragStartValid = false;
 
     verboseRender = false;
     verboseRelease = true;
     verboseMouseOverChild = false;
     verbosePress = false;
-
-    //name = "";
-    dragStartValid = false;
 
     RGEventHandlerBase* eventHandler;
 
@@ -40,8 +40,7 @@ RGObj::RGObj(const std::string& name, const std::string& type, int xNew, int yNe
     this->type = type;
     if(type.empty()) { this->type="generic"; }
 
-    cout << "RGObj constructor:   w:" << getW() << " h:" << getH() <<  " x:" << getX() << " y:" << getY();
-    //ctor
+    cout << "RGObj constructor:   w:" << shape.getW() << " h:" << shape.getH() <<  " x:" << shape.getX() << " y:" << shape.getY();
 }
 
 
@@ -58,6 +57,7 @@ MouseDelegation RGObj::pressEvent(int mouseXin, int mouseYin) {
 }
 
 void RGObj::releaseEvent(int mouseXin, int mouseYin) {
+
     release(mouseXin, mouseYin);
     if(eventHandler != nullptr) {
         eventHandler->released();
@@ -81,28 +81,30 @@ void RGObj::resizeEvent(int wNew, int hNew) {
         //setH((hNew-getH())*stretchY);
         //w+(wNew-w)*stretchX
 
-        cout << "dx:" << (wNew-getW()) << " stretch:" << stretchX << " change:" << (int)((wNew-getW())*stretchX) << " leftover:" << (wNew-getW())*stretchX - (int)((wNew-getW())*stretchX)  <<endl;
+        cout << "dx:" << (wNew - shape.getW()) << " stretch:" << stretchX << " change:"
+             << (int)((wNew - shape.getW())*stretchX) << " leftover:"
+             << (wNew - shape.getW())*stretchX - (int)((wNew - shape.getW())*stretchX) << std::endl;
 
         //w += (wNew-ofGetWidth())*stretchX + (int)leftOverStretchX;
-        leftOverStretchX += (int)((wNew-getW())*stretchX) - (wNew-getW())*stretchX - (int)leftOverStretchX;
+        leftOverStretchX += (int)((wNew-shape.getW())*stretchX) - (wNew-shape.getW())*stretchX - (int)leftOverStretchX;
 
         //w += (int)leftOverStretchX;
         //leftOverStretchX -= (int)leftOverStretchX;
 
-        setY(getT()+(hNew-getH())*stretchY);
+        shape.setY(shape.getT() + (hNew - shape.getH())*stretchY);
 
         //x += (wNew-w)*anchorX;
         //cout << "dx:" << (wNew-w) << " anchor:" << stretchX << " change:" << (wNew-w)*anchorX <<endl;
 
         //y += (hNew-h)*anchorY;
 
-        setW(getW()+((wNew-getW())*anchorX));   //THIS DOESN'T ACCOUNT FOR THE REMAINDER STILL
-        setH(getH()+((hNew-getH())*anchorY));   //THIS DOESN'T ACCOUNT FOR THE REMAINDER STILL
+        shape.setW(shape.getW() + ((wNew - shape.getW())*anchorX));   //THIS DOESN'T ACCOUNT FOR THE REMAINDER STILL
+        shape.setH(shape.getH() + ((hNew - shape.getH())*anchorY));   //THIS DOESN'T ACCOUNT FOR THE REMAINDER STILL
 
 
         //resize children
         for(int i=0; i<getChildrenSize(); i++) {
-            getChild(i)->resizeEvent(getChild(i)->getW()+ -1*(getW()-wNew), hNew-getH());
+            getChild(i)->resizeEvent(getChild(i)->shape.getW() + -1*(shape.getW() - wNew), hNew - shape.getH());
         }
 
     }
@@ -322,10 +324,10 @@ void RGObj::render(int XOffset, int YOffset, unsigned int milliSecondTimer) {
         for(uint32_t i=0; i<getChildrenSize(); i++) {
             if(clipChildren && appValid){
                 glEnable(GL_SCISSOR_TEST);
-                int clipY = app->getWindowH() - YOffset - getH();
-                glScissor(XOffset, clipY, getW(), getH());
+                int clipY = app->getWindowH() - YOffset - shape.getH();
+                glScissor(XOffset, clipY, shape.getW(), shape.getH());
             }
-            getChild(i)->render(XOffset+getChild(i)->getX(), YOffset+getChild(i)->getY(), milliSecondTimer);
+            getChild(i)->render(XOffset+getChild(i)->shape.getX(), YOffset+getChild(i)->shape.getY(), milliSecondTimer);
         }
 
         if(clipChildren){
@@ -341,7 +343,7 @@ void RGObj::preChildrenRender(int XOffset, int YOffset, unsigned int milliSecond
     draw->rectMode(CORNER);
     draw->fill(bkgColor);
     draw->noStroke();
-    draw->rect(0,0, getW(),getH());
+    draw->rect(0,0, shape.getW(),shape.getH());
     draw->popMatrix();
 }
 
@@ -351,17 +353,17 @@ void RGObj::postChildrenRender(int XOffset, int YOffset, unsigned int milliSecon
 
 	draw->stroke(0);
     draw->noFill();
-    draw->rect(0,0, getW()-1,getH()-1);
+    draw->rect(0,0, shape.getW() - 1,shape.getH() - 1);
     draw->popMatrix();
 
 }
 
 
 bool RGObj::mouseOverChild(int mouseX, int mouseY, uint32_t childIndex) {
-    auto childLeftCoord = getChild(childIndex)->getL();
-    auto childRightCoord = childLeftCoord + getChild(childIndex)->getW();
-    auto childTopCoord = getChild(childIndex)->getT();
-    auto childBottomCoord = childTopCoord + getChild(childIndex)->getH();
+    auto childLeftCoord = getChild(childIndex)->shape.getL();
+    auto childRightCoord = childLeftCoord + getChild(childIndex)->shape.getW();
+    auto childTopCoord = getChild(childIndex)->shape.getT();
+    auto childBottomCoord = childTopCoord + getChild(childIndex)->shape.getH();
 
     if(mouseX > childLeftCoord &&
        mouseX < childRightCoord &&
@@ -376,16 +378,16 @@ bool RGObj::mouseOverChild(int mouseX, int mouseY, uint32_t childIndex) {
 
 
 int RGObj::getChildXRel2Self(uint32_t childIndex) {
-    return getChild(childIndex)->getL();
+    return getChild(childIndex)->shape.getL();
 }
 int RGObj::getChildYRel2Self(uint32_t childIndex) {
-    return getChild(childIndex)->getT();
+    return getChild(childIndex)->shape.getT();
 }
 int RGObj::getDragStartXRel2Self() {
-    return dragStart->getL();
+    return dragStart->shape.getL();
 }
 int RGObj::getDragStartYRel2Self() {
-    return dragStart->getT();
+    return dragStart->shape.getT();
 }
 
 
@@ -393,8 +395,8 @@ void RGObj::resize(uint16_t width, uint16_t height){
     if(eventHandler != nullptr) {
         eventHandler->released();
     }
-    setW(width);
-    setH(height);
+    shape.setW(width);
+    shape.setH(height);
 }
 
 

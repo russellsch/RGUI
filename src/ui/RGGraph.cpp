@@ -1,4 +1,4 @@
-#include "RGGraph.hpp"
+#include "rgui/ui/RGGraph.hpp"
 
 #include "GL/glew.h"
 
@@ -13,7 +13,6 @@
     #include <GL/glu.h>
 #else
     #include "unistd.h"
-    #include <windows.h>
     #include <GL/gl.h>
     #include <GL/glu.h>
 #endif
@@ -32,16 +31,13 @@ RGGraph::RGGraph(string name, int xNew, int yNew, int wNew, int hNew): RGObj(nam
     yLabel = "Lemons";
 
 
-    graph = new RGLineGraph(name+"lg1", borderLeft, borderTop, getW()-borderLeft-borderRight, getH()-borderTop-borderBottom);
+    graph = new RGLineGraph(name+"lg1", borderLeft, borderTop, shape.getW() - borderLeft - borderRight,
+            shape.getH() - borderTop - borderBottom);
     addChild(graph);
 
     fontTest = new RGTTF();
     fontTest->loadFont("data/wqy-microhei.ttc", 20);
     //fontTest->buildNormalChars();
-}
-
-RGGraph::~RGGraph() {
-    graph->~RGLineGraph();
 }
 
 
@@ -58,11 +54,11 @@ void RGGraph::clearAllTraces() {
 }
 
 
-int RGGraph::drag(int mouseXin, int mouseYin, int button) {
-    int childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
+MouseDelegation RGGraph::drag(int mouseXin, int mouseYin, int button) {
+    MouseDelegation childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
 
-    if(childrenDragResponse == 0){
-        return 1;
+    if(childrenDragResponse == MouseDelegation::NOT_ACCEPTED){
+        return MouseDelegation::THIS_ACCEPTED;
     }
     return childrenDragResponse;
 }
@@ -74,16 +70,16 @@ void RGGraph::postChildrenRender(int XOffset, int YOffset, unsigned int milliSec
 
     draw->stroke(0);
     draw->noFill();
-    draw->rect(0, 0, getW(),getH() );
+    draw->rect(0, 0, shape.getW(), shape.getH() );
 
     draw->textSize(16);
-    draw->text(title, (getW()/2)-(draw->textWidth(title)/2), borderTop/2);
+    draw->text(title, (shape.getW()/2) - (draw->textWidth(title)/2), borderTop/2);
     draw->textSize(12);
-    draw->text(xLabel, (getW()/2)-(draw->textWidth(xLabel)/2), getH()-borderBottom/2+3);
+    draw->text(xLabel, (shape.getW()/2) - (draw->textWidth(xLabel)/2), shape.getH() - borderBottom/2 + 3);
 
     draw->pushMatrix();
-    draw->translate(borderLeft/2, (int)getH()/2+(draw->textWidth(yLabel)/2)  );
-    draw->rotate(-90);
+    draw->translate(borderLeft/2, (int)shape.getH()/2 + (draw->textWidth(yLabel)/2)  );
+    draw->rotateDeg(-90);
 
     draw->text(yLabel, 0,0);
     draw->popMatrix();
@@ -91,11 +87,13 @@ void RGGraph::postChildrenRender(int XOffset, int YOffset, unsigned int milliSec
 
     //draw axis labels
     draw->textSize(10);
-    draw->text( toString(graph->getXAxisMin(),xAxisPrecision), borderLeft,getH()-borderBottom/2);
-    draw->text( toString(graph->getXAxisMax(),xAxisPrecision), getW() - draw->textWidth(toString(graph->getXAxisMax(),xAxisPrecision))-5,getH()-borderBottom/2);
+    draw->text( toString(graph->getXAxisMin(), xAxisPrecision), borderLeft, shape.getH() - borderBottom/2);
+    draw->text( toString(graph->getXAxisMax(), xAxisPrecision),
+            shape.getW() - draw->textWidth(toString(graph->getXAxisMax(), xAxisPrecision)) - 5,
+            shape.getH() - borderBottom/2);
 
-    draw->text( toString(graph->getYAxisMax(),yAxisPrecision), -1,borderTop-2);
-    draw->text( toString(graph->getYAxisMin(),yAxisPrecision), -1,getH()-borderBottom+2);
+    draw->text( toString(graph->getYAxisMax(),yAxisPrecision), -1, borderTop - 2);
+    draw->text( toString(graph->getYAxisMin(),yAxisPrecision), -1, shape.getH() - borderBottom + 2);
 
     draw->textSize(12);
 

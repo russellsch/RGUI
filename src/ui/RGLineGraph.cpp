@@ -1,5 +1,5 @@
-#include "RGLineGraph.hpp"
-#include "RGApp.hpp"
+#include "rgui/ui/RGLineGraph.hpp"
+#include "rgui/RGApp.hpp"
 
 RGLineGraph::RGLineGraph(string name, int xNew, int yNew, int wNew, int hNew): RGObj(name, "linegraph", xNew,yNew,wNew,hNew) {
     viewHasChanged = true;
@@ -39,13 +39,13 @@ void RGLineGraph::load1DLineFromFloat(float* data, int points) {
         }
 
         //determine the scaling ratio so the data fits within the axes
-        xScale = (float)getW()/(float)( abs((int)(xAxisMax-xAxisMin)) );
-        yScale = -(float)getH()/(float)( abs((int)(yAxisMax-yAxisMin)) );
+        xScale = (float)shape.getW()/(float)( abs((int)(xAxisMax - xAxisMin)) );
+        yScale = -(float)shape.getH()/(float)( abs((int)(yAxisMax - yAxisMin)) );
     }
 
     cout << endl<< "yreal min:" << yAxisMin << "max:" << yAxisMax << endl;
     cout << "xreal min:" << xAxisMin << "max:" << xAxisMax << endl;
-    cout << "xscale: " <<  xScale << "yscale:" << yScale << " w:" <<  getW() << " h:" <<  getH() << endl;
+    cout << "xscale: " <<  xScale << "yscale:" << yScale << " w:" <<  shape.getW() << " h:" <<  shape.getH() << endl;
 
     //load and scale the data into scaledPoints, adding the y coordinate automatically since this is 1D data
     for(int i=0; i<points; i++){
@@ -82,13 +82,13 @@ void RGLineGraph::load1DLineFromInt(int* data, int points) {
         }
 
         //determine the scaling ratio so the data fits within the axes
-        xScale = (float)getW()/(float)( abs((int)(xAxisMax-xAxisMin)) );
-        yScale = -(float)getH()/(float)( abs((int)(yAxisMax-yAxisMin)) );
+        xScale = (float)shape.getW()/(float)( abs((int)(xAxisMax - xAxisMin)) );
+        yScale = -1*(float)shape.getH()/(float)( abs((int)(yAxisMax - yAxisMin)) );
     }
 
     cout << endl<< "yreal min:" << yAxisMin << "max:" << yAxisMax << endl;
     cout << "xreal min:" << xAxisMin << "max:" << xAxisMax << endl;
-    cout << "xscale: " <<  xScale << "yscale:" << yScale << " w:" <<  getW() << " h:" <<  getH() << endl;
+    cout << "xscale: " <<  xScale << "yscale:" << yScale << " w:" <<  shape.getW() << " h:" <<  shape.getH() << endl;
 
     //load and scale the data into scaledPoints, adding the y coordinate automatically since this is 1D data
     for(int i=0; i<points; i++){
@@ -109,24 +109,24 @@ void RGLineGraph::clearAllTraces() {
     traceVisibility.clear();
 }
 
-RGColor RGLineGraph::getDefaultColor(int lineNumber) {
+ColorRGBA RGLineGraph::getDefaultColor(int lineNumber) {
     if(lineNumber == 0) {
-        return RGColor(0,0,255);
+        return ColorRGBA(0,0,255);
     } else if(lineNumber == 1) {
-        return RGColor(0,200,0);
+        return ColorRGBA(0,200,0);
     } else if(lineNumber == 2) {
-        return RGColor(150,0,0);
+        return ColorRGBA(150,0,0);
     } else if(lineNumber == 3) {
-        return RGColor(150,150,0);
+        return ColorRGBA(150,150,0);
     } else {
-        return RGColor(rand()*255,rand()*255,rand()*255);
+        return ColorRGBA(rand()*255,rand()*255,rand()*255);
     }
 
 }
 
-int RGLineGraph::drag(int mouseXin, int mouseYin, int button) {
+MouseDelegation RGLineGraph::drag(int mouseXin, int mouseYin, int button) {
     //cout << "Graph drag mousex " << mouseXin << "mousey" << mouseYin << " DragstartX " << dragStartX << "DragStartY" << dragStartY << endl;
-    int childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
+    MouseDelegation childrenDragResponse = RGObj::drag(mouseXin, mouseYin, button);
 
     if(initialDrag) {   //keep track of where the drag started from
         grabXAxisMin = xAxisMin;
@@ -135,7 +135,7 @@ int RGLineGraph::drag(int mouseXin, int mouseYin, int button) {
         grabYAxisMax = yAxisMax;
     }
     if(button == 2){    //right mousebutton drags
-        if(childrenDragResponse == 0){
+        if(childrenDragResponse == MouseDelegation::NOT_ACCEPTED){
             xAxisMin = grabXAxisMin -(mouseXin - dragStartX)/xScale;
             xAxisMax = grabXAxisMax -(mouseXin - dragStartX)/xScale;
 
@@ -144,7 +144,7 @@ int RGLineGraph::drag(int mouseXin, int mouseYin, int button) {
 
             viewHasChanged = true;
             //cout << "Graph drag ymin " << yAxisMin << " ymax " << yAxisMax <<endl;
-            return 1;
+            return MouseDelegation::THIS_ACCEPTED;
         }
     }
 
@@ -155,21 +155,21 @@ int RGLineGraph::drag(int mouseXin, int mouseYin, int button) {
 void RGLineGraph::postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) {
     draw->stroke(0);
     draw->fill(255);
-    draw->rect(XOffset, YOffset, getW(), getH() );
+    draw->rect(XOffset, YOffset, shape.getW(), shape.getH() );
 
     glEnable(GL_SCISSOR_TEST);
-    int clipY = getApp()->getWindowH() - YOffset - getH();
-    glScissor(XOffset, clipY, getW(), getH());
+    int clipY = getApp()->getWindowH() - YOffset - shape.getH();
+    glScissor(XOffset, clipY, shape.getW(), shape.getH());
 
     draw->pushMatrix();
     //draw->translate(XOffset, YOffset);
-    draw->translate(XOffset - (xAxisMin*xScale), YOffset + (yAxisMin*yScale) - ((yAxisMin+yAxisMax)*yScale) );
+    draw->translate(XOffset - (xAxisMin*xScale), YOffset + (yAxisMin*yScale) - ((yAxisMin + yAxisMax)*yScale) );
 
 
     for(int i=0; i<scaledTraces.size(); i++){   //itterate through all traces
         if(traceVisibility.at(i)) {     //is the trace set to visible?
-            RGColor traceColor = getDefaultColor(i);
-            glColor4ub(traceColor.r,traceColor.g,traceColor.b,traceColor.a);
+            ColorRGBA traceColor = getDefaultColor(i);
+            glColor4ub(traceColor.r(),traceColor.g(),traceColor.b(),traceColor.a());
             glEnableClientState(GL_VERTEX_ARRAY);
             glVertexPointer(2, GL_FLOAT, 0, &scaledTraces[i][0]);
             glDrawArrays(GL_LINE_STRIP, 0, scaledTraces[i].size()/2);

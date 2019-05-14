@@ -38,12 +38,13 @@ void RGRadioGroup::updateChildPositions() {
     int listH = 0;
 
     for(int i=0; i<getChildrenSize(); i++) {
-        getChild(i)->setX((int)xPosition);
-        getChild(i)->setY((int)yPosition);
-        yPosition += getChild(i)->getH()+2;
-        listH += getChild(i)->getH()+2;
-        if(listW < getChild(i)->getW()) {
-            listW = getChild(i)->getW();
+        auto child = getChild(i);
+        child->shape.setX((int)xPosition);
+        child->shape.setY((int)yPosition);
+        yPosition += child->shape.getH() + 2;
+        listH += child->shape.getH() + 2;
+        if(listW < child->shape.getW()) {
+            listW = child->shape.getW();
         }
     }
 }

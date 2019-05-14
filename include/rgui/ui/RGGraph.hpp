@@ -1,8 +1,8 @@
 #ifndef RGGRAPH_H
 #define RGGRAPH_H
 
-#include "RGObj.hpp"
-#include "RGLineGraph.hpp"
+#include "rgui/RGObj.hpp"
+#include "rgui/ui/RGLineGraph.hpp"
 
 class RGGraph : public RGObj
 {
@@ -14,7 +14,7 @@ class RGGraph : public RGObj
         void load1DLineFromInt(int* data, int points);
         void clearAllTraces();
 
-        int drag(int mouseXin, int mouseYin, int button) override;
+        MouseDelegation drag(int mouseXin, int mouseYin, int button) override;
 
         void postChildrenRender(int XOffset, int YOffset, unsigned int milliSecondTimer) override;
 
