@@ -126,8 +126,3 @@ void RGApp::setupGLView() {
 
     //cout << " done \n";
 }
-
-
-/*LRESULT CALLBACK mouseCallback( int code, WPARAM wparam, LPARAM lparam){
-    return CallNextHookEx(rGMouseHook, code, wparam, lparam);
-}*/
