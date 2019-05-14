@@ -10,9 +10,6 @@
 RGObj::RGObj(const std::string& name, const std::string& type, int xNew, int yNew, int wNew, int hNew) {
     this->shape = RGRect(xNew, yNew, wNew, hNew, RG_TL);
 
-    drawValid = false;
-    rootObjectValid = false;
-    appValid = false;
     clipChildren = true;
     resizable = false;
     stretchX = 0;
@@ -236,9 +233,8 @@ int RGObj::getChildrenSize() const {
 
 /*!propogates the current draw object to a new object (usually a new child), as well as all of it's existing children*/
 void RGObj::propagateDrawObject(RGObj* newChild) {
-    if(drawValid) {
+    if(draw != nullptr) {
         newChild->draw = draw;
-        newChild->drawValid = true;
         for(unsigned int i=0; i < newChild->children.size(); i++) {
             newChild->propagateDrawObject(newChild->children.at(i));
         }
@@ -249,9 +245,8 @@ void RGObj::propagateDrawObject(RGObj* newChild) {
 If addNames is true, this object and all below it in the tree will register their names with the root object.
 */
 void RGObj::propagateRootObject(RGObj* newChild, bool addNames) {
-    if(rootObjectValid) {
+    if(rootObject != nullptr) {
         newChild->rootObject = rootObject;
-        newChild->rootObjectValid = true;
         if(addNames) {
             rootObject->addName(newChild, newChild->getName() );
         }
@@ -264,9 +259,8 @@ void RGObj::propagateRootObject(RGObj* newChild, bool addNames) {
 
 /*!propogates the current app object to a new object (usually a new child), as well as all of it's existing children*/
 void RGObj::propagateAppObject(RGObj* newChild) {
-    if(appValid) {
+    if(app != nullptr) {
         newChild->app = app;
-        newChild->appValid = true;
         for(int i=0; i<newChild->children.size(); i++) {
             newChild->propagateAppObject(newChild->children.at(i));
         }
@@ -287,7 +281,6 @@ void RGObj::setType(const std::string& type) {
 
 void RGObj::setDrawObject(RGDraw* newDrawObject) {
     draw = newDrawObject;
-    drawValid = true;
 }
 RGDraw* RGObj::getDrawObject() {
     if( isDrawObjectValid() ) {
@@ -300,7 +293,7 @@ RGDraw* RGObj::d() {
     return getDrawObject();
 }
 bool RGObj::isDrawObjectValid() {
-    return drawValid;
+    return draw != nullptr;
 }
 
 
@@ -316,11 +309,11 @@ void RGObj::setEventHandler(RGEventHandlerBase* newEventHandler){
 //outside the clipping region and having clipping enabled, they won't exceed the original clipping
 //boundary
 void RGObj::render(int XOffset, int YOffset, unsigned int milliSecondTimer) {
-    if(drawValid){
+    if(draw != nullptr){
         preChildrenRender(XOffset, YOffset, milliSecondTimer);
 
         for(uint32_t i=0; i<getChildrenSize(); i++) {
-            if(clipChildren && appValid){
+            if(clipChildren && app != nullptr){
                 glEnable(GL_SCISSOR_TEST);
                 int clipY = app->getWindowH() - YOffset - shape.getH();
                 glScissor(XOffset, clipY, shape.getW(), shape.getH());
@@ -402,14 +395,14 @@ RGObj* RGObj::getParent() {
     return parent;
 }
 RGApp* RGObj::getApp() {
-    if(appValid) {
+    if(app != nullptr) {
         return app;
     } else {
         return nullptr;
     }
 }
 RGRoot* RGObj::getRoot(){
-    if(rootObjectValid) {
+    if(rootObject != nullptr) {
         return rootObject;
     } else {
         return nullptr;
@@ -424,10 +417,8 @@ void RGObj::setParent(RGObj* newParent) {
 
 void RGObj::setApp(RGApp* newApp) {
     app = newApp;
-    appValid = true;
 }
 
 void RGObj::setRoot(RGRoot* newRoot) {
     rootObject = newRoot;
-    rootObjectValid = true;
 }

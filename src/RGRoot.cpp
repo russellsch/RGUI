@@ -11,7 +11,6 @@ RGRoot::RGRoot(int wNew, int hNew, RGApp* newApp): RGObj("main", "main", 0,0,wNe
 
     //give this object the draw class so it passes down to any added children
     draw = new RGDraw();
-    drawValid = true;
 
     //do the same for a pointer to this class
     setRoot(this);

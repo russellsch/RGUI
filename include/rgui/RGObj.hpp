@@ -43,9 +43,6 @@ class RGObj {
         RGRect shape;        //!< Shape and position information about this object
 
         RGDraw* draw = nullptr;           //!<pointer to the drawing instance
-        bool drawValid;         //!<is the pointer to the drawing instance object valid
-
-
 
         bool clipChildren = false;      //!<Use glScissor to clip children outside this object's boundaries
 
@@ -146,14 +143,9 @@ class RGObj {
 
     private:
 		std::vector<RGObj*> children;   //!<list of child objects
-
         RGObj* parent = nullptr;  //!<pointer to the parent object in the scene tree
-
         RGRoot* rootObject = nullptr;     //!<pointer to the scene root object
-        bool rootObjectValid;      //!<is the pointer to the scene root object valid
-
         RGApp* app = nullptr;     //!<pointer to the parent app object
-        bool appValid;
 
         std::string name;    //!<object's short name
         std::string type;    //!<object's type
