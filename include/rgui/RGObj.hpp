@@ -81,7 +81,7 @@ class RGObj : public RGRect {
         float leftOverStretchX;
 
 
-        RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int hNew);
+        RGObj(const std::string& name, const std::string& type, int xNew, int yNew, int wNew, int hNew);
         ~RGObj() = default;
 
         //mouse clicking and dragging related
@@ -100,10 +100,10 @@ class RGObj : public RGRect {
         void propagateAppObject(RGObj* newChild);
 
         string getName() const { return name; };
-        void setName(string newName);
+        void setName(const std::string& name);
 
         string getType() const;
-        void setType(string newType);
+        void setType(const std::string& type);
 
         void setDrawObject(RGDraw* newDrawObject);
         RGDraw* getDrawObject();                //!<returns a pointer to the drawing instance
@@ -157,8 +157,8 @@ class RGObj : public RGRect {
         RGApp* app;     //!<pointer to the parent app object
         bool appValid;
 
-        string name;    //!<object's short name
-        string type;    //!<object's type
+        std::string name;    //!<object's short name
+        std::string type;    //!<object's type
 
 };
 

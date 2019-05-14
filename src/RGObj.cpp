@@ -7,7 +7,7 @@
 
 //!Default object constructor
 
-RGObj::RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int hNew) : RGRect(xNew, yNew, wNew, hNew, RG_TL) {
+RGObj::RGObj(const std::string& name, const std::string& type, int xNew, int yNew, int wNew, int hNew) : RGRect(xNew, yNew, wNew, hNew, RG_TL) {
     drawValid = false;
     parentValid = false;
     rootObjectValid = false;
@@ -31,14 +31,14 @@ RGObj::RGObj(string nameNew, string typeNew, int xNew, int yNew, int wNew, int h
     verboseMouseOverChild = false;
     verbosePress = false;
 
-    name = "";
+    //name = "";
     dragStartValid = false;
 
     RGEventHandlerBase* eventHandler;
 
-    name = nameNew;
-    type = typeNew;
-    if(type == "") { type="generic"; }
+    this->name = name;
+    this->type = type;
+    if(type.empty()) { this->type="generic"; }
 
     cout << "RGObj constructor:   w:" << getW() << " h:" << getH() <<  " x:" << getX() << " y:" << getY();
     //ctor
@@ -274,15 +274,15 @@ void RGObj::propagateAppObject(RGObj* newChild) {
 }
 
 
-void RGObj::setName(string newName) {
-    name = newName;
+void RGObj::setName(const std::string& name) {
+    this->name = name;
 }
 
 string RGObj::getType() const{
     return type;
 }
-void RGObj::setType(string newType) {
-    type = newType;
+void RGObj::setType(const std::string& type) {
+    this->type = type;
 }
 
 void RGObj::setDrawObject(RGDraw* newDrawObject) {
