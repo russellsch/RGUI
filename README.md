@@ -12,7 +12,7 @@ Simple GUI widgets
 - Quick GUIs
 
 
-
+[![Build Status](https://travis-ci.com/russellsch/RGUI.svg?token=roZd6USoNAjScqsNVXzw&branch=master)](https://travis-ci.com/russellsch/RGUI)
 
 
 ## Changelog
