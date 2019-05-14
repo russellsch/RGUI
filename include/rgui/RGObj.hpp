@@ -87,7 +87,7 @@ class RGObj : public RGRect {
         MouseDelegation dragEvent(int mouseXin, int mouseYin, int button);
         void resizeEvent(int wNew, int hNew);
 
-        bool mouseOverChild(int mouseXin, int mouseYin, int childIndex);
+        bool mouseOverChild(int mouseX, int mouseY, uint32_t childIndex);
         RGObj* getChild(int i);
         void addChild(RGObj* newChild); //!<Add a child to this GUI object
         int getChildrenSize() const;

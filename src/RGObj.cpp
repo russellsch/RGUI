@@ -357,18 +357,16 @@ void RGObj::postChildrenRender(int XOffset, int YOffset, unsigned int milliSecon
 }
 
 
-bool RGObj::mouseOverChild(int mouseXin, int mouseYin, int childIndex) {
-    if(verboseMouseOverChild) {
-        /*PApplet.println("   mouseoverchild: " + mouseXin+","+mouseYin +" obj:"
-                        +((RGObj)children.get(childIndex)).x+"-"+(((RGObj)children.get(childIndex)).x+((RGObj)children.get(childIndex)).w)
-                        +","+((RGObj)children.get(childIndex)).y+"-"+(((RGObj)children.get(childIndex)).y+
-                                ((RGObj)children.get(childIndex)).h));*/
-    }
-    if(mouseXin >getChild(childIndex)->getL() &&
-            mouseXin < getChild(childIndex)->getL()+getChild(childIndex)->getW() &&
-            mouseYin > getChild(childIndex)->getT() &&
-            mouseYin < getChild(childIndex)->getT()+getChild(childIndex)->getH() )
-    {
+bool RGObj::mouseOverChild(int mouseX, int mouseY, uint32_t childIndex) {
+    auto childLeftCoord = getChild(childIndex)->getL();
+    auto childRightCoord = childLeftCoord + getChild(childIndex)->getW();
+    auto childTopCoord = getChild(childIndex)->getT();
+    auto childBottomCoord = childTopCoord + getChild(childIndex)->getH();
+
+    if(mouseX > childLeftCoord &&
+       mouseX < childRightCoord &&
+       mouseY > childTopCoord &&
+       mouseY < childBottomCoord ) {
         return true;
     }
     return false;
