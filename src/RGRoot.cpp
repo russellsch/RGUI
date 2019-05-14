@@ -44,12 +44,12 @@ IMPORTANT: This will return NULL if nothing with that name is found. Make sure y
 As a convention, names are generally lowercase letters, numbers, and underscores (although other special characters are valid, but not
 full UTF8).
 */
-RGObj& RGRoot::findChildByName(string name) {
+RGObj* RGRoot::findChildByName(string name) {
     map<string, RGObj*>::iterator iter = nameList.find(name);
     if(iter != nameList.end()){
-        return *iter->second;
+        return iter->second;
     } else {
- //       return nullptr;
+        return nullptr;
     }
 
 }
