@@ -58,12 +58,13 @@ class RGApp{
     protected:
         void setupGLView();
 
-        void processEvents();
+        void processEvents(RGOSWindow& aWindow);
 
         unsigned int windowW, windowH;
         string title;
 
         RGOSWindow* window;
+
 
 
     private:
@@ -73,7 +74,7 @@ class RGApp{
 
 };
 
-static RGApp* appPointer;
+
 
 
 

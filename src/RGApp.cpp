@@ -3,13 +3,10 @@
 
 
 RGApp::RGApp(){
-    appPointer = this;
     mouseIsPressed = false;
 
-
-
-
 }
+
 RGApp::~RGApp() {
     //delete window;
 }
@@ -36,7 +33,7 @@ void RGApp::runApp(unsigned int w, unsigned int h) {
     bool running = true;
 
 	while(window->isOpen()) {
-		processEvents();        //process mouse events and keyboard
+		processEvents(*window);        //process mouse events and keyboard
 		onUpdate();               // Call user's overridden update function
 		onDraw();                 // Call user's overridden draw function
 
@@ -46,33 +43,30 @@ void RGApp::runApp(unsigned int w, unsigned int h) {
 	cout << "RGApp Window closed \n";
 }
 
-void RGApp::processEvents() {
+void RGApp::processEvents(RGOSWindow& aWindow) {
     RGInputEvent event;
 
-    while (window->getEvent(event)) {
+    while (aWindow.getEvent(event)) {
         if(event.type == RGInputEvent::Closed) {
             cout << "RGApp got closed input event \n";
-            window->close();
+            aWindow.close();
             onExit();             //user's custom on-exit code
-        }
-        if(event.type == RGInputEvent::MouseButtonPressed) {
+        } else if(event.type == RGInputEvent::MouseButtonPressed) {
             mouseIsPressed = true;
             mousePressedButton = event.mouseButton.button;
             mousePressed(event.mouseButton.x, event.mouseButton.y, mousePressedButton);
-        }else if(event.type == RGInputEvent::MouseButtonReleased) {
+        } else if(event.type == RGInputEvent::MouseButtonReleased) {
             mouseIsPressed = false;
             mouseReleased(event.mouseButton.x, event.mouseButton.y, mousePressedButton);
-        }else if(event.type == RGInputEvent::MouseMoved && mouseIsPressed) {
+        } else if(event.type == RGInputEvent::MouseMoved && mouseIsPressed) {
             mouseDragged(event.mouseMove.x, event.mouseMove.y, mousePressedButton);
-        }
-        if(event.type == RGInputEvent::Resized) {  //if we resize the window... update the RGApp's window size vars and setup the OpenGL view again
+        } else if(event.type == RGInputEvent::Resized) {  //if we resize the window... update the RGApp's window size vars and setup the OpenGL view again
             cout << "resize: " << event.resize.width << " " << event.resize.height <<endl;
             windowW = event.resize.width;
             windowH = event.resize.height;
             windowResized(windowW, windowH);
             setupGLView();
         }
-
     }
 }
 
