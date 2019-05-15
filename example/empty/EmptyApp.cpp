@@ -1,6 +1,6 @@
 #include "EmptyApp.hpp"
 
-void EmptyApp::setup(){
+void EmptyApp::onSetup(){
 
     root = new RGRoot(1024,768, this);
 
@@ -28,7 +28,7 @@ void ButtonEvent::released() {
 ButtonEvent::ButtonEvent(RGRoot* root) : RGEventHandlerBase(root) { }
 
 
-void EmptyApp::draw(){
+void EmptyApp::onDraw(){
     root->render(0,0);
     //cout << "draw\n";
 }

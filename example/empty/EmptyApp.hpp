@@ -6,8 +6,8 @@ class EmptyApp : public RGApp{
     RGRoot* root;
 
 	public:
-		void setup() override;
-		void draw() override;
+		void onSetup() override;
+		void onDraw() override;
 
 		void keyPressed (int key) override;
 		void keyReleased(int key) override;

@@ -38,6 +38,9 @@ Simple GUI widgets
 - [ ] Basic UI demo of working UI widgets
 
 
+- [ ] Change timer code to use std::chrono
+- [ ] Rename all private variables to start with '_'
+
 - [ ] Upgrade font renderer to support multiple sizes for one font
 
 - [ ] Update scenegraph to manage and render RGDraw calls to textures

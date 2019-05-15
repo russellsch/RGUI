@@ -1,6 +1,6 @@
 #include "UIBasicApp1.hpp"
 
-void UIBasicApp1::setup(){
+void UIBasicApp1::onSetup(){
 
     root = new RGRoot(1024,768, this);
 
@@ -69,7 +69,7 @@ void ButtonEvent::released() {
 ButtonEvent::ButtonEvent(RGRoot* root) : RGEventHandlerBase(root) { }
 
 
-void UIBasicApp1::draw(){
+void UIBasicApp1::onDraw(){
     root->render(0,0);
 
     auto d = root->draw;

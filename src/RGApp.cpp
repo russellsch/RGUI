@@ -19,7 +19,7 @@ void RGApp::runApp(unsigned int w, unsigned int h) {
     windowW = w;
     windowH = h;
 
-	setup();        // Call user's overridden setup function
+	onSetup();        // Call user's overridden setup function
 
     window = new RGSDLWindow();
     window->init();
@@ -37,8 +37,8 @@ void RGApp::runApp(unsigned int w, unsigned int h) {
 
 	while(window->isOpen()) {
 		processEvents();        //process mouse events and keyboard
-		update();               // Call user's overridden update function
-		draw();                 // Call user's overridden draw function
+		onUpdate();               // Call user's overridden update function
+		onDraw();                 // Call user's overridden draw function
 
 		window->display();
 
@@ -53,7 +53,7 @@ void RGApp::processEvents() {
         if(event.type == RGInputEvent::Closed) {
             cout << "RGApp got closed input event \n";
             window->close();
-            exit();             //user's custom on-exit code
+            onExit();             //user's custom on-exit code
         }
         if(event.type == RGInputEvent::MouseButtonPressed) {
             mouseIsPressed = true;
