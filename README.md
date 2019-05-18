@@ -1,6 +1,7 @@
 Rapid Visualization and GUI Toolkit: "RGUI"
 ==============================================
 
+*Not currently ready for public consumption!*
 
 Easy 2D drawing interface accelerated by OpenGL
 Simple GUI widgets
