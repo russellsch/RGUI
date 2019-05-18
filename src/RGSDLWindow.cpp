@@ -61,7 +61,11 @@ void RGSDLWindow::display() {
 
 void RGSDLWindow::close() {
     running = false;
+
+    SDL_GL_DeleteContext(this->glContext);
+    SDL_DestroyWindow(this->window);
     SDL_Quit();
+
 }
 
 
