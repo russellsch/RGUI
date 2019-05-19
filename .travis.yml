@@ -2,16 +2,25 @@ language: cpp
 compiler: gcc
 
 os: linux
+dist: xenial
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
+      - gcc-7
       - g++-7
+      - cmake
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y build-essential binutils libsdl2-2.0-0 libsdl2-dev
+  - sudo apt-get install -y libfreetype6-dev freeglut3 freeglut3-dev libglew-dev
+  - sudo apt-get install -y libglu1-mesa-dev mesa-common-dev libglm-dev
 
 script:
-  - export CC=gcc-7
-  - export CXX=g++-7
+  - export CC=/usr/bin/gcc-7
+  - export CXX=/usr/bin/g++-7
   - cmake --version
   - cmake CMakeLists.txt
-  - cmake  --build . --target neat
+  - cmake  --build .

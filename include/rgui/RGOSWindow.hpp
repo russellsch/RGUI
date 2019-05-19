@@ -76,8 +76,8 @@ class RGOSWindow {
                                                 //!Opens a new window with a given width, height, title and fullscreen parameter
         virtual void openWindow(unsigned int width, unsigned int height, bool fullscreen, std::string title) { }
 
-        virtual unsigned int getWindowH() { return 0; }   //!<Returnes window height
-        virtual unsigned int getWindowW() { return 0; }   //!<Returnes window width
+        virtual unsigned int getWidth() { return width; }
+        virtual unsigned int getHeight() { return height; }
 
         virtual bool isOpen() { return false; }              //!< Returns true if the window is hasn't been closed
 
@@ -89,6 +89,8 @@ class RGOSWindow {
 
         virtual ~RGOSWindow() = default;
     protected:
+        uint32_t width;
+        uint32_t height;
 
     private:
 

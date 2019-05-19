@@ -47,7 +47,7 @@ set(src
 	RGApp.cpp
 	ColorRGBA.cpp
 	RGDraw.cpp
-		RGEventHandlerBase.cpp
+	RGEventHandlerBase.cpp
 	RGObj.cpp
 	RGRect.cpp
 	RGRoot.cpp
@@ -85,12 +85,15 @@ target_include_directories(rgui
 	${CMAKE_CURRENT_BINARY_DIR}
 )
 
-#${GLEW_INCLUDE_DIRS}
+
+#Strip whitespace from SDL libraries to Cmake errors
+string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
 
 target_link_libraries(rgui
 		${SDL2_LIBRARIES}
 		${FREETYPE_LIBRARIES}
-		OpenGL::OpenGL
+		#OpenGL::OpenGL
+		${OPENGL_LIBRARIES}
 		GLEW::GLEW
 		stdc++fs 	#Experimental C++17 filesystem
 		)

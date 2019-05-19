@@ -1,6 +1,6 @@
 #include "EmptyApp.hpp"
 
-void EmptyApp::setup(){
+void EmptyApp::onSetup(){
 
     root = new RGRoot(1024,768, this);
 
@@ -28,7 +28,7 @@ void ButtonEvent::released() {
 ButtonEvent::ButtonEvent(RGRoot* root) : RGEventHandlerBase(root) { }
 
 
-void EmptyApp::draw(){
+void EmptyApp::onDraw(){
     root->render(0,0);
     //cout << "draw\n";
 }
@@ -48,19 +48,19 @@ void EmptyApp::mouseMoved(unsigned int x, unsigned int y ){
 
 }
 
-void EmptyApp::mouseDragged(unsigned int x, unsigned int y, int button){
+void EmptyApp::mouseDragged(unsigned int x, unsigned int y, MouseButton button){
     //rgMain1->event(DRAGGED, x,y);
     root->dragEvent(x,y, button);
 }
 
 
-void EmptyApp::mousePressed(unsigned int x, unsigned int y, int button){
+void EmptyApp::mousePressed(unsigned int x, unsigned int y, MouseButton button){
     //rgMain1->event(PRESSED, x,y);
     root->pressEvent(x,y);
 }
 
 
-void EmptyApp::mouseReleased(unsigned int x, unsigned int y, int button){
+void EmptyApp::mouseReleased(unsigned int x, unsigned int y, MouseButton button){
     //rgMain1->event(RELEASED, x,y);
     root->releaseEvent(x,y);
 }

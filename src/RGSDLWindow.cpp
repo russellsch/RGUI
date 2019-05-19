@@ -29,6 +29,11 @@ void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fulls
             SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                 width, height, SDL_WINDOW_OPENGL); // | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
 
+    int actualWidth, actualHeight;
+    SDL_GetWindowSize(this->window, &actualWidth, &actualHeight);
+    width = actualWidth;
+    height = actualHeight;
+
     printSDLError(__LINE__);
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 3 );
     SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
@@ -37,7 +42,6 @@ void RGSDLWindow::openWindow(unsigned int width, unsigned int height, bool fulls
     printSDLError(__LINE__);
     sdl_renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
     printSDLError(__LINE__);
-
 
     GLenum glewError = glewInit();
     if( glewError != GLEW_OK ) {
@@ -61,7 +65,11 @@ void RGSDLWindow::display() {
 
 void RGSDLWindow::close() {
     running = false;
+
+    SDL_GL_DeleteContext(this->glContext);
+    SDL_DestroyWindow(this->window);
     SDL_Quit();
+
 }
 
 

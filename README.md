@@ -1,6 +1,7 @@
 Rapid Visualization and GUI Toolkit: "RGUI"
 ==============================================
 
+*Not currently ready for public consumption!*
 
 Easy 2D drawing interface accelerated by OpenGL
 Simple GUI widgets
@@ -12,7 +13,7 @@ Simple GUI widgets
 - Quick GUIs
 
 
-
+[![Build Status](https://travis-ci.com/russellsch/RGUI.svg?token=roZd6USoNAjScqsNVXzw&branch=master)](https://travis-ci.com/russellsch/RGUI)
 
 
 ## Changelog
@@ -33,11 +34,17 @@ Simple GUI widgets
 - [X] Change RGObject mouse delegation handling to use enums for clarity
 - [X] Add GPLv3 license
 - [X] Remove inheritance of RGObj on RGRect in favor of composition approach
+- [X] Travis.ci continuous integration working
 
 - [ ] Basic UI demo of working UI widgets
 
 
+- [ ] Change timer code to use std::chrono
+- [ ] Rename all private variables to start with '_'
+
 - [ ] Upgrade font renderer to support multiple sizes for one font
+
+- [ ] Update scenegraph to manage and render RGDraw calls to textures
 
 - [ ] Add CMake library exports
 - [ ] Add Dockerfile

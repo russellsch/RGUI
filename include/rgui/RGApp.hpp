@@ -29,10 +29,10 @@ class RGApp{
         int mouseX, mouseY;
 
 
-		virtual void setup(){}
-		virtual void update(){}
-		virtual void draw(){}
-		virtual void exit(){}
+		virtual void onSetup(){}
+		virtual void onUpdate(){}
+		virtual void onDraw(){}
+		virtual void onExit(){}
 
 
 		virtual void windowResized(unsigned int w, unsigned int h){}
@@ -58,12 +58,14 @@ class RGApp{
     protected:
         void setupGLView();
 
-        void processEvents();
+        void processEvents(RGOSWindow& aWindow);
 
         unsigned int windowW, windowH;
         string title;
 
         RGOSWindow* window;
+
+
 
     private:
         bool mouseIsPressed;    //used to detect dragging
@@ -72,7 +74,7 @@ class RGApp{
 
 };
 
-static RGApp* appPointer;
+
 
 
 
